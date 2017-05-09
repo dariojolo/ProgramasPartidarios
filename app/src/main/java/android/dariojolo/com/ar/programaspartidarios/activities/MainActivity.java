@@ -1,15 +1,21 @@
 package android.dariojolo.com.ar.programaspartidarios.activities;
 
+import android.content.DialogInterface;
 import android.dariojolo.com.ar.programaspartidarios.R;
 import android.dariojolo.com.ar.programaspartidarios.adapters.MyAdapter;
 import android.dariojolo.com.ar.programaspartidarios.models.Programa;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,12 +79,46 @@ public class MainActivity extends AppCompatActivity {
         }};
     }
     private void addPrograma(int position){
-        programas.add(position, new Programa("Pelicula: " + ++contador, R.drawable.programanuevo));
-        adapter.notifyItemInserted(position);
-        layoutManager.scrollToPosition(0);
+      //  programas.add(position, new Programa("Pelicula: " + ++contador, R.drawable.programanuevo));
+      //  adapter.notifyItemInserted(position);
+      //  layoutManager.scrollToPosition(0);
+        showAlertParaNuevoPrograma("Nuevo programa partidario", "Ingrese nombre del programa");
+
     }
     private void deletePrograma(int position){
         programas.remove(position);
         adapter.notifyItemRemoved(position);
+    }
+    //Ventana para agregar un nuevo Programa
+    private void showAlertParaNuevoPrograma(String titulo, String mensaje){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        if (titulo!= null){
+            builder.setTitle(titulo);
+        }
+        if (mensaje != null){
+            builder.setMessage(mensaje);
+        }
+        View viewInflated = LayoutInflater.from(this).inflate(R.layout.layout_nuevo_programa, null);
+        builder.setView(viewInflated);
+
+        final EditText nombreIngresado = (EditText)viewInflated.findViewById(R.id.edtNombre);
+
+        builder.setPositiveButton("Agregar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String nombreProg = nombreIngresado.getText().toString().trim();
+                if (nombreProg.length()>0){
+                    Toast.makeText(getApplicationContext(),"Nombre de programa: " + nombreProg,Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(getApplicationContext(),"El nombre no puede ser vacio",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+
+
     }
 }

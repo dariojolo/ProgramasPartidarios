@@ -16,7 +16,7 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 /**
- * Created by rodrigrl on 08/05/2017.
+ * Created by Dario on 08/05/2017.
  */
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
@@ -27,7 +27,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     private Context context;
     private Activity activity;
 
-    public MyAdapter(List<Programa> programas, int list_item_recycler,OnItemClickListener onItemClickListener) {
+
+    public MyAdapter(List<Programa> programas, int layout,OnItemClickListener itemClickListener) {
         this.programas = programas;
         this.layout = layout;
         this.itemClickListener = itemClickListener;
