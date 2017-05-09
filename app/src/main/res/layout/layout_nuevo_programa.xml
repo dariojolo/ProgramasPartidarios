@@ -16,10 +16,9 @@
         android:id="@+id/edtNombre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="23dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
+        android:hint="Nombre programa"
         android:layout_below="@+id/txtNombre"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -28,87 +27,96 @@
         android:id="@+id/txtDias"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/edtNombre"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="17dp"
         android:textSize="18dp"
-        android:text="Seleccione dias de transmision" />
+        android:text="Seleccione dias de transmision"
+        android:layout_below="@+id/edtNombre"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <ToggleButton
         android:id="@+id/btnLunes"
         android:layout_width="30dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
+        android:layout_height="30dp"
+        android:layout_marginTop="13dp"
+        android:textOff="L"
+        android:textOn="L"
+        android:textColor="#FFF"
+        android:background="@drawable/circulorojo"
         android:layout_below="@+id/txtDias"
-        android:layout_marginTop="41dp"
-        android:text="Lun" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <ToggleButton
         android:id="@+id/btnMartes"
         android:layout_width="30dp"
-        android:layout_height="wrap_content"
-        android:text="Mar"
-        android:layout_alignBaseline="@+id/btnLunes"
-        android:layout_alignBottom="@+id/btnLunes"
+        android:layout_height="30dp"
+        android:textOff="M"
+        android:textOn="M"
+        android:textColor="#FFF"
+        android:background="@drawable/circulorojo"
+        android:layout_above="@+id/txtHora"
         android:layout_toRightOf="@+id/btnLunes"
-        android:layout_toEndOf="@+id/btnLunes"
-        android:layout_marginLeft="15dp"
-        android:layout_marginStart="15dp" />
+        android:layout_toEndOf="@+id/btnLunes" />
 
     <ToggleButton
         android:id="@+id/btnMiercoles"
         android:layout_width="30dp"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/btnMartes"
-        android:layout_toEndOf="@+id/btnMartes"
-        android:text="Mie"
-        android:layout_marginLeft="15dp"
-        android:layout_marginStart="15dp" />
+        android:layout_height="30dp"
+        android:textOff="M"
+        android:textOn="M"
+        android:textColor="#FFF"
+        android:background="@drawable/circulorojo"
+        android:layout_above="@+id/txtHora"
+        android:layout_toRightOf="@+id/btnMartes"
+        android:layout_toEndOf="@+id/btnMartes" />
 
     <ToggleButton
         android:id="@+id/btnJueves"
         android:layout_width="30dp"
-        android:layout_height="wrap_content"
-        android:text="Jue"
-        android:layout_alignBaseline="@+id/btnMiercoles"
-        android:layout_alignBottom="@+id/btnMiercoles"
+        android:layout_height="30dp"
+        android:textOff="J"
+        android:textOn="J"
+        android:textColor="#FFF"
+        android:background="@drawable/circulorojo"
+        android:layout_above="@+id/txtHora"
         android:layout_toRightOf="@+id/btnMiercoles"
-        android:layout_toEndOf="@+id/btnMiercoles"
-        android:layout_marginLeft="15dp"
-        android:layout_marginStart="15dp" />
+        android:layout_toEndOf="@+id/btnMiercoles" />
 
     <ToggleButton
         android:id="@+id/btnViernes"
         android:layout_width="30dp"
-        android:layout_height="wrap_content"
-        android:text="Vie"
-        android:layout_alignBaseline="@+id/btnJueves"
-        android:layout_alignBottom="@+id/btnJueves"
+        android:layout_height="30dp"
+        android:textOff="V"
+        android:textOn="V"
+        android:textColor="#FFF"
+        android:background="@drawable/circulorojo"
+        android:layout_above="@+id/txtHora"
         android:layout_toRightOf="@+id/btnJueves"
-        android:layout_toEndOf="@+id/btnJueves"
-        android:layout_marginLeft="15dp"
-        android:layout_marginStart="15dp" />
+        android:layout_toEndOf="@+id/btnJueves" />
 
     <TextView
         android:id="@+id/txtHora"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/btnLunes"
-        android:layout_marginTop="33dp"
+        android:layout_marginTop="19dp"
         android:text="Seleccione horario de transmision"
-        android:textSize="18dp"/>
+        android:textSize="18dp"
+        android:layout_below="@+id/btnLunes"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
-    <TextClock
-        android:id="@+id/textClock"
+    <EditText
+        android:id="@+id/edtHoraInicio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/edtNombre"
+        android:layout_alignRight="@+id/edtNombre"
         android:layout_below="@+id/txtHora"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="14dp"
+        android:ems="10"
+        android:inputType="time"
+        android:hint="21:00" />
+
 
 </RelativeLayout>

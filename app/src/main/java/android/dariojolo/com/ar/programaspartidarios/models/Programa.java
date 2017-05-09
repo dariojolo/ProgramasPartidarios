@@ -1,10 +1,12 @@
 package android.dariojolo.com.ar.programaspartidarios.models;
 
+import java.io.Serializable;
+
 /**
  * Created by rodrigrl on 08/05/2017.
  */
 
-public class Programa {
+public class Programa implements Serializable {
     private String nombre;
     private int imagen;
 
