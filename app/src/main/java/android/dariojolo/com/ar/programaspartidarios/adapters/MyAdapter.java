@@ -57,17 +57,20 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView textViewName;
+        public TextView textViewEmisora;
         public ImageView imageViewPoster;
 
         public ViewHolder(View v) {
             super(v);
             textViewName = (TextView) v.findViewById(R.id.txtNombrePrograma);
+            textViewEmisora = (TextView)v.findViewById(R.id.txtEmisoraPrograma);
             imageViewPoster = (ImageView) v.findViewById(R.id.imagenPrograma);
         }
 
         public void bind(final Programa programa, final OnItemClickListener itemClickListener) {
             //Procesamos los datos a renderizar
             textViewName.setText(programa.getNombre());
+            textViewEmisora.setText(programa.getEmisora());
             //Picasso
             Picasso.with(context).load(programa.getImagen()).fit().into(imageViewPoster);
             //imageViewPoster.setImageResource(movie.getPoster());

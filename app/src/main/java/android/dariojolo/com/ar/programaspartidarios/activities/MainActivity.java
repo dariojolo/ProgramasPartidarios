@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this,DetalleActivity.class);
                 Toast.makeText(getApplicationContext(), "Posicion antes de enviarse "+ position, Toast.LENGTH_LONG).show();
                 intent.putExtra("Posicion", position);
-                intent.putExtra("Lista", (Serializable) getAllProgramas());
+                intent.putExtra("Programa", (Serializable) programa);
                 startActivity(intent);
             }
         });
@@ -87,17 +87,20 @@ public class MainActivity extends AppCompatActivity {
 
     private List<Programa> getAllProgramas(){
         return new ArrayList<Programa>() {{
-            add(new Programa("Programa partidario 1", R.drawable.programa1));
-            add(new Programa("Programa partidario 2", R.drawable.programa2));
-            add(new Programa("Programa partidario 3", R.drawable.programa3));
-            add(new Programa("Programa partidario 4", R.drawable.programa4));
+            add(new Programa("A todo ciclón", R.drawable.atodociclon2, "Oscar Sacco", "AM810"));
+            add(new Programa("Buenas y Santas", R.drawable.buenasysantas, "No proporcionado", "AM1090"));
+            add(new Programa("El café del ciclón", R.drawable.elcafedelciclon, "Mariano Bongiorno", "AM1290"));
+            add(new Programa("El Plateista", R.drawable.elplateista, "Carlos Canissa", "AM810"));
+            add(new Programa("Hablemos de San Lorenzo", R.drawable.hablemosdesanlorenzo, "Cristian Pagliaro, Rodrigo Castellano y Nicolas Morandi", "AM770"));
+            add(new Programa("La hora del ciclón", R.drawable.lahoradelciclon, "Mario Massi", "AM890"));
+            add(new Programa("La cicloneta", R.drawable.lacicloneta, "Leandro Alves", "AM970"));
         }};
     }
     private void addPrograma(int position){
       //  programas.add(position, new Programa("Pelicula: " + ++contador, R.drawable.programanuevo));
       //  adapter.notifyItemInserted(position);
       //  layoutManager.scrollToPosition(0);
-        showAlertParaNuevoPrograma("Nuevo programa partidario", "Ingrese nombre del programa");
+        showAlertParaNuevoPrograma("Nuevo programa partidario", "");
 
     }
     private void deletePrograma(int position){
@@ -199,8 +202,5 @@ public class MainActivity extends AppCompatActivity {
 
         AlertDialog dialog = builder.create();
         dialog.show();
-
-
-
     }
 }

@@ -23,10 +23,9 @@ public class DetalleActivity extends AppCompatActivity {
        // Toast.makeText(this, "En la pagina del detalle del programa "+ position, Toast.LENGTH_LONG).show();
 
         //actividadActual.getApplicationContext()).setLista(tuLista);
-        ArrayList<Programa> lista = (ArrayList<Programa>) getIntent().getSerializableExtra("Lista");
-        String nombre = lista.get(position).getNombre();
+        Programa programaSeleccionado = (Programa) getIntent().getSerializableExtra("Programa");
 
-        Toast.makeText(this, "Nombre seleccionado: " + nombre, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Nombre seleccionado: " + programaSeleccionado.getNombre(), Toast.LENGTH_LONG).show();
 
 
     }
