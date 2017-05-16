@@ -8,6 +8,8 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import io.realm.Realm;
+
 
 public class DetalleActivity extends AppCompatActivity {
 
@@ -17,15 +19,19 @@ public class DetalleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detalle);
 
         Bundle bundle = getIntent().getExtras();
+        int _id = bundle.getInt("Programa");
 
-        int position = bundle.getInt("Posicion");
 
        // Toast.makeText(this, "En la pagina del detalle del programa "+ position, Toast.LENGTH_LONG).show();
 
         //actividadActual.getApplicationContext()).setLista(tuLista);
-        Programa programaSeleccionado = (Programa) getIntent().getSerializableExtra("Programa");
 
-        Toast.makeText(this, "Nombre seleccionado: " + programaSeleccionado.getNombre(), Toast.LENGTH_LONG).show();
+        Realm realm = Realm.getDefaultInstance();
+
+        Programa programa = realm.where(Programa.class).equalTo("Id",_id).findFirst();
+
+
+        Toast.makeText(this, "Nombre seleccionado: " + programa.getNombre(), Toast.LENGTH_LONG).show();
 
 
     }

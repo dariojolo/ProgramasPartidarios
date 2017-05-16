@@ -23,7 +23,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+import io.realm.Realm;
+import io.realm.RealmChangeListener;
+import io.realm.RealmResults;
+
+public class MainActivity extends AppCompatActivity implements RealmChangeListener<RealmResults<Programa>>{
 
     private List<Programa> programas;
     private RecyclerView recycler;
@@ -38,22 +42,30 @@ public class MainActivity extends AppCompatActivity {
     private Boolean isSabado = false;
     private Boolean isDomingo = false;
 
-
+    private Realm realm;
+    private RealmResults<Programa> programasR;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        programas = getAllProgramas();
+
+        realm = Realm.getDefaultInstance();
+
+        removeAll();
+        iniciarListaProgramas();
+
+        programasR = getAllProgramasR();
+        programasR.addChangeListener(this);
+       // programas = getAllProgramas();
         recycler = (RecyclerView) findViewById(R.id.recyclerView);
         layoutManager = new LinearLayoutManager(this);
-        adapter = new MyAdapter(programas, R.layout.list_item_recycler, new MyAdapter.OnItemClickListener() {
+        adapter = new MyAdapter(programasR, R.layout.list_item_recycler, new MyAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Programa programa, int position) {
                 //deletePrograma(position);
                 Intent intent = new Intent(MainActivity.this,DetalleActivity.class);
                 Toast.makeText(getApplicationContext(), "Posicion antes de enviarse "+ position, Toast.LENGTH_LONG).show();
-                intent.putExtra("Posicion", position);
-                intent.putExtra("Programa", (Serializable) programa);
+                intent.putExtra("Programa", programa.getId());
                 startActivity(intent);
             }
         });
@@ -85,7 +97,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private List<Programa> getAllProgramas(){
+    private RealmResults<Programa>getAllProgramasR(){
+        return realm.where(Programa.class).findAll();
+    }
+    /*private List<Programa> getAllProgramas(){
         return new ArrayList<Programa>() {{
             add(new Programa("A todo ciclón", R.drawable.atodociclon2, "Oscar Sacco", "AM810"));
             add(new Programa("Buenas y Santas", R.drawable.buenasysantas, "No proporcionado", "AM1090"));
@@ -95,6 +110,31 @@ public class MainActivity extends AppCompatActivity {
             add(new Programa("La hora del ciclón", R.drawable.lahoradelciclon, "Mario Massi", "AM890"));
             add(new Programa("La cicloneta", R.drawable.lacicloneta, "Leandro Alves", "AM970"));
         }};
+    }*/
+    private void iniciarListaProgramas(){
+        realm.executeTransaction(new Realm.Transaction(){
+
+            @Override
+            public void execute(Realm realm) {
+             Programa p1 = new Programa("A todo ciclón", R.drawable.atodociclon2, "Oscar Sacco", "AM810",false,false,false,false,false,false,false,false);
+                Programa p2 = new Programa("Buenas y Santas", R.drawable.buenasysantas, "No proporcionado", "AM1090",false,false,false,false,false,false,false,false);
+                Programa p3 = new Programa("El café del ciclón", R.drawable.elcafedelciclon, "Mariano Bongiorno", "AM1290",false,false,false,false,false,false,false,false);
+                Programa p4 = new Programa("El Plateista", R.drawable.elplateista, "Carlos Canissa", "AM810",false,false,false,false,false,false,false,false);
+                Programa p5 = new Programa("Hablemos de San Lorenzo", R.drawable.hablemosdesanlorenzo, "Cristian Pagliaro, Rodrigo Castellano y Nicolas Morandi", "AM770",false,false,false,false,false,false,false,false);
+                Programa p6 = new Programa("La hora del ciclón", R.drawable.lahoradelciclon, "Mario Massi", "AM890",false,false,false,false,false,false,false,false);
+                Programa p7 = new Programa("La cicloneta", R.drawable.lacicloneta, "Leandro Alves", "AM970",false,false,false,false,false,false,false,false);
+
+                realm.copyToRealmOrUpdate(p1);
+                realm.copyToRealmOrUpdate(p2);
+                realm.copyToRealmOrUpdate(p3);
+                realm.copyToRealmOrUpdate(p4);
+                realm.copyToRealmOrUpdate(p5);
+                realm.copyToRealmOrUpdate(p6);
+                realm.copyToRealmOrUpdate(p7);
+
+                programasR = getAllProgramasR();
+            }
+        });
     }
     private void addPrograma(int position){
       //  programas.add(position, new Programa("Pelicula: " + ++contador, R.drawable.programanuevo));
@@ -103,6 +143,12 @@ public class MainActivity extends AppCompatActivity {
         showAlertParaNuevoPrograma("Nuevo programa partidario", "");
 
     }
+    private void removeAll(){
+        realm.beginTransaction();
+        realm.deleteAll();
+        realm.commitTransaction();
+    }
+
     private void deletePrograma(int position){
         programas.remove(position);
         adapter.notifyItemRemoved(position);
@@ -202,5 +248,17 @@ public class MainActivity extends AppCompatActivity {
 
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+
+    @Override
+    public void onChange(RealmResults<Programa> element) {
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    protected void onDestroy() {
+        realm.removeAllChangeListeners();
+        realm.close();
+        super.onDestroy();
     }
 }
