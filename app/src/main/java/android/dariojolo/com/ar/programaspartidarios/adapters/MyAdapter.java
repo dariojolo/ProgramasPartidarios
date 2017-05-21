@@ -1,6 +1,5 @@
 package android.dariojolo.com.ar.programaspartidarios.adapters;
 
-import android.app.Activity;
 import android.content.Context;
 import android.dariojolo.com.ar.programaspartidarios.R;
 import android.dariojolo.com.ar.programaspartidarios.models.Programa;
@@ -25,7 +24,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     private int layout;
     private OnItemClickListener itemClickListener;
     private Context context;
-    private Activity activity;
 
 
     public MyAdapter(List<Programa> programas, int layout,OnItemClickListener itemClickListener) {
