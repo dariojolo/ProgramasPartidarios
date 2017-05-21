@@ -18,6 +18,10 @@ public class Programa extends RealmObject implements Serializable {
     private String nombre;
     private String conductores;
     private String emisora;
+    private String eMail;
+    private String twitter;
+    private String facebook;
+    private String telefono;
     private int imagen;
     private boolean lunes;
     private boolean martes;
@@ -27,16 +31,22 @@ public class Programa extends RealmObject implements Serializable {
     private boolean sabado;
     private boolean domingo;
     private boolean diaPartido;
+    private String horaInicio;
+    private String horaFin;
 
     public Programa(){} //Solo para Realm
 
-    public Programa(String nombre, int imagen, String conductores, String emisora,boolean lunes,boolean martes,boolean miercoles,
-                    boolean jueves,boolean viernes,boolean sabado, boolean domingo, boolean diaPartido){
+    public Programa(String nombre, int imagen, String conductores, String emisora,String eMail, String twitter, String facebook,String telefono, boolean lunes,boolean martes,boolean miercoles,
+                    boolean jueves,boolean viernes,boolean sabado, boolean domingo, boolean diaPartido, String horaInicio, String horaFin){
         Id = MyApp.ProgramaID.incrementAndGet();
         this.nombre = nombre;
         this.imagen = imagen;
         this.conductores = conductores;
         this.emisora = emisora;
+        this.eMail = eMail;
+        this.twitter = twitter;
+        this.facebook = facebook;
+        this.telefono = telefono;
         this.lunes = lunes;
         this.martes = martes;
         this.miercoles = miercoles;
@@ -45,6 +55,8 @@ public class Programa extends RealmObject implements Serializable {
         this.sabado = sabado;
         this.domingo = domingo;
         this.diaPartido = diaPartido;
+        this.horaInicio = horaInicio;
+        this.horaFin = horaFin;
     }
 
     public int getId(){
@@ -113,5 +125,53 @@ public class Programa extends RealmObject implements Serializable {
 
     public boolean isDiaPartido() {
         return diaPartido;
+    }
+
+    public String geteMail() {
+        return eMail;
+    }
+
+    public void seteMail(String eMail) {
+        this.eMail = eMail;
+    }
+
+    public String getTwitter() {
+        return twitter;
+    }
+
+    public void setTwitter(String twitter) {
+        this.twitter = twitter;
+    }
+
+    public String getFacebook() {
+        return facebook;
+    }
+
+    public void setFacebook(String facebook) {
+        this.facebook = facebook;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getHoraInicio() {
+        return horaInicio;
+    }
+
+    public void setHoraInicio(String horaInicio) {
+        this.horaInicio = horaInicio;
+    }
+
+    public String getHoraFin() {
+        return horaFin;
+    }
+
+    public void setHoraFin(String horaFin) {
+        this.horaFin = horaFin;
     }
 }
