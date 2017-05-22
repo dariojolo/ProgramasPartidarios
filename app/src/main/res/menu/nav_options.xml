@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/todas"
+            android:icon="@android:drawable/ic_menu_zoom"
+            android:title="Todas (orden alfabetico)"
+            />
+        <item
+            android:id="@+id/radioam"
+            android:icon="@android:drawable/ic_menu_zoom"
+            android:title="Radios AM"
+            />
+        <item
+            android:id="@+id/radiofm"
+            android:icon="@android:drawable/ic_menu_week"
+            android:title="Radios FM" />
+        <item
+            android:id="@+id/radiopartidos"
+            android:icon="@android:drawable/ic_menu_view"
+            android:title="Transmision de partidos" />
+    </group>
+    <item android:title="Otras opciones">
+        <menu>
+            <item
+                android:id="@+id/opcion1"
+                android:icon="@android:drawable/ic_menu_today"
+                android:title="Opcion 1"
+                />
+            <item
+                android:id="@+id/opcion2"
+                android:icon="@android:drawable/ic_menu_upload"
+                android:title="Opcion 2" />
+        </menu>
+    </item>
+</menu>

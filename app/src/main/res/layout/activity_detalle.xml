@@ -1,9 +1,184 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="android.dariojolo.com.ar.programaspartidarios.activities.DetalleActivity">
+    tools:context="android.dariojolo.com.ar.programaspartidarios.activities.DetalleActivity"
+    android:orientation="vertical">
 
-</android.support.constraint.ConstraintLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.4">
+        <ImageView
+            android:id="@+id/imagenPrograma"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </FrameLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_weight="0.6">
+
+
+        <TextView
+            android:id="@+id/txtNombre2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="31dp"
+            android:layout_marginStart="31dp"
+            android:layout_marginTop="22dp"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/txtEmisora"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/txtNombre2"
+            android:layout_alignRight="@+id/txtNombre2"
+            android:layout_below="@+id/txtNombre2"
+            android:layout_marginTop="22dp"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/txtDias2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/txtEmisora"
+            android:layout_alignRight="@+id/txtEmisora"
+            android:layout_below="@+id/txtEmisora"
+            android:layout_marginTop="22dp"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/txtHoraInicio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/linearDias"
+            android:layout_alignStart="@+id/linearDias"
+            android:layout_below="@+id/linearDias"
+            android:layout_marginTop="22dp"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/txtHoraInicio"
+            android:layout_marginLeft="17dp"
+            android:layout_marginStart="17dp"
+            android:layout_toEndOf="@+id/txtHoraInicio"
+            android:layout_toRightOf="@+id/txtHoraInicio"
+            android:text="-" />
+
+        <TextView
+            android:id="@+id/txtHoraFin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView11"
+            android:layout_alignBottom="@+id/textView11"
+            android:layout_marginLeft="14dp"
+            android:layout_marginStart="14dp"
+            android:layout_toEndOf="@+id/textView11"
+            android:layout_toRightOf="@+id/textView11"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/txtConductores"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/txtDias2"
+            android:layout_alignRight="@+id/txtDias2"
+            android:layout_below="@+id/txtDias2"
+            android:layout_marginTop="22dp"
+            android:text="TextView" />
+        <TextView
+            android:id="@+id/lblDias"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/txtConductores"
+            android:layout_alignRight="@+id/txtConductores"
+            android:layout_below="@+id/txtConductores"
+            android:layout_marginTop="22dp"
+            android:text="Dias de emisión" />
+
+        <LinearLayout
+            android:id="@+id/linearDias"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/lblDias"
+            android:layout_marginTop="22dp"
+            android:orientation="horizontal">
+
+            <ToggleButton
+                android:id="@+id/lunes"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:textOn="L"
+                android:textOff="L"
+                android:textColor="#fff"/>
+
+            <ToggleButton
+                android:id="@+id/martes"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:textOn="M"
+                android:textOff="M" />
+
+            <ToggleButton
+                android:id="@+id/miercoles"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:textOn="M"
+                android:textOff="M" />
+
+            <ToggleButton
+                android:id="@+id/jueves"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:textOn="J"
+                android:textOff="J"/>
+
+            <ToggleButton
+                android:id="@+id/viernes"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:textOn="V"
+                android:textOff="V" />
+
+            <ToggleButton
+                android:id="@+id/sabado"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:textOn="S"
+                android:textOff="S" />
+
+            <ToggleButton
+                android:id="@+id/domingo"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:textOn="D"
+                android:textOff="D" />
+
+            <ToggleButton
+                android:id="@+id/diaPartido"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:textOn="T"
+                android:textOff="T"
+                />
+        </LinearLayout>
+
+    </RelativeLayout>
+</LinearLayout>
