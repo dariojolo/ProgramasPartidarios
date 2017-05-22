@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements RealmChangeListen
 
         realm = Realm.getDefaultInstance();
 
-        removeAll();
+
         iniciarListaProgramas();
 
         programasR = getAllProgramasR();
@@ -100,17 +100,7 @@ public class MainActivity extends AppCompatActivity implements RealmChangeListen
     private RealmResults<Programa>getAllProgramasR(){
         return realm.where(Programa.class).findAll();
     }
-    /*private List<Programa> getAllProgramas(){
-        return new ArrayList<Programa>() {{
-            add(new Programa("A todo ciclón", R.drawable.atodociclon2, "Oscar Sacco", "AM810"));
-            add(new Programa("Buenas y Santas", R.drawable.buenasysantas, "No proporcionado", "AM1090"));
-            add(new Programa("El café del ciclón", R.drawable.elcafedelciclon, "Mariano Bongiorno", "AM1290"));
-            add(new Programa("El Plateista", R.drawable.elplateista, "Carlos Canissa", "AM810"));
-            add(new Programa("Hablemos de San Lorenzo", R.drawable.hablemosdesanlorenzo, "Cristian Pagliaro, Rodrigo Castellano y Nicolas Morandi", "AM770"));
-            add(new Programa("La hora del ciclón", R.drawable.lahoradelciclon, "Mario Massi", "AM890"));
-            add(new Programa("La cicloneta", R.drawable.lacicloneta, "Leandro Alves", "AM970"));
-        }};
-    }*/
+
     private void iniciarListaProgramas(){
         realm.executeTransaction(new Realm.Transaction(){
 
@@ -125,8 +115,8 @@ public class MainActivity extends AppCompatActivity implements RealmChangeListen
                 Programa p7 = new Programa("Estación Boedo",R.drawable.estacionboedo2,"","FM105.9","estacionboedo6@gmail.com","https://twitter.com/EstacionBoedo","https://www.facebook.com/Estacion-Boedo-PQV-792475577446550/","4912-1059",true,false,false,false,false,false,false,false,"21","23");
                 Programa p8 = new Programa("Gente de San Lorenzo",R.drawable.gentedesanlorenzo,"Claudio Morrone","AM840",null,null,null,null,false,false,false,false,true,false,false,false,"20","21");
                 Programa p9 = new Programa("Hablemos de San Lorenzo", R.drawable.hablemosdesanlorenzo, "Cristian Pagliaro, Rodrigo Castellano y Nicolas Morandi", "AM770","cris_pagliaro05@yahoo.com.ar",null,null,null,false,false,false,false,false,false,false,false,"","");
-                Programa p61 = new Programa("La hora del ciclón", R.drawable.lahoradelciclon, "Mario Massi", "AM890",null,null,null,null,false,false,false,false,false,false,false,false,"","");
-                Programa p71 = new Programa("La cicloneta", R.drawable.lacicloneta, "Leandro Alves", "AM970",null,null,null,null,false,false,false,false,false,false,false,false,"","");
+               // Programa p61 = new Programa("La hora del ciclón", R.drawable.lahoradelciclon, "Mario Massi", "AM890",null,null,null,null,false,false,false,false,false,false,false,false,"","");
+               // Programa p71 = new Programa("La cicloneta", R.drawable.lacicloneta, "Leandro Alves", "AM970",null,null,null,null,false,false,false,false,false,false,false,false,"","");
 
                 realm.copyToRealmOrUpdate(p1);
                 realm.copyToRealmOrUpdate(p2);
@@ -135,6 +125,8 @@ public class MainActivity extends AppCompatActivity implements RealmChangeListen
                 realm.copyToRealmOrUpdate(p5);
                 realm.copyToRealmOrUpdate(p6);
                 realm.copyToRealmOrUpdate(p7);
+                realm.copyToRealmOrUpdate(p8);
+                realm.copyToRealmOrUpdate(p9);
 
                 programasR = getAllProgramasR();
             }
@@ -147,11 +139,7 @@ public class MainActivity extends AppCompatActivity implements RealmChangeListen
         showAlertParaNuevoPrograma("Nuevo programa partidario", "");
 
     }
-    private void removeAll(){
-        realm.beginTransaction();
-        realm.deleteAll();
-        realm.commitTransaction();
-    }
+
 
     private void deletePrograma(int position){
         programas.remove(position);

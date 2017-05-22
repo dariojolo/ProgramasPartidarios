@@ -19,19 +19,24 @@ import io.realm.RealmResults;
 
 public class MyApp extends Application {
 
+    private Realm realm;
     public static AtomicInteger ProgramaID = new AtomicInteger();
 
     @Override
     public void onCreate() {
         super.onCreate();
-        Realm.init(this);
+        //removeAll();
         initRealm();
     }
     private void initRealm(){
         Realm.init(this);
-        RealmConfiguration config = new RealmConfiguration.Builder().build();
+        RealmConfiguration config = new RealmConfiguration.Builder()
+                .name("programas.realm")
+                .deleteRealmIfMigrationNeeded()
+                .schemaVersion(1)
+                .build();
         Realm.setDefaultConfiguration(config);
-        Realm realm = Realm.getDefaultInstance();
+        realm = Realm.getDefaultInstance();
         ProgramaID = setAtomicId(realm,Programa.class);
 
         realm.close();
@@ -39,6 +44,11 @@ public class MyApp extends Application {
     private <T extends RealmObject>  AtomicInteger setAtomicId(Realm realm, Class<T>anyClass){
         RealmResults<T> results = realm.where(anyClass).findAll();
         return (results.size()>0)? new AtomicInteger(results.max("Id").intValue()): new AtomicInteger();
+    }
+    private void removeAll(){
+        realm.beginTransaction();
+        realm.deleteAll();
+        realm.commitTransaction();
     }
 }
 
