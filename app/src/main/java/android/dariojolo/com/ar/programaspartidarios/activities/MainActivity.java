@@ -32,7 +32,24 @@ public class MainActivity extends AppCompatActivity {
         navigationView = (NavigationView)findViewById(R.id.navview);
 
         setToolbar();
-        setFragmentByDefault();
+        try {
+            Bundle bundle = getIntent().getExtras();
+            int _fragment = bundle.getInt("Fragment");
+            Fragment frag;
+            if (_fragment == 1){
+                frag =  new MainFragment();
+                changeFragment(frag, navigationView.getMenu().getItem(0));
+            }else if (_fragment == 2){
+                frag =  new AmFragment();
+                changeFragment(frag, navigationView.getMenu().getItem(1));
+            }else if (_fragment == 3){
+                frag =  new FmFragment();
+                changeFragment(frag, navigationView.getMenu().getItem(2));
+            }
+
+        }catch (Exception ex){
+            setFragmentByDefault();
+        }
 
         drawer.addDrawerListener(new DrawerLayout.DrawerListener() {
             @Override
@@ -99,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
     private void changeFragment(Fragment fragment, MenuItem item){
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.content_frame,new MainFragment())
+                .replace(R.id.content_frame,fragment)
                 .commit();
         item.setChecked(true);
         getSupportActionBar().setTitle(item.getTitle());

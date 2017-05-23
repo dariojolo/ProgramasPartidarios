@@ -33,6 +33,7 @@ public class DetalleActivity extends AppCompatActivity {
     private ToggleButton btnDomingos;
     private ToggleButton btnPartidos;
 
+    private int _fragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +43,7 @@ public class DetalleActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         int _id = bundle.getInt("Programa");
+        _fragment = bundle.getInt("Fragment");
         imagen = (ImageView) findViewById(R.id.imagenPrograma);
         txtNombre = (TextView) findViewById(R.id.txtNombre2);
         txtEmisora = (TextView) findViewById(R.id.txtEmisora);
@@ -125,6 +127,7 @@ public class DetalleActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(DetalleActivity.this, MainActivity.class);
+                i.putExtra("Fragment", _fragment);
                 startActivity(i);
             }
         });

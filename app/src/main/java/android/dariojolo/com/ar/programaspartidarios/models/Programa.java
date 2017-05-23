@@ -33,11 +33,12 @@ public class Programa extends RealmObject implements Serializable {
     private boolean diaPartido;
     private String horaInicio;
     private String horaFin;
+    private String medio;
 
     public Programa(){} //Solo para Realm
 
     public Programa(String nombre, int imagen, String conductores, String emisora,String eMail, String twitter, String facebook,String telefono, boolean lunes,boolean martes,boolean miercoles,
-                    boolean jueves,boolean viernes,boolean sabado, boolean domingo, boolean diaPartido, String horaInicio, String horaFin){
+                    boolean jueves,boolean viernes,boolean sabado, boolean domingo, boolean diaPartido, String horaInicio, String horaFin, String medio){
         Id = MyApp.ProgramaID.incrementAndGet();
         this.nombre = nombre;
         this.imagen = imagen;
@@ -57,10 +58,19 @@ public class Programa extends RealmObject implements Serializable {
         this.diaPartido = diaPartido;
         this.horaInicio = horaInicio;
         this.horaFin = horaFin;
+        this.medio = medio;
     }
 
     public int getId(){
         return Id;
+    }
+
+    public String getMedio() {
+        return medio;
+    }
+
+    public void setMedio(String medio) {
+        this.medio = medio;
     }
 
     public String getNombre() {
