@@ -1,9 +1,12 @@
 package android.dariojolo.com.ar.programaspartidarios.activities;
 
+import android.content.Intent;
 import android.dariojolo.com.ar.programaspartidarios.R;
 import android.dariojolo.com.ar.programaspartidarios.models.Programa;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,33 +38,34 @@ public class DetalleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle);
 
+        setToolbar();
+
         Bundle bundle = getIntent().getExtras();
         int _id = bundle.getInt("Programa");
-        imagen = (ImageView)findViewById(R.id.imagenPrograma);
-        txtNombre = (TextView)findViewById(R.id.txtNombre2);
-        txtEmisora = (TextView)findViewById(R.id.txtEmisora);
-        txtDias = (TextView)findViewById(R.id.txtDias2);
-        txtHoraInicio = (TextView)findViewById(R.id.txtHoraInicio);
-        txtHoraFin = (TextView)findViewById(R.id.txtHoraFin);
-        txtConductores = (TextView)findViewById(R.id.txtConductores);
-        btnLunes = (ToggleButton)findViewById(R.id.lunes);
-        btnMartes = (ToggleButton)findViewById(R.id.martes);
-        btnMiercoles = (ToggleButton)findViewById(R.id.miercoles);
-        btnJueves = (ToggleButton)findViewById(R.id.jueves);
-        btnViernes = (ToggleButton)findViewById(R.id.viernes);
-        btnSabados = (ToggleButton)findViewById(R.id.sabado);
-        btnDomingos = (ToggleButton)findViewById(R.id.domingo);
-        btnPartidos = (ToggleButton)findViewById(R.id.diaPartido);
+        imagen = (ImageView) findViewById(R.id.imagenPrograma);
+        txtNombre = (TextView) findViewById(R.id.txtNombre2);
+        txtEmisora = (TextView) findViewById(R.id.txtEmisora);
+        txtDias = (TextView) findViewById(R.id.txtDias2);
+        txtHoraInicio = (TextView) findViewById(R.id.txtHoraInicio);
+        txtHoraFin = (TextView) findViewById(R.id.txtHoraFin);
+        txtConductores = (TextView) findViewById(R.id.txtConductores);
+        btnLunes = (ToggleButton) findViewById(R.id.lunes);
+        btnMartes = (ToggleButton) findViewById(R.id.martes);
+        btnMiercoles = (ToggleButton) findViewById(R.id.miercoles);
+        btnJueves = (ToggleButton) findViewById(R.id.jueves);
+        btnViernes = (ToggleButton) findViewById(R.id.viernes);
+        btnSabados = (ToggleButton) findViewById(R.id.sabado);
+        btnDomingos = (ToggleButton) findViewById(R.id.domingo);
+        btnPartidos = (ToggleButton) findViewById(R.id.diaPartido);
 
 
-
-       // Toast.makeText(this, "En la pagina del detalle del programa "+ position, Toast.LENGTH_LONG).show();
+        // Toast.makeText(this, "En la pagina del detalle del programa "+ position, Toast.LENGTH_LONG).show();
 
         //actividadActual.getApplicationContext()).setLista(tuLista);
 
         Realm realm = Realm.getDefaultInstance();
 
-        Programa programa = realm.where(Programa.class).equalTo("Id",_id).findFirst();
+        Programa programa = realm.where(Programa.class).equalTo("Id", _id).findFirst();
         this.setTitle(programa.getNombre());
         imagen.setImageResource(programa.getImagen());
         txtNombre.setText(programa.getNombre());
@@ -69,48 +73,61 @@ public class DetalleActivity extends AppCompatActivity {
         txtHoraInicio.setText(programa.getHoraInicio());
         txtHoraFin.setText(programa.getHoraFin());
         txtConductores.setText(programa.getConductores());
-        if ( programa.isLunes()){
+        if (programa.isLunes()) {
             btnLunes.setBackgroundResource(R.drawable.circuloazul);
-        }else{
+        } else {
             btnLunes.setBackgroundResource(R.drawable.circulorojo);
         }
-        if ( programa.isMartes()){
+        if (programa.isMartes()) {
             btnMartes.setBackgroundResource(R.drawable.circuloazul);
-        }else{
+        } else {
             btnMartes.setBackgroundResource(R.drawable.circulorojo);
         }
-        if ( programa.isMiercoles()){
+        if (programa.isMiercoles()) {
             btnMiercoles.setBackgroundResource(R.drawable.circuloazul);
-        }else{
+        } else {
             btnMiercoles.setBackgroundResource(R.drawable.circulorojo);
         }
-        if ( programa.isJueves()){
+        if (programa.isJueves()) {
             btnJueves.setBackgroundResource(R.drawable.circuloazul);
-        }else{
+        } else {
             btnJueves.setBackgroundResource(R.drawable.circulorojo);
         }
-        if ( programa.isViernes()){
+        if (programa.isViernes()) {
             btnViernes.setBackgroundResource(R.drawable.circuloazul);
-        }else{
+        } else {
             btnViernes.setBackgroundResource(R.drawable.circulorojo);
         }
-        if ( programa.isSabado()){
+        if (programa.isSabado()) {
             btnSabados.setBackgroundResource(R.drawable.circuloazul);
-        }else{
+        } else {
             btnSabados.setBackgroundResource(R.drawable.circulorojo);
         }
-        if ( programa.isDomingo()){
+        if (programa.isDomingo()) {
             btnDomingos.setBackgroundResource(R.drawable.circuloazul);
-        }else{
+        } else {
             btnDomingos.setBackgroundResource(R.drawable.circulorojo);
         }
-        if ( programa.isDiaPartido()){
+        if (programa.isDiaPartido()) {
             btnPartidos.setBackgroundResource(R.drawable.circuloazul);
-        }else{
+        } else {
             btnPartidos.setBackgroundResource(R.drawable.circulorojo);
         }
         Toast.makeText(this, "Nombre seleccionado: " + programa.getNombre(), Toast.LENGTH_LONG).show();
+    }
 
-
+    private void setToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_flechita);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(DetalleActivity.this, MainActivity.class);
+                startActivity(i);
+            }
+        });
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 }

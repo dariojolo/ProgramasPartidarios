@@ -15,6 +15,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,11 +26,35 @@ public class MainActivity extends AppCompatActivity {
     public void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setToolbar();
+
 
         drawer = (DrawerLayout)findViewById(R.id.drawer_layout);
         navigationView = (NavigationView)findViewById(R.id.navview);
 
+        setToolbar();
+        setFragmentByDefault();
+
+        drawer.addDrawerListener(new DrawerLayout.DrawerListener() {
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset) {
+
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                Toast.makeText(MainActivity.this,"OPEN", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                Toast.makeText(MainActivity.this,"CLOSE", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onDrawerStateChanged(int newState) {
+
+            }
+        });
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -55,12 +81,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                 }
                 if (fragmentTransition){
-                    getSupportFragmentManager()
-                            .beginTransaction()
-                            .replace(R.id.content_frame,fragment)
-                            .commit();
-                    item.setChecked(true);
-                    getSupportActionBar().setTitle(item.getTitle());
+                    changeFragment(fragment,item);
                     drawer.closeDrawers();
                 }
                 return true;
@@ -75,6 +96,17 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
+    private void changeFragment(Fragment fragment, MenuItem item){
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.content_frame,new MainFragment())
+                .commit();
+        item.setChecked(true);
+        getSupportActionBar().setTitle(item.getTitle());
+    }
+    private void setFragmentByDefault(){
+       changeFragment(new MainFragment(), navigationView.getMenu().getItem(0));
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()){

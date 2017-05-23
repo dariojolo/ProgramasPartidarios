@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
@@ -59,23 +60,26 @@ public class MainFragment extends Fragment implements RealmChangeListener<RealmR
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
          view = inflater.inflate(R.layout.fragment_main, container,false);
+        RelativeLayout fl = (RelativeLayout )inflater.inflate(R.layout.fragment_main, container, false);
+        recycler = (RecyclerView) fl.findViewById(R.id.recyclerView);
+
         // Inflate the layout for this fragment
 
         realm = Realm.getDefaultInstance();
 
 
-        iniciarListaProgramas();
+        //iniciarListaProgramas();
 
         programasR = getAllProgramasR();
         programasR.addChangeListener(this);
         // programas = getAllProgramas();
         recycler = (RecyclerView) view.findViewById(R.id.recyclerView);
-        layoutManager = new LinearLayoutManager(view.getContext());
+        layoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
         adapter = new MyAdapter(programasR, R.layout.list_item_recycler, new MyAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Programa programa, int position) {
                 //deletePrograma(position);
-                Intent intent = new Intent(view.getContext(),DetalleActivity.class);
+                Intent intent = new Intent(getActivity().getApplicationContext(),DetalleActivity.class);
                 intent.putExtra("Programa", programa.getId());
                 startActivity(intent);
             }
@@ -112,7 +116,7 @@ public class MainFragment extends Fragment implements RealmChangeListener<RealmR
         return realm.where(Programa.class).findAll();
     }
 
-    private void iniciarListaProgramas(){
+  /*  private void iniciarListaProgramas(){
         realm.executeTransaction(new Realm.Transaction(){
 
             @Override
@@ -142,7 +146,8 @@ public class MainFragment extends Fragment implements RealmChangeListener<RealmR
                 programasR = getAllProgramasR();
             }
         });
-    }
+    }*/
+
     private void addPrograma(int position){
         //  programas.add(position, new Programa("Pelicula: " + ++contador, R.drawable.programanuevo));
         //  adapter.notifyItemInserted(position);
@@ -159,14 +164,14 @@ public class MainFragment extends Fragment implements RealmChangeListener<RealmR
     //Ventana para agregar un nuevo Programa
     private void showAlertParaNuevoPrograma(String titulo, String mensaje){
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity().getApplicationContext());
         if (titulo!= null){
             builder.setTitle(titulo);
         }
         if (mensaje != null){
             builder.setMessage(mensaje);
         }
-        View viewInflated = LayoutInflater.from(view.getContext()).inflate(R.layout.layout_nuevo_programa, null);
+        View viewInflated = LayoutInflater.from(getActivity().getApplicationContext()).inflate(R.layout.layout_nuevo_programa, null);
         builder.setView(viewInflated);
         final ToggleButton btnLunes = (ToggleButton)viewInflated.findViewById(R.id.btnLunes);
         final ToggleButton btnMartes = (ToggleButton)viewInflated.findViewById(R.id.btnMartes);
@@ -241,9 +246,9 @@ public class MainFragment extends Fragment implements RealmChangeListener<RealmR
             public void onClick(DialogInterface dialog, int which) {
                 String nombreProg = nombreIngresado.getText().toString().trim();
                 if (nombreProg.length()>0){
-                    Toast.makeText(view.getContext(),"Nombre de programa: " + nombreProg + " Hora inicio: " + horaInicio.getText(),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity().getApplicationContext(),"Nombre de programa: " + nombreProg + " Hora inicio: " + horaInicio.getText(),Toast.LENGTH_SHORT).show();
                 }else {
-                    Toast.makeText(view.getContext(),"El nombre no puede ser vacio",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity().getApplicationContext(),"El nombre no puede ser vacio",Toast.LENGTH_SHORT).show();
                 }
             }
         });
