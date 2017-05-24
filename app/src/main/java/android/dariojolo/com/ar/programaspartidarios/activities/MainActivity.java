@@ -14,6 +14,8 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
@@ -135,4 +137,27 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+    //Inflamos el layout del menu de opciones
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.option_menu, menu);
+        return true;
+    }
+
+    //Manejamos la funcionalidad del menu de opciones
+   /* @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.add_item:
+                //Añadimos nuevo nombre
+                this.nombres.add("Agregado nº: " + (++contador ));
+                //Notificamos al adaptador del cambio
+                this.myAdapter.notifyDataSetChanged();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }*/
+
 }

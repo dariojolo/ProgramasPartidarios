@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/todas"
@@ -20,17 +21,62 @@
             android:icon="@android:drawable/ic_menu_view"
             android:title="Transmision de partidos" />
     </group>
-    <item android:title="Otras opciones">
+    <item android:title="Filtrar por dias">
         <menu>
             <item
-                android:id="@+id/opcion1"
-                android:icon="@android:drawable/ic_menu_today"
-                android:title="Opcion 1"
+                android:id="@+id/menu_lunes"
+                android:icon="@android:drawable/ic_menu_agenda"
+                android:title="Lunes"
                 />
             <item
-                android:id="@+id/opcion2"
-                android:icon="@android:drawable/ic_menu_upload"
-                android:title="Opcion 2" />
+                android:id="@+id/menu_martes"
+                android:icon="@android:drawable/ic_menu_agenda"
+                android:title="Martes" />
+            <item
+                android:id="@+id/menu_miercoles"
+                android:icon="@android:drawable/ic_menu_agenda"
+                android:title="Miercoles"
+                />
+            <item
+                android:id="@+id/menu_jueves"
+                android:icon="@android:drawable/ic_menu_agenda"
+                android:title="Jueves" />
+            <item
+                android:id="@+id/menu_viernes"
+                android:icon="@android:drawable/ic_menu_agenda"
+                android:title="Viernes"
+                />
+            <item
+                android:id="@+id/menu_sabado"
+                android:icon="@android:drawable/ic_menu_agenda"
+                android:title="Sabado" />
+            <item
+                android:id="@+id/menu_domingo"
+                android:icon="@android:drawable/ic_menu_agenda"
+                android:title="Domingo"
+                />
+            <item
+                android:id="@+id/menu_partidos"
+                android:icon="@android:drawable/ic_menu_agenda"
+                android:title="Transmisión de partidos" />
+        </menu>
+    </item>
+    <item android:title="Filtrar por horario"
+        android:visible="true">
+        <menu>
+            <item
+                android:id="@+id/mañana"
+                android:icon="@drawable/ic_menu_clock"
+                android:title="9-12Hs"
+                />
+            <item
+                android:id="@+id/tarde"
+                android:icon="@drawable/ic_menu_clock"
+                android:title="13-20" />
+            <item
+                android:id="@+id/noche"
+                android:icon="@drawable/ic_menu_clock"
+                android:title="21-24" />
         </menu>
     </item>
 </menu>

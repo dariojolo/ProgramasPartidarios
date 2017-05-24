@@ -9,7 +9,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import io.realm.Realm;
@@ -68,7 +67,7 @@ public class DetalleActivity extends AppCompatActivity {
         Realm realm = Realm.getDefaultInstance();
 
         Programa programa = realm.where(Programa.class).equalTo("Id", _id).findFirst();
-        this.setTitle(programa.getNombre());
+        //this.setTitle(programa.getNombre());
         imagen.setImageResource(programa.getImagen());
         txtNombre.setText(programa.getNombre());
         txtEmisora.setText(programa.getEmisora());
@@ -115,7 +114,6 @@ public class DetalleActivity extends AppCompatActivity {
         } else {
             btnPartidos.setBackgroundResource(R.drawable.circulorojo);
         }
-        Toast.makeText(this, "Nombre seleccionado: " + programa.getNombre(), Toast.LENGTH_LONG).show();
     }
 
     private void setToolbar() {
@@ -131,6 +129,5 @@ public class DetalleActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 }

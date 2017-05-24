@@ -84,8 +84,11 @@ public class ListadoActivity extends AppCompatActivity implements RealmChangeLis
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.add_programa:
-                this.addPrograma(0);
+            case R.id.sugerencia:
+              //  this.addPrograma(0);
+                return true;
+            case R.id.sobreNosotros:
+                //  this.addPrograma(0);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

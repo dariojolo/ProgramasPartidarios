@@ -2,15 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/add_programa"
-        android:title="Agregar programa"
-        android:icon="@android:drawable/ic_menu_add"
-        app:showAsAction="never"
-        />
-    <item
         android:id="@+id/sugerencia"
         android:title="Enviar sugerencia"
         android:icon="@android:drawable/ic_menu_send"
+        app:showAsAction="never"
+        />
+    <item
+        android:id="@+id/sobreNosotros"
+        android:title="Sobre la aplicacion"
+        android:icon="@android:drawable/ic_menu_preferences"
         app:showAsAction="never"
         />
 </menu>
