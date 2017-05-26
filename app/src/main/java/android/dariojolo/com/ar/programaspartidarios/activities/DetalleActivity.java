@@ -4,11 +4,13 @@ import android.content.Intent;
 import android.dariojolo.com.ar.programaspartidarios.R;
 import android.dariojolo.com.ar.programaspartidarios.models.Programa;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import io.realm.Realm;
@@ -33,11 +35,15 @@ public class DetalleActivity extends AppCompatActivity {
     private ToggleButton btnPartidos;
 
     private int _fragment;
+
+    private FloatingActionButton fab;
+    private boolean favorito;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle);
 
+        fab = (FloatingActionButton)findViewById(R.id.fabDetalle);
         setToolbar();
 
         Bundle bundle = getIntent().getExtras();
@@ -62,18 +68,19 @@ public class DetalleActivity extends AppCompatActivity {
 
         // Toast.makeText(this, "En la pagina del detalle del programa "+ position, Toast.LENGTH_LONG).show();
 
-        //actividadActual.getApplicationContext()).setLista(tuLista);
 
         Realm realm = Realm.getDefaultInstance();
 
-        Programa programa = realm.where(Programa.class).equalTo("Id", _id).findFirst();
-        //this.setTitle(programa.getNombre());
+        final Programa programa = realm.where(Programa.class).equalTo("Id", _id).findFirst();
+        this.setTitle(programa.getNombre());
         imagen.setImageResource(programa.getImagen());
         txtNombre.setText(programa.getNombre());
         txtEmisora.setText(programa.getEmisora());
         txtHoraInicio.setText(programa.getHoraInicio());
         txtHoraFin.setText(programa.getHoraFin());
         txtConductores.setText(programa.getConductores());
+        favorito = programa.isFavorito();
+
         if (programa.isLunes()) {
             btnLunes.setBackgroundResource(R.drawable.circuloazul);
         } else {
@@ -114,7 +121,26 @@ public class DetalleActivity extends AppCompatActivity {
         } else {
             btnPartidos.setBackgroundResource(R.drawable.circulorojo);
         }
+    if (favorito){
+         fab.setImageResource(R.drawable.ic_star_on);
+    }else{
+        fab.setImageResource(R.drawable.ic_star_off);
     }
+    fab.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            if (programa.isFavorito()){
+                Toast.makeText(DetalleActivity.this,programa.getNombre() + " fue eliminado de favoritos",Toast.LENGTH_SHORT).show();
+                fab.setImageResource(R.drawable.ic_star_off);
+            }else{
+                Toast.makeText(DetalleActivity.this,programa.getNombre() + " fue agregado a favoritos",Toast.LENGTH_SHORT).show();
+                fab.setImageResource(R.drawable.ic_star_on);
+            }
+        }
+    });
+    }
+
+
 
     private void setToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

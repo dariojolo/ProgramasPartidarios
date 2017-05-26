@@ -61,12 +61,12 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onDrawerOpened(View drawerView) {
-                Toast.makeText(MainActivity.this,"OPEN", Toast.LENGTH_SHORT).show();
+                //       Toast.makeText(MainActivity.this,"OPEN", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onDrawerClosed(View drawerView) {
-                Toast.makeText(MainActivity.this,"CLOSE", Toast.LENGTH_SHORT).show();
+                //      Toast.makeText(MainActivity.this,"CLOSE", Toast.LENGTH_SHORT).show();
             }
 
             @Override
