@@ -19,7 +19,11 @@
         <item
             android:id="@+id/radiopartidos"
             android:icon="@android:drawable/ic_menu_view"
-            android:title="Transmision de partidos" />
+            android:title="Transmisión de partidos" />
+        <item
+            android:id="@+id/radioFavotitos"
+            android:icon="@drawable/ic_star_on"
+            android:title="Transmisiones favoritas" />
     </group>
     <item android:title="Filtrar por dias">
         <menu>

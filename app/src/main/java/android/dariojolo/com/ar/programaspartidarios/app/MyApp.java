@@ -26,9 +26,8 @@ public class MyApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        //removeAll();
         prefs = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
-       // prefs.edit().remove("firstTime").apply();
+//        prefs.edit().remove("firstTime").apply();
         initRealm();
 
 }
@@ -51,13 +50,14 @@ public class MyApp extends Application {
                 .build();
         Realm.setDefaultConfiguration(config);
         realm = Realm.getDefaultInstance();
+        //removeAll();
         ProgramaID = setAtomicId(realm,Programa.class);
 
         //removeAll();
         if (!validarFirstTime()) {
             iniciarListaProgramas();
         }
-        removeAll();
+        //removeAll();
         realm.close();
     }
     private <T extends RealmObject>  AtomicInteger setAtomicId(Realm realm, Class<T>anyClass){
