@@ -28,8 +28,8 @@ public class DetalleActivity extends AppCompatActivity {
     private TextView txtNombre;
     private TextView txtEmisora;
     private TextView txtDias;
-    private TextView txtHoraInicio;
-    private TextView txtHoraFin;
+    private TextView txtDia1;
+    private TextView txtDia2;
     private TextView txtConductores;
     private ToggleButton btnLunes;
     private ToggleButton btnMartes;
@@ -60,8 +60,8 @@ public class DetalleActivity extends AppCompatActivity {
         imagen = (ImageView) findViewById(R.id.imagenPrograma);
         txtNombre = (TextView) findViewById(R.id.txtNombre2);
         txtEmisora = (TextView) findViewById(R.id.txtEmisora);
-        txtHoraInicio = (TextView) findViewById(R.id.txtHoraInicio);
-        txtHoraFin = (TextView) findViewById(R.id.txtHoraFin);
+        txtDia1 = (TextView) findViewById(R.id.txtDia1);
+        txtDia2 = (TextView) findViewById(R.id.txtDia2);
         txtConductores = (TextView) findViewById(R.id.txtConductores);
         webview = (WebView)findViewById(R.id.webview);
 /*        btnLunes = (ToggleButton) findViewById(R.id.lunes);
@@ -86,8 +86,8 @@ public class DetalleActivity extends AppCompatActivity {
         imagen.setImageResource(programa.getImagen());
         txtNombre.setText(programa.getNombre());
         txtEmisora.setText(programa.getEmisora());
-        txtHoraInicio.setText(programa.getHoraInicio());
-        txtHoraFin.setText(programa.getHoraFin());
+        txtDia1.setText(programa.getDiaUno());
+        txtDia2.setText(programa.getDiaDos());
         txtConductores.setText(programa.getConductores());
         DisplayMetrics displaymetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);

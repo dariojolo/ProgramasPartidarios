@@ -31,16 +31,16 @@ public class Programa extends RealmObject implements Serializable {
     private boolean sabado;
     private boolean domingo;
     private boolean diaPartido;
-    private String horaInicio;
-    private String horaFin;
+    private String diaUno;
+    private String diaDos;
     private String medio;
     private boolean favorito;
 
     public Programa(){} //Solo para Realm
 
-    public Programa(String nombre,int imagen,String conductores,String emisora,String eMail,String twitter,String facebook,
-                    String telefono,boolean lunes,boolean martes,boolean miercoles,boolean jueves,boolean viernes,boolean sabado,
-                    boolean domingo, boolean diaPartido, String horaInicio, String horaFin, String medio, boolean favorito){
+    public Programa(String nombre, int imagen, String conductores, String emisora, String eMail, String twitter, String facebook,
+                    String telefono, boolean lunes, boolean martes, boolean miercoles, boolean jueves, boolean viernes, boolean sabado,
+                    boolean domingo, boolean diaPartido, String diaUno, String diaDos, String medio, boolean favorito){
         Id = MyApp.ProgramaID.incrementAndGet();
         this.nombre = nombre;
         this.imagen = imagen;
@@ -58,8 +58,8 @@ public class Programa extends RealmObject implements Serializable {
         this.sabado = sabado;
         this.domingo = domingo;
         this.diaPartido = diaPartido;
-        this.horaInicio = horaInicio;
-        this.horaFin = horaFin;
+        this.diaUno = diaUno;
+        this.diaDos = diaDos;
         this.medio = medio;
         this.favorito = favorito;
     }
@@ -180,19 +180,19 @@ public class Programa extends RealmObject implements Serializable {
         this.telefono = telefono;
     }
 
-    public String getHoraInicio() {
-        return horaInicio;
+    public String getDiaUno() {
+        return diaUno;
     }
 
-    public void setHoraInicio(String horaInicio) {
-        this.horaInicio = horaInicio;
+    public void setDiaUno(String diaUno) {
+        this.diaUno = diaUno;
     }
 
-    public String getHoraFin() {
-        return horaFin;
+    public String getDiaDos() {
+        return diaDos;
     }
 
-    public void setHoraFin(String horaFin) {
-        this.horaFin = horaFin;
+    public void setDiaDos(String diaDos) {
+        this.diaDos = diaDos;
     }
 }
