@@ -1,13 +1,19 @@
 package android.dariojolo.com.ar.programaspartidarios.activities;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.dariojolo.com.ar.programaspartidarios.R;
 import android.dariojolo.com.ar.programaspartidarios.models.Programa;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,8 +42,10 @@ public class DetalleActivity extends AppCompatActivity {
 
     private int _fragment;
 
+    private WebView webview;
     private FloatingActionButton fab;
     private boolean favorito;
+    private final int INTERNET_CODE = 100;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,26 +60,28 @@ public class DetalleActivity extends AppCompatActivity {
         imagen = (ImageView) findViewById(R.id.imagenPrograma);
         txtNombre = (TextView) findViewById(R.id.txtNombre2);
         txtEmisora = (TextView) findViewById(R.id.txtEmisora);
-        txtDias = (TextView) findViewById(R.id.txtDias2);
         txtHoraInicio = (TextView) findViewById(R.id.txtHoraInicio);
         txtHoraFin = (TextView) findViewById(R.id.txtHoraFin);
         txtConductores = (TextView) findViewById(R.id.txtConductores);
-        btnLunes = (ToggleButton) findViewById(R.id.lunes);
+        webview = (WebView)findViewById(R.id.webview);
+/*        btnLunes = (ToggleButton) findViewById(R.id.lunes);
         btnMartes = (ToggleButton) findViewById(R.id.martes);
         btnMiercoles = (ToggleButton) findViewById(R.id.miercoles);
         btnJueves = (ToggleButton) findViewById(R.id.jueves);
         btnViernes = (ToggleButton) findViewById(R.id.viernes);
         btnSabados = (ToggleButton) findViewById(R.id.sabado);
         btnDomingos = (ToggleButton) findViewById(R.id.domingo);
-        btnPartidos = (ToggleButton) findViewById(R.id.diaPartido);
+        btnPartidos = (ToggleButton) findViewById(R.id.diaPartido); */
 
 
         // Toast.makeText(this, "En la pagina del detalle del programa "+ position, Toast.LENGTH_LONG).show();
 
 
-        Realm realm = Realm.getDefaultInstance();
+        final Realm realm = Realm.getDefaultInstance();
 
         final Programa programa = realm.where(Programa.class).equalTo("Id", _id).findFirst();
+
+
         this.setTitle(programa.getNombre());
         imagen.setImageResource(programa.getImagen());
         txtNombre.setText(programa.getNombre());
@@ -79,9 +89,19 @@ public class DetalleActivity extends AppCompatActivity {
         txtHoraInicio.setText(programa.getHoraInicio());
         txtHoraFin.setText(programa.getHoraFin());
         txtConductores.setText(programa.getConductores());
-        favorito = programa.isFavorito();
+        DisplayMetrics displaymetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+        int height = displaymetrics.heightPixels;
+        int width = displaymetrics.widthPixels;
 
-        if (programa.isLunes()) {
+        //Comprobamos version de android
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            NewerVersion();
+        }else{
+            OlderVersion();
+        }
+
+        /*if (programa.isLunes()) {
             btnLunes.setBackgroundResource(R.drawable.circuloazul);
         } else {
             btnLunes.setBackgroundResource(R.drawable.circulorojo);
@@ -120,8 +140,8 @@ public class DetalleActivity extends AppCompatActivity {
             btnPartidos.setBackgroundResource(R.drawable.circuloazul);
         } else {
             btnPartidos.setBackgroundResource(R.drawable.circulorojo);
-        }
-    if (favorito){
+        }*/
+    if (programa.isFavorito()){
          fab.setImageResource(R.drawable.ic_star_on);
     }else{
         fab.setImageResource(R.drawable.ic_star_off);
@@ -132,14 +152,22 @@ public class DetalleActivity extends AppCompatActivity {
             if (programa.isFavorito()){
                 Toast.makeText(DetalleActivity.this,programa.getNombre() + " fue eliminado de favoritos",Toast.LENGTH_SHORT).show();
                 fab.setImageResource(R.drawable.ic_star_off);
+                updateFavorito(programa,false,realm);
             }else{
                 Toast.makeText(DetalleActivity.this,programa.getNombre() + " fue agregado a favoritos",Toast.LENGTH_SHORT).show();
                 fab.setImageResource(R.drawable.ic_star_on);
+                updateFavorito(programa,true,realm);
             }
         }
     });
     }
 
+    private void updateFavorito(Programa programa, boolean favorito,Realm realm) {
+        realm.beginTransaction();
+        programa.setFavorito(favorito);
+        realm.copyToRealmOrUpdate(programa);
+        realm.commitTransaction();
+    }
 
 
     private void setToolbar() {
@@ -155,5 +183,49 @@ public class DetalleActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+    }
+    private boolean CheckPermissions(String permission){
+        int result = this.checkCallingOrSelfPermission(permission);
+        return  result == PackageManager.PERMISSION_GRANTED;
+    }
+    private void OlderVersion(){
+        if (CheckPermissions(Manifest.permission.INTERNET)){
+            String VIDEO_URL="http://tunein.com/embed/player/s248138/";
+            String data_html = "<!DOCTYPE html><html> <head></head> <body> <iframe src=\""+VIDEO_URL+"\" style=\"width:100%;height:100px;\" scrolling=\"no\" frameborder=\"no\"></iframe> </body> </html> ";
+            webview.loadDataWithBaseURL("http://tunein.com/", data_html, "text/html","UTF-8",null);
+        }else{
+            Toast.makeText(this,"No tiene permisos",Toast.LENGTH_SHORT).show();
+        }
+    }
+    private void NewerVersion(){
+        requestPermissions(new String[]{Manifest.permission.INTERNET}, INTERNET_CODE);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode){
+            case INTERNET_CODE:
+                String permission = permissions[0];
+                int result = grantResults[0];
+                if (permission.equals(Manifest.permission.INTERNET)){
+                    //Comprobar si ha sido aceptado o denegado el permiso
+                    if (result == PackageManager.PERMISSION_GRANTED){
+                        //ha concedido el permiso
+                        String VIDEO_URL="http://tunein.com/embed/player/s248138/";
+                        String data_html = "<!DOCTYPE html><html> <head></head> <body> <iframe src=\""+VIDEO_URL+"\" style=\"width:100%;height:100px;\" scrolling=\"no\" frameborder=\"no\"></iframe> </body> </html> ";
+                        webview.loadDataWithBaseURL("http://tunein.com/", data_html, "text/html","UTF-8",null);
+                    }else{
+                        //No ha concedido el permiso
+                        Toast.makeText(this,"No concedió permisos",Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                break;
+            default:
+                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+                break;
+        }
+
+
     }
 }

@@ -123,6 +123,7 @@ public class MainActivity extends AppCompatActivity {
         item.setChecked(true);
         getSupportActionBar().setTitle(item.getTitle());
     }
+
     private void setFragmentByDefault(){
        changeFragment(new MainFragment(), navigationView.getMenu().getItem(0));
     }
