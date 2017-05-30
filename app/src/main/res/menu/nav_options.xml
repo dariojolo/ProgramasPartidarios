@@ -21,7 +21,7 @@
             android:icon="@android:drawable/ic_menu_view"
             android:title="Transmisión de partidos" />
         <item
-            android:id="@+id/radioFavotitos"
+            android:id="@+id/radioFavoritos"
             android:icon="@drawable/ic_star_on"
             android:title="Transmisiones favoritas" />
     </group>

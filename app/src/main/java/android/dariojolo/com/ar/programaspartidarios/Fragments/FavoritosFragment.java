@@ -24,7 +24,7 @@ import io.realm.RealmResults;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PartidosFragment extends Fragment implements RealmChangeListener<RealmResults<Programa>> {
+public class FavoritosFragment extends Fragment implements RealmChangeListener<RealmResults<Programa>> {
 
     private List<Programa> programas;
     private RecyclerView recycler;
@@ -37,7 +37,7 @@ public class PartidosFragment extends Fragment implements RealmChangeListener<Re
 
     private View view;
 
-    public PartidosFragment() {
+    public FavoritosFragment() {
         // Required empty public constructor
     }
 
@@ -46,7 +46,7 @@ public class PartidosFragment extends Fragment implements RealmChangeListener<Re
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_partidos, container, false);
+        view = inflater.inflate(R.layout.fragment_favoritos, container, false);
         //RelativeLayout fl = (RelativeLayout) inflater.inflate(R.layout.fragment_am, container, false);
         //recycler = (RecyclerView) fl.findViewById(R.id.recyclerView2);
 
@@ -63,7 +63,7 @@ public class PartidosFragment extends Fragment implements RealmChangeListener<Re
                 //deletePrograma(position);
                 Intent intent = new Intent(getActivity().getApplicationContext(), DetalleActivity.class);
                 intent.putExtra("Programa", programa.getId());
-                intent.putExtra("Fragment", 4);
+                intent.putExtra("Fragment", 5);
                 startActivity(intent);
             }
         });
@@ -79,7 +79,7 @@ public class PartidosFragment extends Fragment implements RealmChangeListener<Re
 
     private RealmResults<Programa> getAllProgramasR() {
         //return realm.where(Programa.class).findAll();
-        return realm.where(Programa.class).equalTo("diaPartido", true).findAll();
+        return realm.where(Programa.class).equalTo("favorito", true).findAll();
     }
 
     @Override
@@ -94,3 +94,4 @@ public class PartidosFragment extends Fragment implements RealmChangeListener<Re
         super.onDestroy();
     }
 }
+

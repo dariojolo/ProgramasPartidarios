@@ -2,6 +2,7 @@ package android.dariojolo.com.ar.programaspartidarios.activities;
 
 
 import android.dariojolo.com.ar.programaspartidarios.Fragments.AmFragment;
+import android.dariojolo.com.ar.programaspartidarios.Fragments.FavoritosFragment;
 import android.dariojolo.com.ar.programaspartidarios.Fragments.FmFragment;
 import android.dariojolo.com.ar.programaspartidarios.Fragments.MainFragment;
 import android.dariojolo.com.ar.programaspartidarios.Fragments.PartidosFragment;
@@ -18,7 +19,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -47,6 +47,12 @@ public class MainActivity extends AppCompatActivity {
             }else if (_fragment == 3){
                 frag =  new FmFragment();
                 changeFragment(frag, navigationView.getMenu().getItem(2));
+            }else if (_fragment == 4){
+                frag =  new PartidosFragment();
+                changeFragment(frag, navigationView.getMenu().getItem(3));
+            }else if (_fragment == 5){
+                frag =  new FavoritosFragment();
+                changeFragment(frag, navigationView.getMenu().getItem(4));
             }
 
         }catch (Exception ex){
@@ -96,6 +102,10 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.radiopartidos:
                         fragment = new PartidosFragment();
+                        fragmentTransition = true;
+                        break;
+                    case R.id.radioFavoritos:
+                        fragment = new FavoritosFragment();
                         fragmentTransition = true;
                         break;
                 }
