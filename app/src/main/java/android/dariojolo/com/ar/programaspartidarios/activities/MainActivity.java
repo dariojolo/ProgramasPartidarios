@@ -118,6 +118,13 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    //Probando si este metodo funciona, intentar recuperar la ultima pantallada visitada
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setFragmentByDefault();
+    }
+
     private void setToolbar() {
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
