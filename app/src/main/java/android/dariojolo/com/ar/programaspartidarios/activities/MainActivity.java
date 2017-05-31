@@ -23,6 +23,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -42,6 +43,10 @@ public class MainActivity extends AppCompatActivity {
             Bundle bundle = getIntent().getExtras();
             int _fragment = bundle.getInt("Fragment");
             Fragment frag;
+            for (int i = 0; i> navigationView.getMenu().size();i++){
+                Toast.makeText(this,"Menu: " + navigationView.getMenu().getItem(i).getTitle(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,"Menu: " + navigationView.getMenu().getItem(i).getItemId(),Toast.LENGTH_SHORT).show();
+            }
             if (_fragment == 1){
                 frag =  new MainFragment();
                 changeFragment(frag, navigationView.getMenu().getItem(0));
