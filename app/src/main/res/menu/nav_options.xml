@@ -21,9 +21,13 @@
             android:icon="@android:drawable/ic_menu_view"
             android:title="Transmisión de partidos" />
         <item
+            android:id="@+id/television"
+            android:icon="@android:drawable/ic_menu_view"
+            android:title="TV" />
+        <item
             android:id="@+id/radioFavoritos"
             android:icon="@drawable/ic_star_on"
-            android:title="Transmisiones favoritas" />
+            android:title="Favoritos" />
     </group>
     <item android:title="Filtrar por dias">
         <menu>
@@ -59,10 +63,6 @@
                 android:icon="@android:drawable/ic_menu_agenda"
                 android:title="Domingo"
                 />
-            <item
-                android:id="@+id/menu_partidos"
-                android:icon="@android:drawable/ic_menu_agenda"
-                android:title="Transmisión de partidos" />
         </menu>
     </item>
     <item android:title="Filtrar por horario"

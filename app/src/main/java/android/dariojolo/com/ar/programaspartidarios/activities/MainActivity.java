@@ -4,8 +4,12 @@ package android.dariojolo.com.ar.programaspartidarios.activities;
 import android.dariojolo.com.ar.programaspartidarios.Fragments.AmFragment;
 import android.dariojolo.com.ar.programaspartidarios.Fragments.FavoritosFragment;
 import android.dariojolo.com.ar.programaspartidarios.Fragments.FmFragment;
+import android.dariojolo.com.ar.programaspartidarios.Fragments.LunesFragment;
 import android.dariojolo.com.ar.programaspartidarios.Fragments.MainFragment;
+import android.dariojolo.com.ar.programaspartidarios.Fragments.MartesFragment;
+import android.dariojolo.com.ar.programaspartidarios.Fragments.MiercolesFragment;
 import android.dariojolo.com.ar.programaspartidarios.Fragments.PartidosFragment;
+import android.dariojolo.com.ar.programaspartidarios.Fragments.TvFragment;
 import android.dariojolo.com.ar.programaspartidarios.R;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -53,8 +57,19 @@ public class MainActivity extends AppCompatActivity {
             }else if (_fragment == 5){
                 frag =  new FavoritosFragment();
                 changeFragment(frag, navigationView.getMenu().getItem(4));
+            }else if (_fragment == 6) {
+                frag = new TvFragment();
+                changeFragment(frag, navigationView.getMenu().getItem(5));
+            }else if (_fragment == 7) {
+                frag = new LunesFragment();
+                changeFragment(frag, navigationView.getMenu().getItem(7));
+            }else if (_fragment == 8) {
+                frag = new MartesFragment();
+                changeFragment(frag, navigationView.getMenu().getItem(8));
+            }else if (_fragment == 9) {
+                frag = new MartesFragment();
+                changeFragment(frag, navigationView.getMenu().getItem(9));
             }
-
         }catch (Exception ex){
             setFragmentByDefault();
         }
@@ -106,6 +121,22 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.radioFavoritos:
                         fragment = new FavoritosFragment();
+                        fragmentTransition = true;
+                        break;
+                    case R.id.television:
+                        fragment = new TvFragment();
+                        fragmentTransition = true;
+                        break;
+                    case R.id.menu_lunes:
+                        fragment = new LunesFragment();
+                        fragmentTransition = true;
+                        break;
+                    case R.id.menu_martes:
+                        fragment = new MartesFragment();
+                        fragmentTransition = true;
+                        break;
+                    case R.id.menu_miercoles:
+                        fragment = new MiercolesFragment();
                         fragmentTransition = true;
                         break;
                 }
