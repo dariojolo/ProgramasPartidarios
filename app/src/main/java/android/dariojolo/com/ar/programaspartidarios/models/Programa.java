@@ -19,6 +19,7 @@ public class Programa extends RealmObject implements Serializable {
     private String conductores;
     private String emisora;
     private String eMail;
+    private String web;
     private String twitter;
     private String facebook;
     private String telefono;
@@ -35,18 +36,24 @@ public class Programa extends RealmObject implements Serializable {
     private String diaDos;
     private String medio;
     private boolean favorito;
+    private boolean manana;
+    private boolean tarde;
+    private boolean noche;
 
-    public Programa(){} //Solo para Realm
+    public Programa() {
+    } //Solo para Realm
 
-    public Programa(String nombre, int imagen, String conductores, String emisora, String eMail, String twitter, String facebook,
+    public Programa(String nombre, int imagen, String conductores, String emisora, String eMail,String web, String twitter, String facebook,
                     String telefono, boolean lunes, boolean martes, boolean miercoles, boolean jueves, boolean viernes, boolean sabado,
-                    boolean domingo, boolean diaPartido, String diaUno, String diaDos, String medio, boolean favorito){
+                    boolean domingo, boolean diaPartido, String diaUno, String diaDos, String medio, boolean favorito, boolean manana,
+                    boolean tarde, boolean noche) {
         Id = MyApp.ProgramaID.incrementAndGet();
         this.nombre = nombre;
         this.imagen = imagen;
         this.conductores = conductores;
         this.emisora = emisora;
         this.eMail = eMail;
+        this.web = web;
         this.twitter = twitter;
         this.facebook = facebook;
         this.telefono = telefono;
@@ -62,17 +69,12 @@ public class Programa extends RealmObject implements Serializable {
         this.diaDos = diaDos;
         this.medio = medio;
         this.favorito = favorito;
+        this.manana = manana;
+        this.tarde = tarde;
+        this.noche = noche;
     }
 
-    public boolean isFavorito() {
-        return favorito;
-    }
-
-    public void setFavorito(boolean favorito) {
-        this.favorito = favorito;
-    }
-
-    public int getId(){
+    public int getId() {
         return Id;
     }
 
@@ -194,5 +196,45 @@ public class Programa extends RealmObject implements Serializable {
 
     public void setDiaDos(String diaDos) {
         this.diaDos = diaDos;
+    }
+
+    public boolean isFavorito() {
+        return favorito;
+    }
+
+    public void setFavorito(boolean favorito) {
+        this.favorito = favorito;
+    }
+
+    public boolean isManana() {
+        return manana;
+    }
+
+    public void setManana(boolean manana) {
+        this.manana = manana;
+    }
+
+    public boolean isTarde() {
+        return tarde;
+    }
+
+    public void setTarde(boolean tarde) {
+        this.tarde = tarde;
+    }
+
+    public boolean isNoche() {
+        return noche;
+    }
+
+    public void setNoche(boolean noche) {
+        this.noche = noche;
+    }
+
+    public String getWeb() {
+        return web;
+    }
+
+    public void setWeb(String web) {
+        this.web = web;
     }
 }

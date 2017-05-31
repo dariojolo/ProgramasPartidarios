@@ -151,6 +151,25 @@
                             android:gravity="center_vertical|left" />
 
                     </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="0.1"
+                            android:src="@drawable/iconchrome" />
+
+                        <TextView
+                            android:id="@+id/txtWeb"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="0.9"
+                            android:gravity="center_vertical|left" />
+
+                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"

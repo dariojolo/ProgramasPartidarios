@@ -31,6 +31,7 @@ public class DetalleActivity extends AppCompatActivity {
     private TextView txtDia1;
     private TextView txtDia2;
     private TextView txtConductores;
+    private TextView txtWeb;
     private TextView txtTel;
     private TextView txtFace;
     private TextView txtTwi;
@@ -60,6 +61,7 @@ public class DetalleActivity extends AppCompatActivity {
         txtDia2 = (TextView) findViewById(R.id.txtDia2);
         txtConductores = (TextView) findViewById(R.id.txtConductores);
         webview = (WebView) findViewById(R.id.webview);
+        txtWeb = (TextView) findViewById(R.id.txtWeb);
         txtTel = (TextView) findViewById(R.id.txtTelefono);
         txtFace = (TextView) findViewById(R.id.txtFacebook);
         txtTwi = (TextView) findViewById(R.id.txtTwitter);
@@ -78,6 +80,7 @@ public class DetalleActivity extends AppCompatActivity {
         txtDia2.setText(programa.getDiaDos());
         txtConductores.setText(programa.getConductores());
         txtTel.setText("   " + programa.getTelefono());
+        txtWeb.setText("   " + programa.getWeb());
         txtFace.setText("   " + programa.getFacebook());
         txtTwi.setText("   " + programa.getTwitter());
 
