@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    //Probando si este metodo funciona, intentar recuperar la ultima pantallada visitada
+    //Probando si este metodo funciona, intentar recuperar la ultima pantalla visitada
     @Override
     protected void onResume() {
         super.onResume();
