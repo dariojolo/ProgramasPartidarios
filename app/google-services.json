@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "14924270753",
+    "firebase_url": "https://programaspartidarios.firebaseio.com",
+    "project_id": "programaspartidarios",
+    "storage_bucket": "programaspartidarios.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:14924270753:android:7188152fb1ef1453",
+        "android_client_info": {
+          "package_name": "android.dariojolo.com.ar.programaspartidarios"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "14924270753-gtlbs74sm6bu64i1ogikvqs0co86fnn3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "android.dariojolo.com.ar.programaspartidarios",
+            "certificate_hash": "a83dca8ac016dc0c4bef63271b44518b7143db8f"
+          }
+        },
+        {
+          "client_id": "14924270753-7o0i69e5ie4bvmmqdnggdtc0e8q40onn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCB9k7RKof_wmj5QRwjUB2GpNe3LkAMtcA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "14924270753-7o0i69e5ie4bvmmqdnggdtc0e8q40onn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
