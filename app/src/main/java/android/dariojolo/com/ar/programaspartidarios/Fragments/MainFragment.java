@@ -6,7 +6,9 @@ import android.dariojolo.com.ar.programaspartidarios.R;
 import android.dariojolo.com.ar.programaspartidarios.activities.DetalleActivity;
 import android.dariojolo.com.ar.programaspartidarios.adapters.MyAdapter;
 import android.dariojolo.com.ar.programaspartidarios.models.Programa;
+import android.dariojolo.com.ar.programaspartidarios.servicies.MyFirebaseInstanceIDService;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -47,6 +49,8 @@ public class MainFragment extends Fragment implements RealmChangeListener<RealmR
 
     private View view;
 
+    private FloatingActionButton fab;
+
     public MainFragment() {
         // Required empty public constructor
     }
@@ -58,6 +62,16 @@ public class MainFragment extends Fragment implements RealmChangeListener<RealmR
         view = inflater.inflate(R.layout.fragment_main, container, false);
         RelativeLayout fl = (RelativeLayout) inflater.inflate(R.layout.fragment_main, container, false);
         recycler = (RecyclerView) fl.findViewById(R.id.recyclerView);
+
+        fab = (FloatingActionButton)fl.findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getContext(),"Se apreto boton",Toast.LENGTH_SHORT).show();
+                MyFirebaseInstanceIDService myFID = new MyFirebaseInstanceIDService();
+                myFID.onTokenRefresh();
+            }
+        });
 
         realm = Realm.getDefaultInstance();
 
