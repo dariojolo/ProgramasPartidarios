@@ -2,6 +2,7 @@ package android.dariojolo.com.ar.programaspartidarios.servicies;
 
 import android.app.NotificationManager;
 import android.content.Context;
+import android.media.RingtoneManager;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
@@ -37,10 +38,23 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         NotificationCompat.Builder notificationBuilder =
                 new NotificationCompat.Builder(this)
-                        .setSmallIcon(android.R.drawable.stat_sys_warning)
+                        .setSmallIcon(android.R.drawable.sym_action_chat)
                         .setContentTitle(title)
-                        .setContentText(text);
+                        .setContentText(text)
+                        .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
+                        .setVibrate(new long[]{0, 300, 200, 300});
 
+        /*
+            //Revisar esto
+            Intent notIntent = new Intent(getApplicationContext(), MainActivity.class);
+
+            PendingIntent contIntent = PendingIntent.getActivity(getApplicationContext(), 0, notIntent, 0);
+            notificationBuilder.setPriority(NotificationCompat.PRIORITY_HIGH);
+            notificationBuilder.setContentIntent(contIntent);
+
+            Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+            notificationBuilder.setSound(alarmSound);
+         */
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
