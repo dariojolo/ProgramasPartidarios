@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.dariojolo.com.ar.programaspartidarios.R;
 import android.dariojolo.com.ar.programaspartidarios.app.MyApp;
 import android.dariojolo.com.ar.programaspartidarios.models.Programa;
+import android.dariojolo.com.ar.programaspartidarios.servicies.MyFirebaseInstanceIDService;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -45,6 +46,7 @@ public class DetalleActivity extends AppCompatActivity {
     private int _fragment;
     private WebView webview;
     private FloatingActionButton fab;
+    private FloatingActionButton fab2;
     private boolean favorito;
     private final int INTERNET_CODE = 100;
     private final int PHONE_CODE = 101;
@@ -81,6 +83,15 @@ public class DetalleActivity extends AppCompatActivity {
             getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
         }
 
+        fab2 = (FloatingActionButton)findViewById(R.id.fab);
+        fab2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(DetalleActivity.this,"Se apreto boton",Toast.LENGTH_SHORT).show();
+                MyFirebaseInstanceIDService myFID = new MyFirebaseInstanceIDService();
+                myFID.onTokenRefresh();
+            }
+        });
         Bundle bundle = getIntent().getExtras();
         int _id = bundle.getInt("Programa");
         _fragment = bundle.getInt("Fragment");

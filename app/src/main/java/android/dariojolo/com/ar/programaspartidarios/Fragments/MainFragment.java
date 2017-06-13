@@ -8,6 +8,7 @@ import android.dariojolo.com.ar.programaspartidarios.adapters.MyAdapter;
 import android.dariojolo.com.ar.programaspartidarios.app.MyApp;
 import android.dariojolo.com.ar.programaspartidarios.models.Programa;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -49,6 +50,8 @@ public class MainFragment extends Fragment implements RealmChangeListener<RealmR
     private RealmResults<Programa> programasR;
 
     private View view;
+
+    private FloatingActionButton fab;
 
     public MainFragment() {
         // Required empty public constructor
