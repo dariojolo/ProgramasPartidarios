@@ -6,7 +6,6 @@ import android.content.pm.PackageManager;
 import android.dariojolo.com.ar.programaspartidarios.R;
 import android.dariojolo.com.ar.programaspartidarios.app.MyApp;
 import android.dariojolo.com.ar.programaspartidarios.models.Programa;
-import android.dariojolo.com.ar.programaspartidarios.servicies.MyFirebaseInstanceIDService;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -20,6 +19,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.webkit.WebView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,7 +46,10 @@ public class DetalleActivity extends AppCompatActivity {
     private int _fragment;
     private WebView webview;
     private FloatingActionButton fab;
-    private FloatingActionButton fab2;
+    private FloatingActionButton fabNotification;
+    private FloatingActionButton fabfavorite;
+    private LinearLayout notificationLinear;
+    private LinearLayout favouriteLinear;
     private boolean favorito;
     private final int INTERNET_CODE = 100;
     private final int PHONE_CODE = 101;
@@ -77,13 +80,33 @@ public class DetalleActivity extends AppCompatActivity {
         }
         MyApp.contadorPantallas++;
         fab = (FloatingActionButton) findViewById(R.id.fabDetalle);
+        fabNotification = (FloatingActionButton) findViewById(R.id.fabNotificar);
+        fabfavorite = (FloatingActionButton) findViewById(R.id.fabfavorite);
+        notificationLinear = (LinearLayout) findViewById(R.id.notificationLayout);
+        favouriteLinear = (LinearLayout) findViewById(R.id.favoriteLayout);
+        notificationLinear.setVisibility(View.GONE);
+        favouriteLinear.setVisibility(View.GONE);
+
         setToolbar();
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
         }
 
-        fab2 = (FloatingActionButton)findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(notificationLinear.getVisibility() == View.VISIBLE &&
+                        favouriteLinear.getVisibility() == View.VISIBLE){
+                    notificationLinear.setVisibility(View.GONE);
+                    favouriteLinear.setVisibility(View.GONE);
+                }else{
+                    notificationLinear.setVisibility(View.VISIBLE);
+                    favouriteLinear.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+        /*fab2 = (FloatingActionButton)findViewById(R.id.fab);
         fab2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -91,7 +114,7 @@ public class DetalleActivity extends AppCompatActivity {
                 MyFirebaseInstanceIDService myFID = new MyFirebaseInstanceIDService();
                 myFID.onTokenRefresh();
             }
-        });
+        });*/
         Bundle bundle = getIntent().getExtras();
         int _id = bundle.getInt("Programa");
         _fragment = bundle.getInt("Fragment");
@@ -158,20 +181,20 @@ public class DetalleActivity extends AppCompatActivity {
         }
 
         if (programa.isFavorito()) {
-            fab.setImageResource(R.drawable.ic_star_on);
+            fabfavorite.setImageResource(R.drawable.ic_star_on);
         } else {
-            fab.setImageResource(R.drawable.ic_star_off);
+            fabfavorite.setImageResource(R.drawable.ic_star_off);
         }
-        fab.setOnClickListener(new View.OnClickListener() {
+        fabfavorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (programa.isFavorito()) {
                     Toast.makeText(DetalleActivity.this, programa.getNombre() + " fue eliminado de favoritos", Toast.LENGTH_SHORT).show();
-                    fab.setImageResource(R.drawable.ic_star_off);
+                    fabfavorite.setImageResource(R.drawable.ic_star_off);
                     updateFavorito(programa, false, realm);
                 } else {
                     Toast.makeText(DetalleActivity.this, programa.getNombre() + " fue agregado a favoritos", Toast.LENGTH_SHORT).show();
-                    fab.setImageResource(R.drawable.ic_star_on);
+                    fabfavorite.setImageResource(R.drawable.ic_star_on);
                     updateFavorito(programa, true, realm);
                 }
             }

@@ -18,7 +18,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <FrameLayout
@@ -32,25 +32,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:elevation="5dp" />
-
-                <android.support.design.widget.FloatingActionButton
-                    android:id="@+id/fabDetalle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|end"
-                    android:layout_marginBottom="@dimen/fab_margin"
-                    android:layout_marginRight="@dimen/fab_margin"
-                    android:elevation="5dp"
-                    android:src="@android:drawable/btn_star_big_off" />
             </FrameLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0.7"
+                android:layout_weight="0.6"
+                android:background="#daeae7"
                 android:fitsSystemWindows="true"
-                android:orientation="vertical"
-                android:background="#E2E2E2">
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -152,6 +142,7 @@
                             android:gravity="center_vertical|left" />
 
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -208,27 +199,97 @@
                             android:layout_height="40dp"
                             android:layout_weight="0.9"
                             android:gravity="center_vertical|left" />
+
                     </LinearLayout>
                 </LinearLayout>
 
-                <TextView
+                <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:text="Escuchar en vivo" />
+                    android:layout_height="match_parent"
+                    android:layout_gravity="bottom|end"
+                    android:orientation="vertical">
 
-                <WebView
-                    android:id="@+id/webview"
-                    android:layout_width="match_parent"
-                    android:layout_height="120dp" />
+                    <LinearLayout
+                        android:id="@+id/notificationLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="21dp"
+                        android:layout_marginRight="21dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/TextAppearance.AppCompat.Title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center_vertical"
+                            android:text="Notificar" />
+
+                        <android.support.design.widget.FloatingActionButton
+                            android:id="@+id/fabNotificar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:elevation="5dp"
+                            android:src="@drawable/ic_notifications"
+                            app:fabSize="mini"
+                            android:background="@color/colorPrimary"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/favoriteLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="21dp"
+                        android:layout_marginRight="21dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/TextAppearance.AppCompat.Title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"
+                            android:gravity="center_vertical"
+                            android:text="Favorito" />
+
+                        <android.support.design.widget.FloatingActionButton
+                            android:id="@+id/fabfavorite"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:elevation="5dp"
+                            android:src="@drawable/ic_favorite"
+                            app:fabSize="mini"
+                            android:background="@color/colorPrimary"/>
+                    </LinearLayout>
+
+                    <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/fabDetalle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|end"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginRight="15dp"
+                        android:elevation="5dp"
+                        android:src="@android:drawable/ic_menu_add"
+                        app:fabSize="normal" />
+                </LinearLayout>
+
             </LinearLayout>
-            <android.support.design.widget.FloatingActionButton
-                android:id="@+id/fab"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|end"
-                android:layout_margin="5dp"
-                android:src="@android:drawable/ic_menu_add" />
+           <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginBottom="10dp"
+                 android:text="Escuchar en vivo" />
+
+            <WebView
+                android:id="@+id/webview"
+                android:layout_width="match_parent"
+                android:layout_height="120dp" />
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

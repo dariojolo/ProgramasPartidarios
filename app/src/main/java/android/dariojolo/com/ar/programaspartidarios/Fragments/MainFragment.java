@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.dariojolo.com.ar.programaspartidarios.R;
 import android.dariojolo.com.ar.programaspartidarios.activities.DetalleActivity;
 import android.dariojolo.com.ar.programaspartidarios.adapters.MyAdapter;
-import android.dariojolo.com.ar.programaspartidarios.app.MyApp;
 import android.dariojolo.com.ar.programaspartidarios.models.Programa;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -22,14 +21,14 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import java.util.List;
 
 import io.realm.Realm;
 import io.realm.RealmChangeListener;
 import io.realm.RealmResults;
-
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 
 public class MainFragment extends Fragment implements RealmChangeListener<RealmResults<Programa>> {
 
