@@ -10,7 +10,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -23,11 +22,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.clans.fab.FloatingActionButton;
+import com.github.clans.fab.FloatingActionMenu;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 
 import io.realm.Realm;
+
 
 
 public class DetalleActivity extends AppCompatActivity {
@@ -45,9 +47,9 @@ public class DetalleActivity extends AppCompatActivity {
     private TextView txtTwi;
     private int _fragment;
     private WebView webview;
-    private FloatingActionButton fab;
-    private FloatingActionButton fabNotification;
-    private FloatingActionButton fabfavorite;
+    private android.support.design.widget.FloatingActionButton fab;
+    private android.support.design.widget.FloatingActionButton fabNotification;
+    private android.support.design.widget.FloatingActionButton fabfavorite;
     private LinearLayout notificationLinear;
     private LinearLayout favouriteLinear;
     private boolean favorito;
@@ -56,6 +58,10 @@ public class DetalleActivity extends AppCompatActivity {
     private final int READ_EXTERNAL_STORAGE_CODE = 102;
 
     InterstitialAd interstitialAd; // Publicidad Pantalla Completa
+
+    FloatingActionMenu materialDesignFAM;
+    com.github.clans.fab.FloatingActionButton floatingActionButton1, floatingActionButton2, floatingActionButton3;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,13 +85,13 @@ public class DetalleActivity extends AppCompatActivity {
             });
         }
         MyApp.contadorPantallas++;
-        fab = (FloatingActionButton) findViewById(R.id.fabDetalle);
-        fabNotification = (FloatingActionButton) findViewById(R.id.fabNotificar);
-        fabfavorite = (FloatingActionButton) findViewById(R.id.fabfavorite);
+       /* fab = (android.support.design.widget.FloatingActionButton) findViewById(R.id.fabDetalle);
+        fabNotification = (android.support.design.widget.FloatingActionButton) findViewById(R.id.fabNotificar);
+        fabfavorite = (android.support.design.widget.FloatingActionButton) findViewById(R.id.fabfavorite);
         notificationLinear = (LinearLayout) findViewById(R.id.notificationLayout);
         favouriteLinear = (LinearLayout) findViewById(R.id.favoriteLayout);
         notificationLinear.setVisibility(View.GONE);
-        favouriteLinear.setVisibility(View.GONE);
+        favouriteLinear.setVisibility(View.GONE);*/
 
         setToolbar();
         if (Build.VERSION.SDK_INT >= 21) {
@@ -93,7 +99,7 @@ public class DetalleActivity extends AppCompatActivity {
             getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
         }
 
-        fab.setOnClickListener(new View.OnClickListener() {
+        /*fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(notificationLinear.getVisibility() == View.VISIBLE &&
@@ -105,7 +111,7 @@ public class DetalleActivity extends AppCompatActivity {
                     favouriteLinear.setVisibility(View.VISIBLE);
                 }
             }
-        });
+        });*/
         /*fab2 = (FloatingActionButton)findViewById(R.id.fab);
         fab2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -180,7 +186,7 @@ public class DetalleActivity extends AppCompatActivity {
             OlderVersion();
         }
 
-        if (programa.isFavorito()) {
+      /*  if (programa.isFavorito()) {
             fabfavorite.setImageResource(R.drawable.ic_star_on);
         } else {
             fabfavorite.setImageResource(R.drawable.ic_star_off);
@@ -198,8 +204,32 @@ public class DetalleActivity extends AppCompatActivity {
                     updateFavorito(programa, true, realm);
                 }
             }
+        });*/
+        materialDesignFAM = (FloatingActionMenu) findViewById(R.id.material_design_android_floating_action_menu);
+        floatingActionButton1 = (FloatingActionButton) findViewById(R.id.material_design_floating_action_menu_item1);
+        floatingActionButton2 = (FloatingActionButton) findViewById(R.id.material_design_floating_action_menu_item2);
+        floatingActionButton3 = (FloatingActionButton) findViewById(R.id.material_design_floating_action_menu_item3);
+
+        floatingActionButton1.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                //TODO something when floating action menu first item clicked
+
+            }
+        });
+        floatingActionButton2.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                //TODO something when floating action menu second item clicked
+
+            }
+        });
+        floatingActionButton3.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                //TODO something when floating action menu third item clicked
+
+            }
         });
     }
+
 
     private void updateFavorito(Programa programa, boolean favorito, Realm realm) {
         realm.beginTransaction();
@@ -288,4 +318,5 @@ public class DetalleActivity extends AppCompatActivity {
 
 
     }
+
 }
