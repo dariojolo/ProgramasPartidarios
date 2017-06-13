@@ -6,6 +6,10 @@ import android.content.SharedPreferences;
 import android.dariojolo.com.ar.programaspartidarios.R;
 import android.dariojolo.com.ar.programaspartidarios.models.Programa;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+
 import java.util.concurrent.atomic.AtomicInteger;
 
 import io.realm.Realm;
@@ -24,6 +28,8 @@ public class MyApp extends Application {
     private Realm realm;
     public static AtomicInteger ProgramaID = new AtomicInteger();
     private SharedPreferences prefs;
+    public static int contadorPantallas = 1;
+
 
     @Override
     public void onCreate() {

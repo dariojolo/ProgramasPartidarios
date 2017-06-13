@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.dariojolo.com.ar.programaspartidarios.R;
+import android.dariojolo.com.ar.programaspartidarios.app.MyApp;
 import android.dariojolo.com.ar.programaspartidarios.models.Programa;
 import android.net.Uri;
 import android.os.Build;
@@ -20,6 +21,10 @@ import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 
 import io.realm.Realm;
 
@@ -45,11 +50,30 @@ public class DetalleActivity extends AppCompatActivity {
     private final int PHONE_CODE = 101;
     private final int READ_EXTERNAL_STORAGE_CODE = 102;
 
+    InterstitialAd interstitialAd; // Publicidad Pantalla Completa
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle);
 
+
+
+        if (MyApp.contadorPantallas%3 == 0) {
+
+            interstitialAd = new InterstitialAd(this);
+            interstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+            AdRequest adRequest1 = new AdRequest.Builder().build();
+            interstitialAd.loadAd(adRequest1);
+            interstitialAd.setAdListener(new AdListener() {
+                @Override
+                public void onAdLoaded() {
+                    super.onAdLoaded();
+                    interstitialAd.show();
+                }
+            });
+        }
+        MyApp.contadorPantallas++;
         fab = (FloatingActionButton) findViewById(R.id.fabDetalle);
         setToolbar();
         if (Build.VERSION.SDK_INT >= 21) {

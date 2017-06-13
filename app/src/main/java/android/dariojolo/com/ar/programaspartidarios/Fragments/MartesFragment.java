@@ -15,6 +15,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import java.util.List;
 
 import io.realm.Realm;
@@ -49,6 +52,10 @@ public class MartesFragment extends Fragment implements RealmChangeListener<Real
         view = inflater.inflate(R.layout.fragment_martes, container, false);
         //RelativeLayout fl = (RelativeLayout) inflater.inflate(R.layout.fragment_am, container, false);
         //recycler = (RecyclerView) fl.findViewById(R.id.recyclerView2);
+
+        AdView mAdView = (AdView) view.findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         realm = Realm.getDefaultInstance();
 

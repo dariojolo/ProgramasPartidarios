@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.dariojolo.com.ar.programaspartidarios.R;
 import android.dariojolo.com.ar.programaspartidarios.activities.DetalleActivity;
 import android.dariojolo.com.ar.programaspartidarios.adapters.MyAdapter;
+import android.dariojolo.com.ar.programaspartidarios.app.MyApp;
 import android.dariojolo.com.ar.programaspartidarios.models.Programa;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -26,6 +27,8 @@ import io.realm.Realm;
 import io.realm.RealmChangeListener;
 import io.realm.RealmResults;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 public class MainFragment extends Fragment implements RealmChangeListener<RealmResults<Programa>> {
 
@@ -58,6 +61,10 @@ public class MainFragment extends Fragment implements RealmChangeListener<RealmR
         view = inflater.inflate(R.layout.fragment_main, container, false);
         RelativeLayout fl = (RelativeLayout) inflater.inflate(R.layout.fragment_main, container, false);
         recycler = (RecyclerView) fl.findViewById(R.id.recyclerView);
+
+        AdView mAdView = (AdView) fl.findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         realm = Realm.getDefaultInstance();
 
