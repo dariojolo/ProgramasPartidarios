@@ -285,5 +285,24 @@ public class MainActivity extends AppCompatActivity {
             AlertDialog dialog = builder.create();
             dialog.show();
         }*/
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Toast.makeText(this,"omRestart",Toast.LENGTH_LONG).show();
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setFragmentByDefault();
+        Toast.makeText(this,"omResume",Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Toast.makeText(this,"omPause",Toast.LENGTH_LONG).show();
+    }
+}
 
