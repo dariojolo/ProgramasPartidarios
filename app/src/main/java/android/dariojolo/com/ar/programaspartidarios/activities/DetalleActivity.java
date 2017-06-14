@@ -208,11 +208,29 @@ public class DetalleActivity extends AppCompatActivity {
         materialDesignFAM = (FloatingActionMenu) findViewById(R.id.material_design_android_floating_action_menu);
         floatingActionButton1 = (FloatingActionButton) findViewById(R.id.material_design_floating_action_menu_item1);
         floatingActionButton2 = (FloatingActionButton) findViewById(R.id.material_design_floating_action_menu_item2);
-        floatingActionButton3 = (FloatingActionButton) findViewById(R.id.material_design_floating_action_menu_item3);
 
         floatingActionButton1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 //TODO something when floating action menu first item clicked
+                if (programa.isFavorito()) {
+                    floatingActionButton1.setImageResource(R.drawable.ic_favorite); //on
+                } else {
+                    floatingActionButton1.setImageResource(R.drawable.ic_favorite); //off
+                }
+                floatingActionButton1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (programa.isFavorito()) {
+                            Toast.makeText(DetalleActivity.this, programa.getNombre() + " fue eliminado de favoritos", Toast.LENGTH_SHORT).show();
+                            floatingActionButton1.setImageResource(R.drawable.ic_favorite); //off
+                            updateFavorito(programa, false, realm);
+                        } else {
+                            Toast.makeText(DetalleActivity.this, programa.getNombre() + " fue agregado a favoritos", Toast.LENGTH_SHORT).show();
+                            floatingActionButton1.setImageResource(R.drawable.ic_favorite); //on
+                            updateFavorito(programa, true, realm);
+                        }
+                    }
+                });
 
             }
         });
@@ -222,12 +240,7 @@ public class DetalleActivity extends AppCompatActivity {
 
             }
         });
-        floatingActionButton3.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                //TODO something when floating action menu third item clicked
 
-            }
-        });
     }
 
 
