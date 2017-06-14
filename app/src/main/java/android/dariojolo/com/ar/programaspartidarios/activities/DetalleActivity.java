@@ -27,6 +27,7 @@ import com.github.clans.fab.FloatingActionMenu;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
+import com.squareup.picasso.Picasso;
 
 import io.realm.Realm;
 
@@ -143,11 +144,17 @@ public class DetalleActivity extends AppCompatActivity {
 
 
         this.setTitle(programa.getNombre());
+        Picasso.with(this)
+                .load(programa.getImagen())
+                .fit()
+                .into(imagen);
         imagen.setImageResource(programa.getImagen());
         txtNombre.setText(programa.getNombre());
         txtEmisora.setText(programa.getEmisora());
         txtDia1.setText(programa.getDiaUno());
-        txtDia2.setText(programa.getDiaDos());
+        if (programa.getDiaDos() != null && !programa.getDiaDos().equals("")) {
+            txtDia2.setText(" -- " + programa.getDiaDos());
+        }
         txtConductores.setText(programa.getConductores());
         txtTel.setText("   " + programa.getTelefono());
         txtWeb.setText("   " + programa.getWeb());
@@ -237,7 +244,20 @@ public class DetalleActivity extends AppCompatActivity {
         floatingActionButton2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 //TODO something when floating action menu second item clicked
-
+                floatingActionButton1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (programa.isFavorito()) {
+                            Toast.makeText(DetalleActivity.this, " Se desuscribió de las notificaciones de " + programa.getNombre(), Toast.LENGTH_SHORT).show();
+                            floatingActionButton1.setImageResource(R.drawable.ic_favorite); //off
+                            updateFavorito(programa, false, realm);
+                        } else {
+                            Toast.makeText(DetalleActivity.this, " Se suscribió de las notificaciones de " +programa.getNombre(), Toast.LENGTH_SHORT).show();
+                            floatingActionButton1.setImageResource(R.drawable.ic_favorite); //on
+                            updateFavorito(programa, true, realm);
+                        }
+                    }
+                });
             }
         });
 

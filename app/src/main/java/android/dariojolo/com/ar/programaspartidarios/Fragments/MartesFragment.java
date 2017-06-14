@@ -70,7 +70,7 @@ public class MartesFragment extends Fragment implements RealmChangeListener<Real
                 //deletePrograma(position);
                 Intent intent = new Intent(getActivity().getApplicationContext(), DetalleActivity.class);
                 intent.putExtra("Programa", programa.getId());
-                intent.putExtra("Fragment", 8);
+                intent.putExtra("Fragment", 7);
                 startActivity(intent);
             }
         });

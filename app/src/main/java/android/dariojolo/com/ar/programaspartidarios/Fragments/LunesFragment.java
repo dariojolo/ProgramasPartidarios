@@ -71,7 +71,7 @@ public class LunesFragment extends Fragment implements RealmChangeListener<Realm
                 //deletePrograma(position);
                 Intent intent = new Intent(getActivity().getApplicationContext(), DetalleActivity.class);
                 intent.putExtra("Programa", programa.getId());
-                intent.putExtra("Fragment", 7);
+                intent.putExtra("Fragment", 6);
                 startActivity(intent);
             }
         });

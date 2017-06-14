@@ -64,6 +64,15 @@ public class MainFragment extends Fragment implements RealmChangeListener<RealmR
         RelativeLayout fl = (RelativeLayout) inflater.inflate(R.layout.fragment_main, container, false);
         recycler = (RecyclerView) fl.findViewById(R.id.recyclerView);
 
+       /* String android_id = Settings.Secure.getString(getContext().getContentResolver(),
+                Settings.Secure.ANDROID_ID);
+        AdView mAdView = (AdView) fl.findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)        // All emulators
+                .addTestDevice(android_id)  // My Galaxy Nexus test phone
+                .build();
+        mAdView.loadAd(adRequest);*/
+
         AdView mAdView = (AdView) fl.findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);

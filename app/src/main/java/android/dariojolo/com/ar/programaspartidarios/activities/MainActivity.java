@@ -113,10 +113,10 @@ public class MainActivity extends AppCompatActivity {
                 Fragment fragment = null;
 
                 switch (item.getItemId()){
-                    case R.id.todas:
+               /*     case R.id.todas:
                         fragment = new MainFragment();
                         fragmentTransition = true;
-                        break;
+                        break; */
                     case R.id.radioam:
                         fragment = new AmFragment();
                         fragmentTransition = true;
@@ -160,11 +160,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Probando si este metodo funciona, intentar recuperar la ultima pantalla visitada
-    @Override
+ /*   @Override
     protected void onResume() {
         super.onResume();
         setFragmentByDefault();
-    }
+    }*/
 
     private void setToolbar() {
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
@@ -183,9 +183,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setFragmentByDefault(){
-       changeFragment(new MainFragment(), navigationView.getMenu().getItem(0));
+       //changeFragment(new MainFragment(), navigationView.getMenu().getItem(0));
+        changeFragment(new AmFragment(), navigationView.getMenu().getItem(0));
     }
-    @Override
+  /*  @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()){
             case android.R.id.home:
@@ -195,7 +196,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
+    }*/
     //Inflamos el layout del menu de opciones
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -205,17 +206,84 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Manejamos la funcionalidad del menu de opciones
-   /* @Override
+   @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()){
-            case R.id.add_item:
-                //Añadimos nuevo nombre
-                this.nombres.add("Agregado nº: " + (++contador ));
-                //Notificamos al adaptador del cambio
-                this.myAdapter.notifyDataSetChanged();
+            case android.R.id.home:
+                //Logica de menu lateral
+                drawer.openDrawer(GravityCompat.START);
+                return true;
+            case R.id.sugerencia:
+                //Llamamos a la ventana de envio de correo electronico
+                //showAlertParaContactar("Contáctenos","");
+                return true;
+            case R.id.sobreNosotros:
+                //Llamamos a la ventana del disclaimer
+                //showAlertParaDisclaimer("Sobre nosotros","");
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }*/
-}
+    }
+
+ /*   private void showAlertParaContactar(String titulo, String mensaje) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        if (titulo!= null){
+            builder.setTitle(titulo);
+        }
+        if (mensaje != null){
+            builder.setMessage(mensaje);
+        }
+        View viewInflated = LayoutInflater.from(this).inflate(R.layout.layout_contactenos, null);
+        builder.setView(viewInflated);
+        //final ToggleButton btnLunes = (ToggleButton)viewInflated.findViewById(R.id.btnLunes);
+        final EditText txtSubject = (EditText)viewInflated.findViewById(R.id.txtSubject);
+        final EditText txtTexto = (EditText)viewInflated.findViewById(R.id.txtTexto);
+
+
+        builder.setPositiveButton("Enviar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(getApplicationContext(),"Gracias por ponerse en contacto con nosotros", Toast.LENGTH_SHORT).show();
+            }
+        });
+         builder.setNegativeButton("Cancelar", null);
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    //Ventana para agregar un nuevo Programa
+        private void showAlertParaDisclaimer(String titulo, String mensaje){
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            if (titulo!= null){
+                builder.setTitle(titulo);
+            }
+            if (mensaje != null){
+                builder.setMessage(mensaje);
+            }
+            View viewInflated = LayoutInflater.from(this).inflate(R.layout.layout_disclaimer, null);
+            builder.setView(viewInflated);
+            //final ToggleButton btnLunes = (ToggleButton)viewInflated.findViewById(R.id.btnLunes);
+            final TextView txtDisclaimer = (TextView)viewInflated.findViewById(R.id.txtDisclaimer);
+
+            txtDisclaimer.setText("Aplicación con información sobre los programas partidarios que cubren y transmiten al Club Atlético San Lorenzo de Almagro"   +
+                    "\nTodos los datos incluidos en esta aplicación fueron extraídos de la página oficial de San Lorenzo de Almagro y de las redes sociales de cada programa." +
+                    " \nSi alguna información mostrada en esta aplicación infringe alguna restricción de copyright, por favor contáctenos y eliminaremos inmediatamente dicha información de la aplicación." +
+                    " \nSi algún dato es erróneo o cambió, por favor notifíquenos del mismo así podremos corregirlo.");
+
+
+            builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Toast.makeText(getApplicationContext(),"OK", Toast.LENGTH_SHORT).show();
+                }
+            });
+           // builder.setNegativeButton("Cancelar", null);
+
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }*/
+    }
+

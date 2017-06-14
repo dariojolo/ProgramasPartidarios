@@ -70,7 +70,7 @@ public class MiercolesFragment extends Fragment implements RealmChangeListener<R
                 //deletePrograma(position);
                 Intent intent = new Intent(getActivity().getApplicationContext(), DetalleActivity.class);
                 intent.putExtra("Programa", programa.getId());
-                intent.putExtra("Fragment", 9);
+                intent.putExtra("Fragment", 8);
                 startActivity(intent);
             }
         });

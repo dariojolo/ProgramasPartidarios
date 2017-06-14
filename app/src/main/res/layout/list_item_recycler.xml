@@ -14,7 +14,8 @@
     <ImageView
         android:id="@+id/imagenPrograma"
         android:layout_width="match_parent"
-        android:layout_height="125dp" />
+        android:layout_height="125dp"
+        android:background="@drawable/border_shadow_bottom"/>
     <TextView
         android:id="@+id/txtNombrePrograma"
         android:layout_width="wrap_content"

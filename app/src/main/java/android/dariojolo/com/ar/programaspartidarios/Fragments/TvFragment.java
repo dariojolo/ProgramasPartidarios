@@ -70,7 +70,7 @@ public class TvFragment extends Fragment implements RealmChangeListener<RealmRes
                 //deletePrograma(position);
                 Intent intent = new Intent(getActivity().getApplicationContext(), DetalleActivity.class);
                 intent.putExtra("Programa", programa.getId());
-                intent.putExtra("Fragment", 6);
+                intent.putExtra("Fragment", 5);
                 startActivity(intent);
             }
         });

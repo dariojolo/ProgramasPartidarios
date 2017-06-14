@@ -70,7 +70,7 @@ public class FavoritosFragment extends Fragment implements RealmChangeListener<R
                 //deletePrograma(position);
                 Intent intent = new Intent(getActivity().getApplicationContext(), DetalleActivity.class);
                 intent.putExtra("Programa", programa.getId());
-                intent.putExtra("Fragment", 5);
+                intent.putExtra("Fragment", 4);
                 startActivity(intent);
             }
         });

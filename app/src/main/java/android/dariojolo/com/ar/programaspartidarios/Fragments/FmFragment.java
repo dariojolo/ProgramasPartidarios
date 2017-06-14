@@ -68,7 +68,7 @@ public class FmFragment extends Fragment implements RealmChangeListener<RealmRes
                 //deletePrograma(position);
                 Intent intent = new Intent(getActivity().getApplicationContext(), DetalleActivity.class);
                 intent.putExtra("Programa", programa.getId());
-                intent.putExtra("Fragment", 3);
+                intent.putExtra("Fragment", 2);
                 startActivity(intent);
             }
         });

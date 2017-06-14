@@ -70,7 +70,7 @@ public class PartidosFragment extends Fragment implements RealmChangeListener<Re
                 //deletePrograma(position);
                 Intent intent = new Intent(getActivity().getApplicationContext(), DetalleActivity.class);
                 intent.putExtra("Programa", programa.getId());
-                intent.putExtra("Fragment", 4);
+                intent.putExtra("Fragment", 3);
                 startActivity(intent);
             }
         });
