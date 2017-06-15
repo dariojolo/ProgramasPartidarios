@@ -2,6 +2,7 @@ package android.dariojolo.com.ar.programaspartidarios.servicies;
 
 import android.app.NotificationManager;
 import android.content.Context;
+import android.dariojolo.com.ar.programaspartidarios.R;
 import android.media.RingtoneManager;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
@@ -38,7 +39,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         NotificationCompat.Builder notificationBuilder =
                 new NotificationCompat.Builder(this)
-                        .setSmallIcon(android.R.drawable.sym_action_chat)
+                        .setSmallIcon(R.mipmap.ic_launcher)
                         .setContentTitle(title)
                         .setContentText(text)
                         .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
