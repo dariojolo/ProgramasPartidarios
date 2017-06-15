@@ -1,6 +1,8 @@
 package android.dariojolo.com.ar.programaspartidarios.activities;
 
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.dariojolo.com.ar.programaspartidarios.Fragments.AmFragment;
 import android.dariojolo.com.ar.programaspartidarios.Fragments.FavoritosFragment;
 import android.dariojolo.com.ar.programaspartidarios.Fragments.FmFragment;
@@ -11,18 +13,23 @@ import android.dariojolo.com.ar.programaspartidarios.Fragments.MiercolesFragment
 import android.dariojolo.com.ar.programaspartidarios.Fragments.PartidosFragment;
 import android.dariojolo.com.ar.programaspartidarios.Fragments.TvFragment;
 import android.dariojolo.com.ar.programaspartidarios.R;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.messaging.FirebaseMessaging;
@@ -215,18 +222,18 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.sugerencia:
                 //Llamamos a la ventana de envio de correo electronico
-                //showAlertParaContactar("Contáctenos","");
+                showAlertParaContactar("Contáctenos","");
                 return true;
             case R.id.sobreNosotros:
                 //Llamamos a la ventana del disclaimer
-                //showAlertParaDisclaimer("Sobre nosotros","");
+                showAlertParaDisclaimer("Sobre nosotros","");
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
- /*   private void showAlertParaContactar(String titulo, String mensaje) {
+    private void showAlertParaContactar(String titulo, String mensaje) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         if (titulo!= null){
             builder.setTitle(titulo);
@@ -240,10 +247,18 @@ public class MainActivity extends AppCompatActivity {
         final EditText txtSubject = (EditText)viewInflated.findViewById(R.id.txtSubject);
         final EditText txtTexto = (EditText)viewInflated.findViewById(R.id.txtTexto);
 
-
         builder.setPositiveButton("Enviar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                Intent intent2 = new Intent(Intent.ACTION_SENDTO);
+                //intent2.setType("*/*");
+                intent2.setData(Uri.parse("mailto:dariojolo@gmail.com")); // only email apps should handle this
+                intent2.putExtra(Intent.EXTRA_EMAIL, "dariojolo@gmail.com");
+                intent2.putExtra(Intent.EXTRA_SUBJECT, txtSubject.getText().toString());
+                intent2.putExtra(Intent.EXTRA_TEXT, txtTexto.getText().toString());
+                if (intent2.resolveActivity(getPackageManager()) != null) {
+                    startActivity(intent2);
+                }
                 Toast.makeText(getApplicationContext(),"Gracias por ponerse en contacto con nosotros", Toast.LENGTH_SHORT).show();
             }
         });
@@ -269,9 +284,10 @@ public class MainActivity extends AppCompatActivity {
             final TextView txtDisclaimer = (TextView)viewInflated.findViewById(R.id.txtDisclaimer);
 
             txtDisclaimer.setText("Aplicación con información sobre los programas partidarios que cubren y transmiten al Club Atlético San Lorenzo de Almagro"   +
-                    "\nTodos los datos incluidos en esta aplicación fueron extraídos de la página oficial de San Lorenzo de Almagro y de las redes sociales de cada programa." +
+                    " \nTodos los datos incluidos en esta aplicación fueron extraídos de la página oficial de San Lorenzo de Almagro y de las redes sociales de cada programa." +
                     " \nSi alguna información mostrada en esta aplicación infringe alguna restricción de copyright, por favor contáctenos y eliminaremos inmediatamente dicha información de la aplicación." +
-                    " \nSi algún dato es erróneo o cambió, por favor notifíquenos del mismo así podremos corregirlo.");
+                    " \nSi algún dato es erróneo o cambió, por favor notifíquenos del mismo así podremos corregirlo. " +
+                    " \nEl logo fue creado con un Fondo de vector creado por Macrovector - Freepik.com (http://www.freepik.es/fotos-vectores-gratis/fondo)");
 
 
             builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
@@ -284,7 +300,7 @@ public class MainActivity extends AppCompatActivity {
 
             AlertDialog dialog = builder.create();
             dialog.show();
-        }*/
+        }
 
     @Override
     protected void onRestart() {
