@@ -6,18 +6,12 @@ import android.content.SharedPreferences;
 import android.dariojolo.com.ar.programaspartidarios.R;
 import android.dariojolo.com.ar.programaspartidarios.models.Programa;
 
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.InterstitialAd;
-
 import java.util.concurrent.atomic.AtomicInteger;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import io.realm.RealmObject;
 import io.realm.RealmResults;
-
-import static android.dariojolo.com.ar.programaspartidarios.R.drawable.equipodesafio;
 
 /**
  * Created by rodrigrl on 09/05/2017.
@@ -80,19 +74,49 @@ public class MyApp extends Application {
         realm.commitTransaction();
     }
     private void iniciarListaProgramas(){
+        /*
+
+        String nombre
+int imagen
+String conductores
+String emisora
+String eMail
+String web
+String twitter
+String facebook
+String telefono
+boolean lunes
+boolean martes
+boolean miercoles
+boolean jueves
+boolean viernes
+boolean sabado
+boolean domingo
+boolean diaPartido
+String diaUno
+String diaDos
+String medio
+String link                    NUEVO
+boolean favorito
+boolean notificar              NUEVO
+String topicNotificacion       NUEVO
+boolean manana
+boolean tarde
+boolean noche
+         */
         realm.executeTransaction(new Realm.Transaction(){
 
             @Override
             public void execute(Realm realm) {
-                Programa p1 = new Programa("A todo ciclón", R.drawable.atodociclon2, "Oscar Sacco", "AM810","saccofutbol@gmail.com","No disponible","https://twitter.com/atodociclonsl","No disponible","No disponible",true,false,false,false,true,false,false,false,"Lunes y Viernes 19Hs", "","AM",false,false,true,false);
-                Programa p2 = new Programa("A todo San Lorenzo", R.drawable.atodosanlorenzo, "Carlos García", "AM1490","coriafutbol@hotmail.com","No disponible","https://twitter.com/atodosanlorenzo","https://www.facebook.com/ATodoSanLorenzoGama/","4218-5333/1951",true,false,false,true,false,false,false,true,"Lunes y Jueves 21Hs","Días de partidos","AM",false,false,false,true);
+                Programa p1 = new Programa("A Todo Ciclón", R.drawable.atodociclon2, "Oscar Sacco", "AM810","saccofutbol@gmail.com","No disponible","https://twitter.com/atodociclonsl","No disponible","No disponible",true,false,false,false,true,false,false,false,"Lunes y Viernes 19Hs","","AM","http://tunein.com/embed/player/s248138/",false,false,"ATodoCiclon",false,true,false);
+                Programa p2 = new Programa("A Todo San Lorenzo", R.drawable.atodosanlorenzo, "Carlos García - Fernando Coria", "AM1490","coriafutbol@hotmail.com","No disponible","https://twitter.com/atodosanlorenzo","https://www.facebook.com/ATodoSanLorenzoGama/","4218-5333 / 15-4565-2090",true,false,false,true,false,false,false,true,"Lunes y Jueves 21Hs","Días de partidos","AM","http://tunein.com/radio/Radio-Gama-1490-s86865/",false,false,"ATodoSanLorenzo",false,false,true);
                 Programa p3 = new Programa("Buenas y Santas", R.drawable.buenasysantas, "", "AM1090","buenasysantasok@yahoo.com","No disponible","https://twitter.com/buenasysantasok","No disponible","4926-1623",false,true,false,false,false,false,false,false,"Martes 19Hs","","AM",false,false,true,false);
                 Programa p4 = new Programa("Cuervos Prohibidos",R.drawable.cuervosprohibidos,"D. Stasevich", "FMSignos","prohibidoscuervos@gmail.com","No disponible", "https://twitter.com/cuervoprohibido","https://www.facebook.com/CuervosProhibidos","No disponible",true,false,false,false,false,false,false,false,"Lunes 22hs","","FM",false,false,false,true);
                 Programa p5 = new Programa("Cuervos y basta", R.drawable.cuervosybasta, "Jorge Galeazzo", "FM 105.1 San Nicolas","jorgegaleazzo@arnet.com.ar","No disponible","No disponible","No disponible","No disponible",true,false,false,false,false,false,false,false,"Lunes 19Hs","","FM",false,false,true,false);
                 Programa p6 = new Programa("El café del ciclón", R.drawable.elcafedelciclon, "Mariano Bongiorno", "AM1290","elcafedelciclon@yahoo.com.ar","http://www.elcafedelciclon.com.ar/","https://twitter.com/elcafedelciclon","No disponible","No disponible",false,false,false,true,false,false,false,false,"Jueves 17hs","","AM",false,false,true,false);
                 Programa p7 = new Programa("El Plateista", R.drawable.elplateista, "Carlos Canissa", "AM810","ccanissa@gmail.com","http://www.elplateista.com.ar/","https://twitter.com/elplateista","https://www.facebook.com/ElPlateista",null,false,false,true,false,false,false,false,false,"Miércoles 20Hs","","AM",false,false,false,true);
-                Programa p8 = new Programa("Equipo Desafío", equipodesafio, "Julio Axel / Maximiliano Berardo", "AM990","mensajes@equipodesafio.com","http://www.equipodesafio.com/","https://twitter.com/equipodesafio","https://www.facebook.com/Equipo-Desaf%C3%ADo-362011670569256/","No disponible",false,true,false,false,false,false,false,true,"Martes 21Hs","Días de partidos","AM",false,false,false,true);
-                Programa p9 = new Programa("Estación Boedo",R.drawable.estacionboedo2,"","FM105.9","estacionboedo6@gmail.com","No disponible","https://twitter.com/EstacionBoedo","https://www.facebook.com/Estacion-Boedo-PQV-792475577446550/","4912-1059",true,false,false,false,false,false,false,false,"Lunes 21hs","","FM",false,false,false,true);
+                Programa p8 = new Programa("Equipo Desafío", R.drawable.equipodesafio, "Julio Axel / Maximiliano Berardo", "AM990","mensajes@equipodesafio.com","http://www.equipodesafio.com/","https://twitter.com/equipodesafio","https://www.facebook.com/Equipo-Desaf%C3%ADo-362011670569256/","No disponible",false,true,false,false,false,false,false,true,"Martes 21Hs","Días de partidos","AM",false,false,false,true);
+                Programa p9 = new Programa("Estación Boedo",R.drawable.estacionboedo2,"Antonella González - Juan Cruz De Rosa - Matías Ávila - Claudio Pandelo","FM105.9","estacionboedo6@gmail.com","No disponible","https://twitter.com/estacionboedo","https://www.facebook.com/Estacion-Boedo-PQV-792475577446550/","4912-1059 / 15-4079-2402 (WhatsApp)",true,false,false,false,false,false,false,false,"Lunes 21hs","","FM",false,false,false,true);
                 Programa p10 = new Programa("Gente de San Lorenzo", R.drawable.gentedesanlorenzo,"Claudio Morrone","AM840","No disponible","No disponible","No disponible","No disponible","No disponible",false,false,false,false,true,false,false,false,"Viernes 20Hs","","AM",false,false,false,true);
                 Programa p11 = new Programa("Glorioso San Lorenzo",R.drawable.gloriososanlorenzo,"No disponible","FM88.1","marcosnext@hotmail.com"," No disponible","https://twitter.com/gloriosocasla"," No disponible"," No disponible",false,false,true,false,false,false,false,true,"Miércoles 21Hs","Días de partidos","FM",false,false,false,true);
                 Programa p12 = new Programa("Hablemos de San Lorenzo", R.drawable.hablemosdesanlorenzo, "Cristian Pagliaro, Rodrigo Castellano y Nicolas Morandi", "AM770","cris_pagliaro05@yahoo.com.ar","http://www.desanlorenzo.com/","https://twitter.com/hablemosdesl","https://www.facebook.com/hablemosdesl/","5275-0770/71/72",true,true,true,true,true,false,true,false,"Lunes a Viernes 22Hs","Domingos 22Hs","AM",false,false,false,true);
@@ -103,13 +127,13 @@ public class MyApp extends Application {
                 Programa p17 = new Programa("Mundo Azulgrana radio", R.drawable.mundoazulgrana2,"Rubén Becerra - Mario Benigni","AM810","No disponible","http://mundoazulgrana.com.ar","https://twitter.com/mundoazulgrana","https://www.facebook.com/mundoazulgrana/","4641-3920 /4600-3298",true,false,true,false,true,true,false,false,"Lunes, Miércoles y Viernes 11Hs","Sabados 22Hs","AM",false,true,false,true);
                 Programa p18 = new Programa("San Lorenzo ayer, hoy y siempre",R.drawable.sanlorenzoayerhoyysiempre,"Adolfo Res","AM970","sanlorenzoayerhoysiempre@yahoo.com.ar","http://volveavenidalaplata.com.ar/","https://twitter.com/caslahistoria","https://www.facebook.com/CASLAhistoria/","1156196775",false,false,false,false,false,false,true,false,"Domingos 13Hs","","AM",false,false,true,false);
                 Programa p19 = new Programa("San Lorenzo de América",R.drawable.sanlorenzodeamerica,"Diego Arvilly","FM93.1","nicomormandi22@gmail.com","No disponible","https://twitter.com/SLDAradio","https://www.facebook.com/SLDAradio/","No disponible",false,true,false,false,false,false,false,false,"Martes 22Hs","","FM",false,false,false,true);
-                Programa p20 = new Programa("San Lorenzo en acción",R.drawable.sanlorenzoenaccion,"No disponible","AM1590","sanlorenzoenaccion@hotmail.com","No disponible","https://twitter.com/slenaccion","No disponible","No disponible",false,false,false,true,false,false,false,true,"Jueves 20Hs","Días de partidos","AM",false,false,false,true);
+                Programa p20 = new Programa("San Lorenzo en acción",R.drawable.sanlorenzoenaccion,"Sebastian Cambas - Lucas Celada","AM1590","sanlorenzoenaccion@hotmail.com","No disponible","https://twitter.com/slenaccion","San Lorenzo en Acción","4382-4293",false,false,false,true,false,false,false,true,"Jueves 20Hs","Días de partidos","AM",false,false,false,true);
                 Programa p21 = new Programa("San Lorenzo eterno",R.drawable.sanlorenzoeterno2,"Marcelo Culotta","AM970","sanlorenzoeterno@gmail.com","No disponible","https://twitter.com/sleterno","https://www.facebook.com/SanLorenzoEterno/","4926-1622",false,true,false,false,false,false,false,false,"Martes 20Hs","","AM",false,false,false,true);
                 Programa p22 = new Programa("San Lorenzo mi pasión",R.drawable.sanlorenzomipasion,"Víctor Federico","AM970","victorfederico970@gmail.com","No disponible","https://twitter.com/vueltaboedo","https://www.facebook.com/victor.federico.7","No disponible",false,false,false,false,false,true,false,false,"Sábados 12Hs","","AM",false,true,false,false);
                 Programa p23 = new Programa("Sentimiento Azulgrana",R.drawable.sentimientoazulgrana,"Mario Massi","AM890 o AM810","alejogarcia10@hotmail.com","No disponible","No disponible","https://www.facebook.com/profile.php?id=100006642735130","No disponible",false,false,false,false,false,false,false,true,"Días de partidos","","AM",false,false,false,false);
                 Programa p24 = new Programa("Simplemente San Lorenzo", R.drawable.simplementesanlorenzo,"Gustavo Bennasar y Adrián Disabato", "AM610", "simplementesanlorenzo@hotmail.com","http://simplementesanlorenzoweb.blogspot.com.ar/","No disponible","https://www.facebook.com/SimplementeSanLorenzo/","4542-6500",false,false,false,false,true,false,false,false,"Viernes 14hs","","AM",false,false,true,true);
                 Programa p25 = new Programa("Soy San Lorenzo",R.drawable.soysanlorenzo,"Mario Benigni","AM690","soysanlorenzo@gmail.com","http://www.soysanlorenzo.com.ar/","https://twitter.com/cirujanomb","https://www.facebook.com/soysan.lorenzo.3", "No disponible",true,true,true,true,true,false,false,false,"Lunes a Viernes 23Hs","","AM",false,false,false,true );
-                Programa p26 = new Programa("Equipo Desafío TV", equipodesafio,"Julio Axel yPablo Sassone","Canal 360TV","mensajes@equipodesafio.com","http://www.equipodesafio.com/","https://twitter.com/equipodesafio","https://www.facebook.com/Equipo-Desaf%C3%ADo-362011670569256/","No disponible",false,true,true,false,false,false,false,false,"Martes 20Hs","Miércoles 13Hs","TV",false,false,true,true );
+                Programa p26 = new Programa("Equipo Desafío TV", R.drawable.equipodesafio,"Julio Axel yPablo Sassone","Canal 360TV","mensajes@equipodesafio.com","http://www.equipodesafio.com/","https://twitter.com/equipodesafio","https://www.facebook.com/Equipo-Desaf%C3%ADo-362011670569256/","No disponible",false,true,true,false,false,false,false,false,"Martes 20Hs","Miércoles 13Hs","TV",false,false,true,true );
                 realm.copyToRealmOrUpdate(p1);
                 realm.copyToRealmOrUpdate(p2);
                 realm.copyToRealmOrUpdate(p3);

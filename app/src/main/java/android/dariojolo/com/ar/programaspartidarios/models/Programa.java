@@ -35,7 +35,10 @@ public class Programa extends RealmObject implements Serializable {
     private String diaUno;
     private String diaDos;
     private String medio;
+    private String link;
     private boolean favorito;
+    private boolean notificar;
+    private String topicNotificacion;
     private boolean manana;
     private boolean tarde;
     private boolean noche;
@@ -45,7 +48,7 @@ public class Programa extends RealmObject implements Serializable {
 
     public Programa(String nombre, int imagen, String conductores, String emisora, String eMail,String web, String twitter, String facebook,
                     String telefono, boolean lunes, boolean martes, boolean miercoles, boolean jueves, boolean viernes, boolean sabado,
-                    boolean domingo, boolean diaPartido, String diaUno, String diaDos, String medio, boolean favorito, boolean manana,
+                    boolean domingo, boolean diaPartido, String diaUno, String diaDos, String medio, String link,boolean favorito, boolean notificar,String topicNotificacion,boolean manana,
                     boolean tarde, boolean noche) {
         Id = MyApp.ProgramaID.incrementAndGet();
         this.nombre = nombre;
@@ -72,6 +75,9 @@ public class Programa extends RealmObject implements Serializable {
         this.manana = manana;
         this.tarde = tarde;
         this.noche = noche;
+        this.link = link;
+        this.notificar = notificar;
+        this.topicNotificacion = topicNotificacion;
     }
 
     public int getId() {
@@ -236,5 +242,29 @@ public class Programa extends RealmObject implements Serializable {
 
     public void setWeb(String web) {
         this.web = web;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
+
+    public boolean isNotificar() {
+        return notificar;
+    }
+
+    public void setNotificar(boolean notificar) {
+        this.notificar = notificar;
+    }
+
+    public String getTopicNotificacion() {
+        return topicNotificacion;
+    }
+
+    public void setTopicNotificacion(String topicNotificacion) {
+        this.topicNotificacion = topicNotificacion;
     }
 }

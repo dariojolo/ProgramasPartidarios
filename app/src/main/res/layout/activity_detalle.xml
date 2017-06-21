@@ -20,7 +20,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
 
@@ -43,56 +43,57 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="0.65"
+                android:background="@drawable/border_shadow"
                 android:fitsSystemWindows="true"
-                android:orientation="vertical"
-                android:background="@drawable/border_shadow">
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_horizontal">
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/txtNombre2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
-                        />
+                        android:textStyle="bold" />
                 </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center_horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/txtConductores"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title" />
-                    </LinearLayout>
-
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
+                        android:textStyle="bold" />
+                </LinearLayout>
 
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_horizontal">
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
 
-                   <TextView
+                    <TextView
                         android:id="@+id/txtEmisora"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=" -- "
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead" />
+
                     <TextView
                         android:id="@+id/txtDia1"
                         android:layout_width="wrap_content"
@@ -108,15 +109,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -126,9 +119,9 @@
 
                         <ImageView
                             android:layout_width="0dp"
-                            android:layout_height="40dp"
+                            android:layout_height="50dp"
                             android:layout_weight="0.1"
-                            android:src="@drawable/icontelephone" />
+                            android:src="@drawable/iconphone2" />
 
                         <TextView
                             android:id="@+id/txtTelefono"
@@ -146,9 +139,10 @@
 
                         <ImageView
                             android:layout_width="0dp"
-                            android:layout_height="40dp"
+                            android:layout_height="50dp"
                             android:layout_weight="0.1"
-                            android:src="@drawable/iconchrome" />
+                            android:src="@drawable/iconchrome2"
+                            android:paddingBottom="4dp"/>
 
                         <TextView
                             android:id="@+id/txtWeb"
@@ -166,9 +160,10 @@
 
                         <ImageView
                             android:layout_width="0dp"
-                            android:layout_height="40dp"
+                            android:layout_height="50dp"
                             android:layout_weight="0.1"
-                            android:src="@drawable/iconface" />
+                            android:src="@drawable/iconfacebook2"
+                            android:paddingBottom="4dp"/>
 
                         <TextView
                             android:id="@+id/txtFacebook"
@@ -185,9 +180,10 @@
 
                         <ImageView
                             android:layout_width="0dp"
-                            android:layout_height="40dp"
+                            android:layout_height="50dp"
                             android:layout_weight="0.1"
-                            android:src="@drawable/icontwitter" />
+                            android:src="@drawable/icontwitter2"
+                            android:paddingBottom="4dp"/>
 
                         <TextView
                             android:id="@+id/txtTwitter"
@@ -197,31 +193,64 @@
                             android:gravity="center_vertical|left" />
 
                     </LinearLayout>
-                </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="bottom|end"
-                    android:orientation="vertical"
-                    android:id="@+id/linearBoton">
+               <!--     <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:padding="16dp">
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="80dp"
+                            android:layout_weight="0.25"
+                            android:src="@drawable/iconphone" />
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="80dp"
+                            android:layout_weight="0.25"
+                            android:src="@drawable/iconchrome" />
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="80dp"
+                            android:layout_weight="0.25"
+                            android:src="@drawable/icontwitter" />
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="80dp"
+                            android:layout_weight="0.25"
+                            android:src="@drawable/iconfacebook" />
+                    </LinearLayout> -->
+
 
                 </LinearLayout>
-                <TextView
-                    android:id="@+id/txtEscuchar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:text="Escuchar en vivo"
-                    android:layout_below="@id/linearBoton"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearBoton"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.30"
+                android:orientation="vertical">
+
+                <!--     <TextView
+                         android:id="@+id/txtEscuchar"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:layout_marginBottom="10dp"
+                         android:text="Escuchar en vivo" /> -->
                 <WebView
                     android:id="@+id/webview"
                     android:layout_width="match_parent"
-                    android:layout_height="120dp"
-                    android:layout_below="@id/txtEscuchar"/>
+                    android:layout_height="120dp" />
+
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
+
     <com.github.clans.fab.FloatingActionMenu
         android:id="@+id/material_design_android_floating_action_menu"
         android:layout_width="wrap_content"
@@ -267,18 +296,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_favorite"
+            fab:fab_colorNormal="#150d7e"
             fab:fab_label="Favorito"
-            fab:fab_size="mini"
-            fab:fab_colorNormal="#150d7e"/>
+            fab:fab_size="mini" />
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/material_design_floating_action_menu_item2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_notifications"
+            fab:fab_colorNormal="#150d7e"
             fab:fab_label="Notificación"
-            fab:fab_size="mini"
-            fab:fab_colorNormal="#150d7e"/>
+            fab:fab_size="mini" />
     </com.github.clans.fab.FloatingActionMenu>
 
 </RelativeLayout>
