@@ -29,6 +29,7 @@ import com.github.clans.fab.FloatingActionMenu;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.squareup.picasso.Picasso;
 
 import io.realm.Realm;
@@ -266,12 +267,14 @@ public class DetalleActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (programa.isNotificar()) {
-                    Toast.makeText(DetalleActivity.this, " Se desuscribió de las notificaciones de " + programa.getNombre(), Toast.LENGTH_SHORT).show();
+                    FirebaseMessaging.getInstance().subscribeToTopic(programa.getTopicNotificacion());
                     floatingActionButton2.setImageResource(R.drawable.ic_notifications_off); //off
+                    Toast.makeText(DetalleActivity.this, " Se desuscribió de las notificaciones de " + programa.getNombre(), Toast.LENGTH_SHORT).show();
                     updateNotificar(programa, false, realm);
                 } else {
-                    Toast.makeText(DetalleActivity.this, " Se suscribió de las notificaciones de " + programa.getNombre(), Toast.LENGTH_SHORT).show();
+                    FirebaseMessaging.getInstance().unsubscribeFromTopic(programa.getTopicNotificacion());
                     floatingActionButton2.setImageResource(R.drawable.ic_notifications_on); //on
+                    Toast.makeText(DetalleActivity.this, " Se suscribió de las notificaciones de " + programa.getNombre(), Toast.LENGTH_SHORT).show();
                     updateNotificar(programa, true, realm);
                 }
             }

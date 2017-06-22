@@ -32,8 +32,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.messaging.FirebaseMessaging;
-
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout drawer;
@@ -43,8 +41,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FirebaseMessaging.getInstance().subscribeToTopic("soySanlorenzo");
-        FirebaseMessaging.getInstance().subscribeToTopic("mundoAzulGrana");
+
+        //FirebaseMessaging.getInstance().subscribeToTopic("mundoAzulGrana");
 
 
         drawer = (DrawerLayout)findViewById(R.id.drawer_layout);
