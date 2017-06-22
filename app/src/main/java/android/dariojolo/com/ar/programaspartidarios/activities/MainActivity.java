@@ -55,10 +55,7 @@ public class MainActivity extends AppCompatActivity {
             Bundle bundle = getIntent().getExtras();
             int _fragment = bundle.getInt("Fragment");
             Fragment frag;
-            for (int i = 0; i> navigationView.getMenu().size();i++){
-                Toast.makeText(this,"Menu: " + navigationView.getMenu().getItem(i).getTitle(),Toast.LENGTH_SHORT).show();
-                Toast.makeText(this,"Menu: " + navigationView.getMenu().getItem(i).getItemId(),Toast.LENGTH_SHORT).show();
-            }
+
             if (_fragment == 1){
                 frag =  new MainFragment();
                 changeFragment(frag, navigationView.getMenu().getItem(0));
@@ -293,7 +290,7 @@ public class MainActivity extends AppCompatActivity {
             builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    Toast.makeText(getApplicationContext(),"OK", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(),"OK", Toast.LENGTH_SHORT).show();
                 }
             });
            // builder.setNegativeButton("Cancelar", null);
@@ -305,20 +302,20 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        Toast.makeText(this,"omRestart",Toast.LENGTH_LONG).show();
+        //Toast.makeText(this,"onRestart",Toast.LENGTH_LONG).show();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         setFragmentByDefault();
-        Toast.makeText(this,"omResume",Toast.LENGTH_LONG).show();
+        //Toast.makeText(this,"onResume",Toast.LENGTH_LONG).show();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        Toast.makeText(this,"omPause",Toast.LENGTH_LONG).show();
+        //Toast.makeText(this,"onPause",Toast.LENGTH_LONG).show();
     }
 }
 

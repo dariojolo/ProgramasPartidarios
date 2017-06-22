@@ -71,11 +71,11 @@
                     <item
                         android:id="@+id/tarde"
                         android:icon="@drawable/ic_menu_clock"
-                        android:title="13-20" />
+                        android:title="13-19" />
                     <item
                         android:id="@+id/noche"
                         android:icon="@drawable/ic_menu_clock"
-                        android:title="21-24" />
+                        android:title="20-24" />
                 </group>
             </menu>
         </item>

@@ -1,6 +1,7 @@
 package android.dariojolo.com.ar.programaspartidarios.activities;
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.dariojolo.com.ar.programaspartidarios.R;
@@ -11,12 +12,13 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
-import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -30,7 +32,6 @@ import com.google.android.gms.ads.InterstitialAd;
 import com.squareup.picasso.Picasso;
 
 import io.realm.Realm;
-
 
 
 public class DetalleActivity extends AppCompatActivity {
@@ -47,7 +48,7 @@ public class DetalleActivity extends AppCompatActivity {
     private TextView txtFace;
     private TextView txtTwi;
     private int _fragment;
-    private WebView webview;
+    //private WebView webview;
     private android.support.design.widget.FloatingActionButton fab;
     private android.support.design.widget.FloatingActionButton fabNotification;
     private android.support.design.widget.FloatingActionButton fabfavorite;
@@ -58,10 +59,14 @@ public class DetalleActivity extends AppCompatActivity {
     private final int PHONE_CODE = 101;
     private final int READ_EXTERNAL_STORAGE_CODE = 102;
 
+    public Programa programa;
+    private ImageView imgEscuchar;
+    private TextView txtEscuchar;
+
     InterstitialAd interstitialAd; // Publicidad Pantalla Completa
 
     FloatingActionMenu materialDesignFAM;
-    com.github.clans.fab.FloatingActionButton floatingActionButton1, floatingActionButton2, floatingActionButton3;
+    com.github.clans.fab.FloatingActionButton floatingActionButton1, floatingActionButton2;
 
 
     @Override
@@ -70,8 +75,7 @@ public class DetalleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detalle);
 
 
-
-        if (MyApp.contadorPantallas%3 == 0) {
+        if (MyApp.contadorPantallas % 3 == 0) {
 
             interstitialAd = new InterstitialAd(this);
             interstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
@@ -131,18 +135,35 @@ public class DetalleActivity extends AppCompatActivity {
         txtDia1 = (TextView) findViewById(R.id.txtDia1);
         txtDia2 = (TextView) findViewById(R.id.txtDia2);
         txtConductores = (TextView) findViewById(R.id.txtConductores);
-        webview = (WebView) findViewById(R.id.webview);
+        //webview = (WebView) findViewById(R.id.webview);
         txtWeb = (TextView) findViewById(R.id.txtWeb);
         txtTel = (TextView) findViewById(R.id.txtTelefono);
         txtFace = (TextView) findViewById(R.id.txtFacebook);
         txtTwi = (TextView) findViewById(R.id.txtTwitter);
+        txtEscuchar = (TextView) findViewById(R.id.txtEscuchar);
+        imgEscuchar = (ImageView) findViewById(R.id.imgEscuchar);
 
 
+        txtEscuchar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showAlertEscuchar("Escuchar en vivo", "Para poder escuchar saldra de la aplicacion y puede generarle consumos de su plan de datos");
+            }
+        });
+        imgEscuchar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showAlertEscuchar("Escuchar en vivo", "Para poder escuchar saldra de la aplicacion y puede generarle consumos de su plan de datos");
+            }
+        });
         final Realm realm = Realm.getDefaultInstance();
 
-        final Programa programa = realm.where(Programa.class).equalTo("Id", _id).findFirst();
+        programa = realm.where(Programa.class).equalTo("Id", _id).findFirst();
 
-
+        if (programa.getMedio().equals("TV")) {
+            LinearLayout linearEscuchar = (LinearLayout) findViewById(R.id.linearEscuchar);
+            linearEscuchar.setVisibility(View.INVISIBLE);
+        }
         this.setTitle(programa.getNombre());
         Picasso.with(this)
                 .load(programa.getImagen())
@@ -190,7 +211,7 @@ public class DetalleActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             NewerVersion();
         } else {
-            OlderVersion();
+            OlderVersion(programa);
         }
 
       /*  if (programa.isFavorito()) {
@@ -215,52 +236,54 @@ public class DetalleActivity extends AppCompatActivity {
         materialDesignFAM = (FloatingActionMenu) findViewById(R.id.material_design_android_floating_action_menu);
         floatingActionButton1 = (FloatingActionButton) findViewById(R.id.material_design_floating_action_menu_item1);
         floatingActionButton2 = (FloatingActionButton) findViewById(R.id.material_design_floating_action_menu_item2);
+        if (programa.isFavorito()) {
+            floatingActionButton1.setImageResource(R.drawable.ic_favorite_on); //on
+        } else {
+            floatingActionButton1.setImageResource(R.drawable.ic_favorite_off); //off
+        }
+        if (programa.isNotificar()) {
+            floatingActionButton2.setImageResource(R.drawable.ic_notifications_on); //on
+        } else {
+            floatingActionButton2.setImageResource(R.drawable.ic_notifications_off); //off
+        }
 
         floatingActionButton1.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                //TODO something when floating action menu first item clicked
+            @Override
+            public void onClick(View view) {
                 if (programa.isFavorito()) {
-                    floatingActionButton1.setImageResource(R.drawable.ic_favorite); //on
+                    Toast.makeText(DetalleActivity.this, programa.getNombre() + " fue eliminado de favoritos", Toast.LENGTH_SHORT).show();
+                    floatingActionButton1.setImageResource(R.drawable.ic_favorite_off); //off
+                    updateFavorito(programa, false, realm);
                 } else {
-                    floatingActionButton1.setImageResource(R.drawable.ic_favorite); //off
+                    Toast.makeText(DetalleActivity.this, programa.getNombre() + " fue agregado a favoritos", Toast.LENGTH_SHORT).show();
+                    floatingActionButton1.setImageResource(R.drawable.ic_favorite_on); //on
+                    updateFavorito(programa, true, realm);
                 }
-                floatingActionButton1.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (programa.isFavorito()) {
-                            Toast.makeText(DetalleActivity.this, programa.getNombre() + " fue eliminado de favoritos", Toast.LENGTH_SHORT).show();
-                            floatingActionButton1.setImageResource(R.drawable.ic_favorite); //off
-                            updateFavorito(programa, false, realm);
-                        } else {
-                            Toast.makeText(DetalleActivity.this, programa.getNombre() + " fue agregado a favoritos", Toast.LENGTH_SHORT).show();
-                            floatingActionButton1.setImageResource(R.drawable.ic_favorite); //on
-                            updateFavorito(programa, true, realm);
-                        }
-                    }
-                });
-
             }
         });
+
         floatingActionButton2.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                //TODO something when floating action menu second item clicked
-                floatingActionButton1.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (programa.isFavorito()) {
-                            Toast.makeText(DetalleActivity.this, " Se desuscribió de las notificaciones de " + programa.getNombre(), Toast.LENGTH_SHORT).show();
-                            floatingActionButton1.setImageResource(R.drawable.ic_favorite); //off
-                            updateFavorito(programa, false, realm);
-                        } else {
-                            Toast.makeText(DetalleActivity.this, " Se suscribió de las notificaciones de " +programa.getNombre(), Toast.LENGTH_SHORT).show();
-                            floatingActionButton1.setImageResource(R.drawable.ic_favorite); //on
-                            updateFavorito(programa, true, realm);
-                        }
-                    }
-                });
+            @Override
+            public void onClick(View view) {
+                if (programa.isNotificar()) {
+                    Toast.makeText(DetalleActivity.this, " Se desuscribió de las notificaciones de " + programa.getNombre(), Toast.LENGTH_SHORT).show();
+                    floatingActionButton2.setImageResource(R.drawable.ic_notifications_off); //off
+                    updateNotificar(programa, false, realm);
+                } else {
+                    Toast.makeText(DetalleActivity.this, " Se suscribió de las notificaciones de " + programa.getNombre(), Toast.LENGTH_SHORT).show();
+                    floatingActionButton2.setImageResource(R.drawable.ic_notifications_on); //on
+                    updateNotificar(programa, true, realm);
+                }
             }
         });
 
+    }
+
+    private void updateNotificar(Programa programa, boolean notificar, Realm realm) {
+        realm.beginTransaction();
+        programa.setNotificar(notificar);
+        realm.copyToRealmOrUpdate(programa);
+        realm.commitTransaction();
     }
 
 
@@ -293,11 +316,13 @@ public class DetalleActivity extends AppCompatActivity {
         return result == PackageManager.PERMISSION_GRANTED;
     }
 
-    private void OlderVersion() {
+    private void OlderVersion(Programa programa) {
         if (CheckPermissions(Manifest.permission.INTERNET)) {
-            String VIDEO_URL = "http://tunein.com/embed/player/s248138/";
-            String data_html = "<!DOCTYPE html><html> <head></head> <body> <iframe src=\"" + VIDEO_URL + "\" style=\"width:100%;height:100px;\" scrolling=\"no\" frameborder=\"no\"></iframe> </body> </html> ";
-            webview.loadDataWithBaseURL("http://tunein.com/", data_html, "text/html", "UTF-8", null);
+            //String VIDEO_URL = "http://tunein.com/embed/player/s248138/";
+
+            //String VIDEO_URL = programa.getLink();
+            //String data_html = "<!DOCTYPE html><html> <head></head> <body> <iframe src=\"" + VIDEO_URL + "\" style=\"width:100%;height:100px;\" scrolling=\"no\" frameborder=\"no\"></iframe> </body> </html> ";
+            //webview.loadDataWithBaseURL("http://tunein.com/", data_html, "text/html", "UTF-8", null);
         } else {
             Toast.makeText(this, "No tiene permisos", Toast.LENGTH_SHORT).show();
         }
@@ -319,9 +344,10 @@ public class DetalleActivity extends AppCompatActivity {
                     //Comprobar si ha sido aceptado o denegado el permiso
                     if (result == PackageManager.PERMISSION_GRANTED) {
                         //ha concedido el permiso
-                        String VIDEO_URL = "http://tunein.com/embed/player/s248138/";
-                        String data_html = "<!DOCTYPE html><html> <head></head> <body> <iframe src=\"" + VIDEO_URL + "\" style=\"width:100%;height:100px;\" scrolling=\"no\" frameborder=\"no\"></iframe> </body> </html> ";
-                        webview.loadDataWithBaseURL("http://tunein.com/", data_html, "text/html", "UTF-8", null);
+                        //String VIDEO_URL = "http://tunein.com/embed/player/s248138/";
+                        //String VIDEO_URL = programa.getLink();
+                        //String data_html = "<!DOCTYPE html><html> <head></head> <body> <iframe src=\"" + VIDEO_URL + "\" style=\"width:100%;height:100px;\" scrolling=\"no\" frameborder=\"no\"></iframe> </body> </html> ";
+                        //webview.loadDataWithBaseURL("http://tunein.com/", data_html, "text/html", "UTF-8", null);
                     } else {
                         //No ha concedido el permiso
                         Toast.makeText(this, "No concedió permisos", Toast.LENGTH_SHORT).show();
@@ -350,6 +376,38 @@ public class DetalleActivity extends AppCompatActivity {
         }
 
 
+    }
+
+    private void showAlertEscuchar(String titulo, String mensaje) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        if (titulo != null) {
+            builder.setTitle(titulo);
+        }
+        if (mensaje != null) {
+            builder.setMessage(mensaje);
+        }
+        View viewInflated = LayoutInflater.from(this).inflate(R.layout.layout_escucharenvivo, null);
+        builder.setView(viewInflated);
+        //final ToggleButton btnLunes = (ToggleButton)viewInflated.findViewById(R.id.btnLunes);
+        //final EditText txtSubject = (EditText)viewInflated.findViewById(R.id.txtSubject);
+        //final EditText txtTexto = (EditText)viewInflated.findViewById(R.id.txtTexto);
+
+        builder.setPositiveButton("Escuchar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //intent2.setType("*/*");
+                Uri webpage = Uri.parse(programa.getLink());
+                Intent intent2 = new Intent(Intent.ACTION_VIEW, webpage);
+                if (intent2.resolveActivity(getPackageManager()) != null) {
+                    startActivity(intent2);
+                }
+                //Toast.makeText(getApplicationContext(),"Gracias por ponerse en contacto con nosotros", Toast.LENGTH_SHORT).show();
+            }
+        });
+        builder.setNegativeButton("Cancelar", null);
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
 }
