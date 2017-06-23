@@ -4,14 +4,21 @@ package android.dariojolo.com.ar.programaspartidarios.activities;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.dariojolo.com.ar.programaspartidarios.Fragments.AmFragment;
+import android.dariojolo.com.ar.programaspartidarios.Fragments.DomingoFragment;
 import android.dariojolo.com.ar.programaspartidarios.Fragments.FavoritosFragment;
 import android.dariojolo.com.ar.programaspartidarios.Fragments.FmFragment;
+import android.dariojolo.com.ar.programaspartidarios.Fragments.JuevesFragment;
 import android.dariojolo.com.ar.programaspartidarios.Fragments.LunesFragment;
 import android.dariojolo.com.ar.programaspartidarios.Fragments.MainFragment;
+import android.dariojolo.com.ar.programaspartidarios.Fragments.MananaFragment;
 import android.dariojolo.com.ar.programaspartidarios.Fragments.MartesFragment;
 import android.dariojolo.com.ar.programaspartidarios.Fragments.MiercolesFragment;
+import android.dariojolo.com.ar.programaspartidarios.Fragments.NocheFragment;
 import android.dariojolo.com.ar.programaspartidarios.Fragments.PartidosFragment;
+import android.dariojolo.com.ar.programaspartidarios.Fragments.SabadoFragment;
+import android.dariojolo.com.ar.programaspartidarios.Fragments.TardeFragment;
 import android.dariojolo.com.ar.programaspartidarios.Fragments.TvFragment;
+import android.dariojolo.com.ar.programaspartidarios.Fragments.ViernesFragment;
 import android.dariojolo.com.ar.programaspartidarios.R;
 import android.net.Uri;
 import android.os.Bundle;
@@ -81,7 +88,29 @@ public class MainActivity extends AppCompatActivity {
             }else if (_fragment == 8) {
                 frag = new MiercolesFragment();
                 changeFragment(frag, navigationView.getMenu().getItem(5).getSubMenu().getItem(2));
+            }else if (_fragment == 9) {
+                frag = new JuevesFragment();
+                changeFragment(frag, navigationView.getMenu().getItem(5).getSubMenu().getItem(3));
+            }else if (_fragment == 10) {
+                frag = new ViernesFragment();
+                changeFragment(frag, navigationView.getMenu().getItem(5).getSubMenu().getItem(4));
+            }else if (_fragment == 11) {
+                frag = new SabadoFragment();
+                changeFragment(frag, navigationView.getMenu().getItem(5).getSubMenu().getItem(5));
+            }else if (_fragment == 12) {
+                frag = new DomingoFragment();
+                changeFragment(frag, navigationView.getMenu().getItem(5).getSubMenu().getItem(6));
+            }else if (_fragment == 13) {
+                frag = new MananaFragment();
+                changeFragment(frag, navigationView.getMenu().getItem(6).getSubMenu().getItem(0));
+            }else if (_fragment == 14) {
+                frag = new TardeFragment();
+                changeFragment(frag, navigationView.getMenu().getItem(6).getSubMenu().getItem(1));
+            }else if (_fragment == 15) {
+                frag = new NocheFragment();
+                changeFragment(frag, navigationView.getMenu().getItem(6).getSubMenu().getItem(2));
             }
+
         }catch (Exception ex){
             setFragmentByDefault();
         }
@@ -149,6 +178,34 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.menu_miercoles:
                         fragment = new MiercolesFragment();
+                        fragmentTransition = true;
+                        break;
+                    case R.id.menu_jueves:
+                        fragment = new JuevesFragment();
+                        fragmentTransition = true;
+                        break;
+                    case R.id.menu_viernes:
+                        fragment = new ViernesFragment();
+                        fragmentTransition = true;
+                        break;
+                    case R.id.menu_sabado:
+                        fragment = new SabadoFragment();
+                        fragmentTransition = true;
+                        break;
+                    case R.id.menu_domingo:
+                        fragment = new DomingoFragment();
+                        fragmentTransition = true;
+                        break;
+                    case R.id.menu_manana:
+                        fragment = new MananaFragment();
+                        fragmentTransition = true;
+                        break;
+                    case R.id.menu_tarde:
+                        fragment = new TardeFragment();
+                        fragmentTransition = true;
+                        break;
+                    case R.id.menu_noche:
+                        fragment = new NocheFragment();
                         fragmentTransition = true;
                         break;
                 }
@@ -298,12 +355,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
     @Override
-    protected void onRestart() {
-        super.onRestart();
-        //Toast.makeText(this,"onRestart",Toast.LENGTH_LONG).show();
-    }
-
-    @Override
     protected void onResume() {
         super.onResume();
         //setFragmentByDefault();
@@ -315,5 +366,16 @@ public class MainActivity extends AppCompatActivity {
         super.onPause();
         //Toast.makeText(this,"onPause",Toast.LENGTH_LONG).show();
     }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        //Toast.makeText(this,"onPause",Toast.LENGTH_LONG).show();
+    }
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        //Toast.makeText(this,"onRestart",Toast.LENGTH_LONG).show();
+    }
+
 }
 

@@ -1,29 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
-     <!--   <item
-            android:id="@+id/todas"
-            android:icon="@android:drawable/ic_menu_zoom"
-            android:title="Todas (orden alfabetico)" /> -->
         <item
             android:id="@+id/radioam"
-            android:icon="@android:drawable/ic_menu_zoom"
+            android:icon="@drawable/ic_radio_black_24dp"
             android:title="Radios AM" />
         <item
             android:id="@+id/radiofm"
-            android:icon="@android:drawable/ic_menu_week"
+            android:icon="@drawable/ic_radio_black_24dp"
             android:title="Radios FM" />
         <item
             android:id="@+id/radiopartidos"
-            android:icon="@android:drawable/ic_menu_view"
+            android:icon="@drawable/ic_soccer"
             android:title="Transmisión de partidos" />
         <item
             android:id="@+id/television"
-            android:icon="@android:drawable/ic_menu_view"
+            android:icon="@drawable/ic_tv_black_24dp"
             android:title="TV" />
         <item
             android:id="@+id/radioFavoritos"
-            android:icon="@drawable/ic_star_on"
+            android:icon="@drawable/ic_favorite_on"
             android:title="Favoritos" />
 
         <item android:title="Filtrar por dias">
@@ -31,31 +27,31 @@
             <group android:checkableBehavior="single">
                 <item
                     android:id="@+id/menu_lunes"
-                    android:icon="@android:drawable/ic_menu_agenda"
+                    android:icon="@drawable/ic_lunes"
                     android:title="Lunes" />
                 <item
                     android:id="@+id/menu_martes"
-                    android:icon="@android:drawable/ic_menu_agenda"
+                    android:icon="@drawable/ic_martes"
                     android:title="Martes" />
                 <item
                     android:id="@+id/menu_miercoles"
-                    android:icon="@android:drawable/ic_menu_agenda"
+                    android:icon="@drawable/ic_miercoles"
                     android:title="Miercoles" />
                 <item
                     android:id="@+id/menu_jueves"
-                    android:icon="@android:drawable/ic_menu_agenda"
+                    android:icon="@drawable/ic_jueves"
                     android:title="Jueves" />
                 <item
                     android:id="@+id/menu_viernes"
-                    android:icon="@android:drawable/ic_menu_agenda"
+                    android:icon="@drawable/ic_viernes"
                     android:title="Viernes" />
                 <item
                     android:id="@+id/menu_sabado"
-                    android:icon="@android:drawable/ic_menu_agenda"
+                    android:icon="@drawable/ic_sabado"
                     android:title="Sabado" />
                 <item
                     android:id="@+id/menu_domingo"
-                    android:icon="@android:drawable/ic_menu_agenda"
+                    android:icon="@drawable/ic_domingo"
                     android:title="Domingo" />
             </group>
             </menu>
@@ -65,15 +61,15 @@
             <menu>
                 <group android:checkableBehavior="single">
                     <item
-                        android:id="@+id/mañana"
+                        android:id="@+id/menu_manana"
                         android:icon="@drawable/ic_menu_clock"
                         android:title="9-12Hs" />
                     <item
-                        android:id="@+id/tarde"
+                        android:id="@+id/menu_tarde"
                         android:icon="@drawable/ic_menu_clock"
                         android:title="13-19" />
                     <item
-                        android:id="@+id/noche"
+                        android:id="@+id/menu_noche"
                         android:icon="@drawable/ic_menu_clock"
                         android:title="20-24" />
                 </group>
