@@ -54,33 +54,33 @@ public class MainActivity extends AppCompatActivity {
             int _fragment = bundle.getInt("Fragment");
             Fragment frag;
 
-            if (_fragment == 1){
+            if (_fragment == -1){
                 frag =  new MainFragment();
                 changeFragment(frag, navigationView.getMenu().getItem(0));
-            }else if (_fragment == 2){
+            }else if (_fragment == 1){
                 frag =  new AmFragment();
+                changeFragment(frag, navigationView.getMenu().getItem(0));
+            }else if (_fragment == 2){
+                frag =  new FmFragment();
                 changeFragment(frag, navigationView.getMenu().getItem(1));
             }else if (_fragment == 3){
-                frag =  new FmFragment();
+                frag =  new PartidosFragment();
                 changeFragment(frag, navigationView.getMenu().getItem(2));
             }else if (_fragment == 4){
-                frag =  new PartidosFragment();
-                changeFragment(frag, navigationView.getMenu().getItem(3));
-            }else if (_fragment == 5){
                 frag =  new FavoritosFragment();
                 changeFragment(frag, navigationView.getMenu().getItem(4));
-            }else if (_fragment == 6) {
+            }else if (_fragment == 5) {
                 frag = new TvFragment();
-                changeFragment(frag, navigationView.getMenu().getItem(5));
-            }else if (_fragment == 7) {
+                changeFragment(frag, navigationView.getMenu().getItem(3));
+            }else if (_fragment == 6) {
                 frag = new LunesFragment();
-                changeFragment(frag, navigationView.getMenu().getItem(7));
+                changeFragment(frag, navigationView.getMenu().getItem(5).getSubMenu().getItem(0));
+            }else if (_fragment == 7) {
+                frag = new MartesFragment();
+                changeFragment(frag, navigationView.getMenu().getItem(5).getSubMenu().getItem(1));
             }else if (_fragment == 8) {
-                frag = new MartesFragment();
-                changeFragment(frag, navigationView.getMenu().getItem(8));
-            }else if (_fragment == 9) {
-                frag = new MartesFragment();
-                changeFragment(frag, navigationView.getMenu().getItem(9));
+                frag = new MiercolesFragment();
+                changeFragment(frag, navigationView.getMenu().getItem(5).getSubMenu().getItem(2));
             }
         }catch (Exception ex){
             setFragmentByDefault();
@@ -306,7 +306,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        setFragmentByDefault();
+        //setFragmentByDefault();
         //Toast.makeText(this,"onResume",Toast.LENGTH_LONG).show();
     }
 
