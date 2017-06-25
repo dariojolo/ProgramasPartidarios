@@ -1,7 +1,9 @@
 package android.dariojolo.com.ar.programaspartidarios.Fragments;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.dariojolo.com.ar.programaspartidarios.R;
 import android.dariojolo.com.ar.programaspartidarios.activities.DetalleActivity;
 import android.dariojolo.com.ar.programaspartidarios.adapters.MyAdapter;
@@ -50,6 +52,13 @@ public class FmFragment extends Fragment implements RealmChangeListener<RealmRes
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_fm, container, false);
+
+        SharedPreferences prefs;
+        prefs = this.getActivity().getSharedPreferences("Preferences", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putInt("fragment", 2);
+        editor.apply();
+
 
         AdView mAdView = (AdView) view.findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();

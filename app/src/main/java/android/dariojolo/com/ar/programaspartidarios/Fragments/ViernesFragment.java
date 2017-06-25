@@ -1,7 +1,9 @@
 package android.dariojolo.com.ar.programaspartidarios.Fragments;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.dariojolo.com.ar.programaspartidarios.R;
 import android.dariojolo.com.ar.programaspartidarios.activities.DetalleActivity;
 import android.dariojolo.com.ar.programaspartidarios.adapters.MyAdapter;
@@ -54,6 +56,12 @@ public class ViernesFragment extends Fragment implements RealmChangeListener<Rea
         AdView mAdView = (AdView) view.findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
+
+        SharedPreferences prefs;
+        prefs = this.getActivity().getSharedPreferences("Preferences", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putInt("fragment", 10);
+        editor.apply();
 
         //RelativeLayout fl = (RelativeLayout) inflater.inflate(R.layout.fragment_am, container, false);
         //recycler = (RecyclerView) fl.findViewById(R.id.recyclerView2);
