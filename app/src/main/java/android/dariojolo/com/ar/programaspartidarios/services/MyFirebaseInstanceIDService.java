@@ -1,4 +1,4 @@
-package android.dariojolo.com.ar.programaspartidarios.servicies;
+package android.dariojolo.com.ar.programaspartidarios.services;
 
 import android.util.Log;
 
@@ -13,7 +13,6 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
     public void onTokenRefresh() {
         //Se obtiene el token actualizado
         String refreshedToken = FirebaseInstanceId.getInstance().getToken();
-
         Log.d(LOGTAG, "Token actualizado: " + refreshedToken);
     }
 }

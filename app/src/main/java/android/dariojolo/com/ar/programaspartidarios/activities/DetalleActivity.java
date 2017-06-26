@@ -76,7 +76,7 @@ public class DetalleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detalle);
 
 
-        if (MyApp.contadorPantallas % 3 == 0) {
+        if (MyApp.contadorPantallas % 5 == 0) {
 
             interstitialAd = new InterstitialAd(this);
             interstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
@@ -91,13 +91,6 @@ public class DetalleActivity extends AppCompatActivity {
             });
         }
         MyApp.contadorPantallas++;
-       /* fab = (android.support.design.widget.FloatingActionButton) findViewById(R.id.fabDetalle);
-        fabNotification = (android.support.design.widget.FloatingActionButton) findViewById(R.id.fabNotificar);
-        fabfavorite = (android.support.design.widget.FloatingActionButton) findViewById(R.id.fabfavorite);
-        notificationLinear = (LinearLayout) findViewById(R.id.notificationLayout);
-        favouriteLinear = (LinearLayout) findViewById(R.id.favoriteLayout);
-        notificationLinear.setVisibility(View.GONE);
-        favouriteLinear.setVisibility(View.GONE);*/
 
         setToolbar();
         if (Build.VERSION.SDK_INT >= 21) {
@@ -105,31 +98,12 @@ public class DetalleActivity extends AppCompatActivity {
             getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
         }
 
-        /*fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(notificationLinear.getVisibility() == View.VISIBLE &&
-                        favouriteLinear.getVisibility() == View.VISIBLE){
-                    notificationLinear.setVisibility(View.GONE);
-                    favouriteLinear.setVisibility(View.GONE);
-                }else{
-                    notificationLinear.setVisibility(View.VISIBLE);
-                    favouriteLinear.setVisibility(View.VISIBLE);
-                }
-            }
-        });*/
-        /*fab2 = (FloatingActionButton)findViewById(R.id.fab);
-        fab2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(DetalleActivity.this,"Se apreto boton",Toast.LENGTH_SHORT).show();
-                MyFirebaseInstanceIDService myFID = new MyFirebaseInstanceIDService();
-                myFID.onTokenRefresh();
-            }
-        });*/
+
         Bundle bundle = getIntent().getExtras();
         int _id = bundle.getInt("Programa");
         _fragment = bundle.getInt("Fragment");
+        int position = bundle.getInt("Posicion");
+        Toast.makeText(this,"Posicion: " + position,Toast.LENGTH_SHORT).show();
         imagen = (ImageView) findViewById(R.id.imagenPrograma);
         txtNombre = (TextView) findViewById(R.id.txtNombre2);
         txtEmisora = (TextView) findViewById(R.id.txtEmisora);
@@ -267,12 +241,12 @@ public class DetalleActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (programa.isNotificar()) {
-                    FirebaseMessaging.getInstance().subscribeToTopic(programa.getTopicNotificacion());
+                    FirebaseMessaging.getInstance().unsubscribeFromTopic(programa.getTopicNotificacion());
                     floatingActionButton2.setImageResource(R.drawable.ic_notifications_off); //off
                     Toast.makeText(DetalleActivity.this, " Se desuscribió de las notificaciones de " + programa.getNombre(), Toast.LENGTH_SHORT).show();
                     updateNotificar(programa, false, realm);
                 } else {
-                    FirebaseMessaging.getInstance().unsubscribeFromTopic(programa.getTopicNotificacion());
+                    FirebaseMessaging.getInstance().subscribeToTopic(programa.getTopicNotificacion());
                     floatingActionButton2.setImageResource(R.drawable.ic_notifications_on); //on
                     Toast.makeText(DetalleActivity.this, " Se suscribió de las notificaciones de " + programa.getNombre(), Toast.LENGTH_SHORT).show();
                     updateNotificar(programa, true, realm);

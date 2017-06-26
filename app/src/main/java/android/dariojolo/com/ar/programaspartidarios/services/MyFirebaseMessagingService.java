@@ -1,4 +1,4 @@
-package android.dariojolo.com.ar.programaspartidarios.servicies;
+package android.dariojolo.com.ar.programaspartidarios.services;
 
 import android.app.NotificationManager;
 import android.content.Context;

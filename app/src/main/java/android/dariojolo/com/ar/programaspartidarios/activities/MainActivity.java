@@ -41,6 +41,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.messaging.FirebaseMessaging;
+
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout drawer;
@@ -55,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //Toast.makeText(this, "onCreate", Toast.LENGTH_LONG).show();
-        //FirebaseMessaging.getInstance().subscribeToTopic("mundoAzulGrana");
+        FirebaseMessaging.getInstance().subscribeToTopic("mundoAzulGrana");
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.navview);
@@ -79,58 +81,10 @@ public class MainActivity extends AppCompatActivity {
                     verFragment(fragment_recuperado);
                 }
             }else{
-                prefs = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
-                fragment_recuperado = prefs.getInt("fragment", -1);
-                verFragment(fragment_recuperado);
+               // prefs = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
+               // fragment_recuperado = prefs.getInt("fragment", -1);
+                verFragment(_fragment);
             }
-
-
-            /*} else if (_fragment == 1) {
-                frag = new AmFragment();
-                changeFragment(frag, navigationView.getMenu().getItem(0));
-            } else if (_fragment == 2) {
-                frag = new FmFragment();
-                changeFragment(frag, navigationView.getMenu().getItem(1));
-            } else if (_fragment == 3) {
-                frag = new PartidosFragment();
-                changeFragment(frag, navigationView.getMenu().getItem(2));
-            } else if (_fragment == 4) {
-                frag = new FavoritosFragment();
-                changeFragment(frag, navigationView.getMenu().getItem(4));
-            } else if (_fragment == 5) {
-                frag = new TvFragment();
-                changeFragment(frag, navigationView.getMenu().getItem(3));
-            } else if (_fragment == 6) {
-                frag = new LunesFragment();
-                changeFragment(frag, navigationView.getMenu().getItem(5).getSubMenu().getItem(0));
-            } else if (_fragment == 7) {
-                frag = new MartesFragment();
-                changeFragment(frag, navigationView.getMenu().getItem(5).getSubMenu().getItem(1));
-            } else if (_fragment == 8) {
-                frag = new MiercolesFragment();
-                changeFragment(frag, navigationView.getMenu().getItem(5).getSubMenu().getItem(2));
-            } else if (_fragment == 9) {
-                frag = new JuevesFragment();
-                changeFragment(frag, navigationView.getMenu().getItem(5).getSubMenu().getItem(3));
-            } else if (_fragment == 10) {
-                frag = new ViernesFragment();
-                changeFragment(frag, navigationView.getMenu().getItem(5).getSubMenu().getItem(4));
-            } else if (_fragment == 11) {
-                frag = new SabadoFragment();
-                changeFragment(frag, navigationView.getMenu().getItem(5).getSubMenu().getItem(5));
-            } else if (_fragment == 12) {
-                frag = new DomingoFragment();
-                changeFragment(frag, navigationView.getMenu().getItem(5).getSubMenu().getItem(6));
-            } else if (_fragment == 13) {
-                frag = new MananaFragment();
-                changeFragment(frag, navigationView.getMenu().getItem(6).getSubMenu().getItem(0));
-            } else if (_fragment == 14) {
-                frag = new TardeFragment();
-                changeFragment(frag, navigationView.getMenu().getItem(6).getSubMenu().getItem(1));
-            } else if (_fragment == 15) {
-                frag = new NocheFragment();
-                changeFragment(frag, navigationView.getMenu().getItem(6).getSubMenu().getItem(2));
-            }*/
 
         } catch (Exception ex) {
             setFragmentByDefault();

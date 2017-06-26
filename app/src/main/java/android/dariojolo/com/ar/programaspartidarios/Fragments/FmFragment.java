@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.dariojolo.com.ar.programaspartidarios.R;
 import android.dariojolo.com.ar.programaspartidarios.activities.DetalleActivity;
+import android.dariojolo.com.ar.programaspartidarios.activities.MainActivity;
 import android.dariojolo.com.ar.programaspartidarios.adapters.MyAdapter;
 import android.dariojolo.com.ar.programaspartidarios.models.Programa;
 import android.os.Bundle;
@@ -78,9 +79,17 @@ public class FmFragment extends Fragment implements RealmChangeListener<RealmRes
                 Intent intent = new Intent(getActivity().getApplicationContext(), DetalleActivity.class);
                 intent.putExtra("Programa", programa.getId());
                 intent.putExtra("Fragment", 2);
+                //int position = ((LinearLayoutManager)recycler.getLayoutManager().findFist
+                //intent.putExtra("Posicion",recycler.findviewpo);
                 startActivity(intent);
             }
         });
+
+        //Probando posicion
+        //int index = layoutManager.findFirstVisibleItemPosition();
+        //layoutManager.
+        //View v = linearLayoutManager.getChildAt(0);
+        //int top = (v == null) ? 0 : (v.getTop() - linearLayoutManager.getPaddingTop());
 
         //Este metodo se puede usar cuando sabemos que el layout del recycler no van a cambiar de tamaño
         recycler.setHasFixedSize(true);
