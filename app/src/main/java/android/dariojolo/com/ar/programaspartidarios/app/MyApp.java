@@ -29,7 +29,7 @@ public class MyApp extends Application {
     public void onCreate() {
         super.onCreate();
         prefs = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
-        //prefs.edit().remove("firstTime").apply();
+        prefs.edit().remove("firstTime").apply();
         initRealm();
 
 
@@ -60,8 +60,9 @@ public class MyApp extends Application {
         if (!validarFirstTime()) {
             iniciarListaProgramas();
         }
-        removeAll();
-        iniciarListaProgramas();
+
+
+
         realm.close();
     }
     private <T extends RealmObject>  AtomicInteger setAtomicId(Realm realm, Class<T>anyClass){

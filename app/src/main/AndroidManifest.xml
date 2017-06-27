@@ -10,9 +10,9 @@
     <application
         android:name=".app.MyApp"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher3"
+        android:icon="@mipmap/ic_launcher_chico"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher3"
+        android:roundIcon="@mipmap/ic_launcher_chico"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
@@ -20,7 +20,9 @@
             android:value="@integer/google_play_services_version"/>
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@mipmap/ic_launcher3" />
+            android:resource="@mipmap/ic_launcher_chico" />
+        <meta-data android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorPrimaryDark" />
 
         <activity android:name=".activities.MainActivity">
             <intent-filter>

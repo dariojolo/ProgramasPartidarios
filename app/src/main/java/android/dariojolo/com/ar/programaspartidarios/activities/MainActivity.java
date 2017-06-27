@@ -11,7 +11,6 @@ import android.dariojolo.com.ar.programaspartidarios.Fragments.FavoritosFragment
 import android.dariojolo.com.ar.programaspartidarios.Fragments.FmFragment;
 import android.dariojolo.com.ar.programaspartidarios.Fragments.JuevesFragment;
 import android.dariojolo.com.ar.programaspartidarios.Fragments.LunesFragment;
-import android.dariojolo.com.ar.programaspartidarios.Fragments.MainFragment;
 import android.dariojolo.com.ar.programaspartidarios.Fragments.MananaFragment;
 import android.dariojolo.com.ar.programaspartidarios.Fragments.MartesFragment;
 import android.dariojolo.com.ar.programaspartidarios.Fragments.MiercolesFragment;
@@ -61,6 +60,15 @@ public class MainActivity extends AppCompatActivity {
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.navview);
+
+        //BORRAR ESTE CODIGOOOOOOOOOOOOOO
+        //Realm realm;
+        //realm = Realm.getDefaultInstance();
+        //RealmResults<Programa> listado = realm.where(Programa.class).findAll();
+        //for (Programa programa : listado){
+        //    FirebaseMessaging.getInstance().subscribeToTopic(programa.getTopicNotificacion());
+        //}
+        //BORRAR ESTE CODIGOOOOOOOOOOOOOO HASTA ACCAAAAAAAAAAAAAAAAAAAAA
 
         setToolbar();
         try {
