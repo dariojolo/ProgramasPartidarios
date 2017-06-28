@@ -102,8 +102,7 @@ public class DetalleActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         int _id = bundle.getInt("Programa");
         _fragment = bundle.getInt("Fragment");
-        int position = bundle.getInt("Posicion");
-        Toast.makeText(this,"Posicion: " + position,Toast.LENGTH_SHORT).show();
+
         imagen = (ImageView) findViewById(R.id.imagenPrograma);
         txtNombre = (TextView) findViewById(R.id.txtNombre2);
         txtEmisora = (TextView) findViewById(R.id.txtEmisora);
