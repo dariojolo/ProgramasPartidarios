@@ -122,7 +122,7 @@
                             android:layout_height="50dp"
                             android:layout_weight="0.1"
                             android:paddingBottom="4dp"
-                            android:src="@drawable/iconphone2" />
+                            android:src="@drawable/iconphone" />
 
                         <TextView
                             android:id="@+id/txtTelefono"
@@ -143,7 +143,7 @@
                             android:layout_height="50dp"
                             android:layout_weight="0.1"
                             android:paddingBottom="4dp"
-                            android:src="@drawable/iconchrome2" />
+                            android:src="@drawable/iconchrome" />
 
                         <TextView
                             android:id="@+id/txtWeb"
@@ -164,7 +164,7 @@
                             android:layout_height="50dp"
                             android:layout_weight="0.1"
                             android:paddingBottom="4dp"
-                            android:src="@drawable/iconfacebook2" />
+                            android:src="@drawable/iconfacebook" />
 
                         <TextView
                             android:id="@+id/txtFacebook"
@@ -184,7 +184,7 @@
                             android:layout_height="50dp"
                             android:layout_weight="0.1"
                             android:paddingBottom="4dp"
-                            android:src="@drawable/icontwitter2" />
+                            android:src="@drawable/icontwitter" />
 
                         <TextView
                             android:id="@+id/txtTwitter"
