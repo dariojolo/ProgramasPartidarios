@@ -10,6 +10,8 @@ import android.util.Log;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
+import java.util.Map;
+
 /**
  * Created by rodrigrl on 07/06/2017.
  */
@@ -26,20 +28,27 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             String titulo = remoteMessage.getNotification().getTitle();
             String texto = remoteMessage.getNotification().getBody();
 
+
             Log.d(LOGTAG, "NOTIFICACION RECIBIDA");
             Log.d(LOGTAG, "Título: " + titulo);
             Log.d(LOGTAG, "Texto: " + texto);
+            Log.d(LOGTAG, "Tamaño data: "+ remoteMessage.getData().size());
 
+            Map<String,String> datos = remoteMessage.getData();
+
+            for (Map.Entry<String, String> dato: datos.entrySet()){
+                Log.d(LOGTAG,"Key: " + dato.getKey() + " Dato: " + dato.getValue());
+            }
             //Opcional: mostramos la notificación en la barra de estado
-            showNotification(titulo, texto);
+            showNotification(titulo, texto, remoteMessage);
         }
     }
 
-    private void showNotification(String title, String text) {
+    private void showNotification(String title, String text, RemoteMessage remoteMessage) {
 
         NotificationCompat.Builder notificationBuilder =
                 new NotificationCompat.Builder(this)
-                        .setSmallIcon(R.mipmap.ic_launcher)
+                        .setSmallIcon(R.mipmap.ic_launcher_chico)
                         .setContentTitle(title)
                         .setContentText(text)
                         .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
