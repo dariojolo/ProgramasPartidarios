@@ -1,9 +1,12 @@
 package android.dariojolo.com.ar.programaspartidarios.services;
 
+import android.app.Notification;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.dariojolo.com.ar.programaspartidarios.R;
-import android.media.RingtoneManager;
+import android.dariojolo.com.ar.programaspartidarios.activities.DetalleActivity;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
@@ -36,17 +39,45 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
             Map<String,String> datos = remoteMessage.getData();
 
+            int _id = 0;
             for (Map.Entry<String, String> dato: datos.entrySet()){
                 Log.d(LOGTAG,"Key: " + dato.getKey() + " Dato: " + dato.getValue());
+                _id = Integer.parseInt(dato.getValue());
             }
             //Opcional: mostramos la notificación en la barra de estado
-            showNotification(titulo, texto, remoteMessage);
+            showNotification(titulo, texto, remoteMessage,_id);
         }
     }
 
-    private void showNotification(String title, String text, RemoteMessage remoteMessage) {
+    private void showNotification(String title, String text, RemoteMessage remoteMessage, int id) {
 
-        NotificationCompat.Builder notificationBuilder =
+        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        long notificatioId = System.currentTimeMillis();
+
+        Intent intent = new Intent(getApplicationContext(), DetalleActivity.class); // Here pass your activity where you want to redirect.
+
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        PendingIntent contentIntent = PendingIntent.getActivity(this, (int) (Math.random() * 100), intent, 0);
+
+        int currentapiVersion = android.os.Build.VERSION.SDK_INT;
+        if (currentapiVersion >= android.os.Build.VERSION_CODES.LOLLIPOP){
+            currentapiVersion = R.mipmap.ic_launcher_chico;
+        } else{
+            currentapiVersion = R.mipmap.ic_launcher_chico;
+        }
+
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
+                .setSmallIcon(currentapiVersion)
+                .setContentTitle(this.getResources().getString(R.string.app_name))
+                .setStyle(new NotificationCompat.BigTextStyle().bigText(title))
+                .setContentText(text)
+                .setAutoCancel(true)
+                .setPriority(Notification.PRIORITY_HIGH)
+                .setDefaults(Notification.FLAG_AUTO_CANCEL | Notification.DEFAULT_LIGHTS | Notification.DEFAULT_VIBRATE | Notification.DEFAULT_SOUND)
+                .setContentIntent(contentIntent);
+        mNotificationManager.notify((int) notificatioId, notificationBuilder.build());
+
+       /* NotificationCompat.Builder notificationBuilder =
                 new NotificationCompat.Builder(this)
                         .setSmallIcon(R.mipmap.ic_launcher_chico)
                         .setContentTitle(title)
@@ -54,9 +85,14 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                         .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
                         .setVibrate(new long[]{0, 300, 200, 300});
 
-        /*
+
             //Revisar esto
-            Intent notIntent = new Intent(getApplicationContext(), MainActivity.class);
+            Intent notIntent = new Intent("android.dariojolo.com.ar.programaspartidarios.activities.DetalleActivity");
+            notIntent.putExtra("Programa", id);
+            notIntent.putExtra("Fragment", 0);
+
+            TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
+            stackBuilder.addNextIntent(notIntent);
 
             PendingIntent contIntent = PendingIntent.getActivity(getApplicationContext(), 0, notIntent, 0);
             notificationBuilder.setPriority(NotificationCompat.PRIORITY_HIGH);
@@ -64,10 +100,13 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
             Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
             notificationBuilder.setSound(alarmSound);
-         */
+
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
         notificationManager.notify(0, notificationBuilder.build());
+
+        notificationBuilder.setAutoCancel(true); */
+
     }
 }
