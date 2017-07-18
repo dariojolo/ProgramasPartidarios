@@ -13,4 +13,16 @@
         android:icon="@android:drawable/ic_menu_preferences"
         app:showAsAction="never"
         />
+    <item
+        android:id="@+id/notificarTodos"
+        android:title="Notificar todos los programas"
+        android:icon="@android:drawable/ic_menu_preferences"
+        app:showAsAction="never"
+        />
+    <item
+        android:id="@+id/notificarNinguno"
+        android:title="Eliminar todas las notificaciones"
+        android:icon="@android:drawable/ic_menu_preferences"
+        app:showAsAction="never"
+        />
 </menu>

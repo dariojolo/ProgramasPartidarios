@@ -1,8 +1,10 @@
 package android.dariojolo.com.ar.programaspartidarios.activities;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.dariojolo.com.ar.programaspartidarios.R;
 import android.dariojolo.com.ar.programaspartidarios.app.MyApp;
@@ -64,6 +66,8 @@ public class DetalleActivity extends AppCompatActivity {
     private ImageView imgEscuchar;
     private TextView txtEscuchar;
 
+    private SharedPreferences prefs;
+
     InterstitialAd interstitialAd; // Publicidad Pantalla Completa
 
     FloatingActionMenu materialDesignFAM;
@@ -97,11 +101,28 @@ public class DetalleActivity extends AppCompatActivity {
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
         }
+        int _id;
+        prefs = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
+        _id =  prefs.getInt("IDPrograma", -1);
+
+        if (_id != -1){
+            _fragment = 0;
+            prefs.edit().remove("IDPrograma").apply();
+        }else{
+            Bundle bundle = getIntent().getExtras();
+            _id = bundle.getInt("Programa");
+            _fragment = bundle.getInt("Fragment");
+        }
 
 
-        Bundle bundle = getIntent().getExtras();
-        int _id = bundle.getInt("Programa");
-        _fragment = bundle.getInt("Fragment");
+      /*  }catch(Exception e){
+            Log.i("TAG","No encontramos el ID");
+            Intent i = new Intent(DetalleActivity.this, MainActivity.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            i.putExtra("Fragment", _fragment);
+            startActivity(i);
+        }
+       // _fragment = bundle.getInt("Fragment");*/
 
         imagen = (ImageView) findViewById(R.id.imagenPrograma);
         txtNombre = (TextView) findViewById(R.id.txtNombre2);

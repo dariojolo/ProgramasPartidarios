@@ -21,6 +21,7 @@ import android.dariojolo.com.ar.programaspartidarios.Fragments.TardeFragment;
 import android.dariojolo.com.ar.programaspartidarios.Fragments.TvFragment;
 import android.dariojolo.com.ar.programaspartidarios.Fragments.ViernesFragment;
 import android.dariojolo.com.ar.programaspartidarios.R;
+import android.dariojolo.com.ar.programaspartidarios.models.Programa;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -31,6 +32,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -42,21 +44,43 @@ import android.widget.Toast;
 
 import com.google.firebase.messaging.FirebaseMessaging;
 
+import io.realm.Realm;
+import io.realm.RealmResults;
+
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout drawer;
     private NavigationView navigationView;
     private Bundle bundle;
     private SharedPreferences prefs;
+    private RealmResults<Programa> programas;
+
+    private int id;
+    private Bundle extras;
 
     private int fragment_recuperado;
+    private Realm realm;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        extras = getIntent().getExtras();
+
+        if (extras != null){
+            try {
+                Log.d("Algo llego", "TAG");
+                id = Integer.parseInt(extras.getString("ID"));
+                Intent intent = new Intent(MainActivity.this, DetalleActivity.class);
+                intent.putExtra("Programa", id);
+                intent.putExtra("Fragment", 1);
+                startActivity(intent);
+            }catch (Exception ex){
+
+            }
+        }
 
         //Toast.makeText(this, "onCreate", Toast.LENGTH_LONG).show();
-        FirebaseMessaging.getInstance().subscribeToTopic("mundoAzulGrana");
+//        FirebaseMessaging.getInstance().subscribeToTopic("mundoAzulGrana");
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.navview);
@@ -309,9 +333,41 @@ public class MainActivity extends AppCompatActivity {
                 //Llamamos a la ventana del disclaimer
                 showAlertParaDisclaimer("Sobre nosotros", "");
                 return true;
+            case R.id.notificarTodos:
+                agregarTodasLasNotificaciones();
+                return true;
+            case R.id.notificarNinguno:
+                eliminarTodasLasNotificaciones();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void eliminarTodasLasNotificaciones() {
+        realm = Realm.getDefaultInstance();
+        programas = realm.where(Programa.class).findAll();
+        for (Programa programa : programas){
+            FirebaseMessaging.getInstance().unsubscribeFromTopic(programa.getTopicNotificacion());
+            realm.beginTransaction();
+            programa.setNotificar(false);
+            realm.copyToRealmOrUpdate(programa);
+            realm.commitTransaction();
+        }
+        Toast.makeText(this,"Se han eliminado las notificaciones de los programas",Toast.LENGTH_SHORT).show();
+    }
+
+    private void agregarTodasLasNotificaciones() {
+        realm = Realm.getDefaultInstance();
+        programas = realm.where(Programa.class).findAll();
+        for (Programa programa : programas){
+            FirebaseMessaging.getInstance().subscribeToTopic(programa.getTopicNotificacion());
+            realm.beginTransaction();
+            programa.setNotificar(true);
+            realm.copyToRealmOrUpdate(programa);
+            realm.commitTransaction();
+        }
+        Toast.makeText(this,"Se ha suscripto a las notificaciones de todos los programas",Toast.LENGTH_SHORT).show();
     }
 
     private void showAlertParaContactar(String titulo, String mensaje) {

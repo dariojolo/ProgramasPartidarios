@@ -29,7 +29,7 @@ public class MyApp extends Application {
     public void onCreate() {
         super.onCreate();
         prefs = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
-        //refs.edit().remove("firstTime").apply();
+        //prefs.edit().remove("firstTime").apply();
         initRealm();
 
 
