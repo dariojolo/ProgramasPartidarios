@@ -63,8 +63,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             intent  = new Intent(getApplicationContext(), DetalleActivity.class); // Here pass your activity where you want to redirect.
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             contentIntent = PendingIntent.getActivity(this, (int) (Math.random() * 100), intent, 0);
-            //intent.putExtra("Programa", id);
-            //intent.putExtra("Fragment", 0);
             prefs = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = prefs.edit();
             editor.putInt("IDPrograma", id);
@@ -75,8 +73,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             contentIntent = PendingIntent.getActivity(this, (int) (Math.random() * 100), intent, 0);
             intent.putExtra("Programa", id);
             intent.putExtra("Fragment", 0);
-
-
         }
 
         int currentapiVersion = android.os.Build.VERSION.SDK_INT;
@@ -96,37 +92,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 .setDefaults(Notification.FLAG_AUTO_CANCEL | Notification.DEFAULT_LIGHTS | Notification.DEFAULT_VIBRATE | Notification.DEFAULT_SOUND)
                 .setContentIntent(contentIntent);
         mNotificationManager.notify((int) notificatioId, notificationBuilder.build());
-
-       /* NotificationCompat.Builder notificationBuilder =
-                new NotificationCompat.Builder(this)
-                        .setSmallIcon(R.mipmap.ic_launcher_chico)
-                        .setContentTitle(title)
-                        .setContentText(text)
-                        .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
-                        .setVibrate(new long[]{0, 300, 200, 300});
-
-
-            //Revisar esto
-            Intent notIntent = new Intent("android.dariojolo.com.ar.programaspartidarios.activities.DetalleActivity");
-            notIntent.putExtra("Programa", id);
-            notIntent.putExtra("Fragment", 0);
-
-            TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
-            stackBuilder.addNextIntent(notIntent);
-
-            PendingIntent contIntent = PendingIntent.getActivity(getApplicationContext(), 0, notIntent, 0);
-            notificationBuilder.setPriority(NotificationCompat.PRIORITY_HIGH);
-            notificationBuilder.setContentIntent(contIntent);
-
-            Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-            notificationBuilder.setSound(alarmSound);
-
-        NotificationManager notificationManager =
-                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-        notificationManager.notify(0, notificationBuilder.build());
-
-        notificationBuilder.setAutoCancel(true); */
 
     }
 }

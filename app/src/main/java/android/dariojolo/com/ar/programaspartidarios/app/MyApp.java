@@ -28,6 +28,7 @@ public class MyApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        //SystemClock.sleep(3000);
         prefs = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
         //prefs.edit().remove("firstTime").apply();
         initRealm();
