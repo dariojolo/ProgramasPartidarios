@@ -26,13 +26,15 @@
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorPrimaryDark" />
 
-        <activity android:name=".activities.MainActivity">
+        <activity
+            android:name=".activities.MainActivity"
+            >
+
+
             <intent-filter>
                 <action android:name="android.intent.action.SENDTO" />
 
                 <data android:scheme="mailto" />
-
-
             </intent-filter>
         </activity>
         <activity android:name=".activities.DetalleActivity" />
@@ -54,7 +56,7 @@
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
             android:theme="@android:style/Theme.Translucent" />
         <activity android:name=".activities.SplashActivity"
-                android:theme="@style/SplashScreen">
+            android:theme="@style/AppTheme.BrandedLaunch">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

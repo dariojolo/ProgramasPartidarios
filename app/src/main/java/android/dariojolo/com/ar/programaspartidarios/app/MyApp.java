@@ -61,11 +61,7 @@ public class MyApp extends Application {
         if (!validarFirstTime()) {
             //removeAll();
             iniciarListaProgramas();
-
         }
-
-
-
         realm.close();
     }
     private <T extends RealmObject>  AtomicInteger setAtomicId(Realm realm, Class<T>anyClass){
