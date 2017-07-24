@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:14924270753:android:7188152fb1ef1453",
         "android_client_info": {
-          "package_name": "android.dariojolo.com.ar.programaspartidarios"
+          "package_name": "dario.dariojolo.com.ar.programaspartidarios"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "14924270753-gtlbs74sm6bu64i1ogikvqs0co86fnn3.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "android.dariojolo.com.ar.programaspartidarios",
+            "package_name": "dario.dariojolo.com.ar.programaspartidarios",
             "certificate_hash": "a83dca8ac016dc0c4bef63271b44518b7143db8f"
           }
         },
