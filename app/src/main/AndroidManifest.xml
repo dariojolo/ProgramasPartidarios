@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="dario4.dariojolo.com.ar.programaspartidarios">
+    package="v1.androidappsdhj.com.ar.programaspartidarios">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -9,11 +9,11 @@
     <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
 
     <application
-        android:name="dario4.dariojolo.com.ar.programaspartidarios.app.MyApp"
+        android:name="v1.androidappsdhj.com.ar.programaspartidarios.app.MyApp"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher_nuevo"
+        android:icon="@mipmap/ic_launcher_cuervo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_nuevo"
+        android:roundIcon="@mipmap/ic_launcher_cuervo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <meta-data
@@ -21,13 +21,13 @@
             android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@mipmap/ic_launcher_nuevo" />
+            android:resource="@mipmap/ic_launcher_cuervo" />
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorPrimaryDark" />
 
         <activity
-            android:name="dario4.dariojolo.com.ar.programaspartidarios.activities.MainActivity"
+            android:name="v1.androidappsdhj.com.ar.programaspartidarios.activities.MainActivity"
             >
 
 
@@ -37,15 +37,15 @@
                 <data android:scheme="mailto" />
             </intent-filter>
         </activity>
-        <activity android:name="dario4.dariojolo.com.ar.programaspartidarios.activities.DetalleActivity" />
-        <activity android:name="dario4.dariojolo.com.ar.programaspartidarios.activities.ListadoActivity" />
+        <activity android:name="v1.androidappsdhj.com.ar.programaspartidarios.activities.DetalleActivity" />
+        <activity android:name="v1.androidappsdhj.com.ar.programaspartidarios.activities.ListadoActivity" />
 
-        <service android:name="dario4.dariojolo.com.ar.programaspartidarios.services.MyFirebaseInstanceIDService">
+        <service android:name="v1.androidappsdhj.com.ar.programaspartidarios.services.MyFirebaseInstanceIDService">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
-        <service android:name="dario4.dariojolo.com.ar.programaspartidarios.services.MyFirebaseMessagingService">
+        <service android:name="v1.androidappsdhj.com.ar.programaspartidarios.services.MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
@@ -55,7 +55,7 @@
             android:name="com.google.android.gms.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
             android:theme="@android:style/Theme.Translucent" />
-        <activity android:name="dario4.dariojolo.com.ar.programaspartidarios.activities.SplashActivity"
+        <activity android:name="v1.androidappsdhj.com.ar.programaspartidarios.activities.SplashActivity"
             android:theme="@style/AppTheme.BrandedLaunch">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

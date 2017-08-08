@@ -8,17 +8,17 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:14924270753:android:bb2ec1ac7608d960",
+        "mobilesdk_app_id": "1:14924270753:android:b8c80e9f9a788a48",
         "android_client_info": {
-          "package_name": "dario3.dariojolo.com.ar.programaspartidarios"
+          "package_name": "dario5.dariojolo.com.ar.programaspartidarios"
         }
       },
       "oauth_client": [
         {
-          "client_id": "14924270753-d9vbqmqdjp6t5uloj3o0edfk9b105ci7.apps.googleusercontent.com",
+          "client_id": "14924270753-8141ksam5dp0lci8o7svtbj05a5dv6kf.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "dario3.dariojolo.com.ar.programaspartidarios",
+            "package_name": "dario5.dariojolo.com.ar.programaspartidarios",
             "certificate_hash": "46b8355264aa2b454622550a5650a381489a85df"
           }
         },
@@ -52,17 +52,17 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:14924270753:android:fc89e8fb6104ccfe",
+        "mobilesdk_app_id": "1:14924270753:android:60b0bf08b964c625",
         "android_client_info": {
-          "package_name": "dario4.dariojolo.com.ar.programaspartidarios"
+          "package_name": "v1.androidappsdhj.com.ar.programaspartidarios"
         }
       },
       "oauth_client": [
         {
-          "client_id": "14924270753-q6vlmcguquqomprrl4eo6gh4qohlvvud.apps.googleusercontent.com",
+          "client_id": "14924270753-t326ai7lihqlk1k7vq9imo7vev3mem07.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "dario4.dariojolo.com.ar.programaspartidarios",
+            "package_name": "v1.androidappsdhj.com.ar.programaspartidarios",
             "certificate_hash": "46b8355264aa2b454622550a5650a381489a85df"
           }
         },

@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="80dp"
     android:scaleType="centerCrop"
-    android:src="@drawable/escudo"
+    android:src="@drawable/coloresazulgrana"
     android:background="#0f0f61"
     />
     <TextView
