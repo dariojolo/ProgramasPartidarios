@@ -62,7 +62,7 @@ public class AmFragment extends Fragment implements RealmChangeListener<RealmRes
         editor.apply();
 
         AdView mAdView = (AdView) view.findViewById(R.id.adView);
-        MobileAds.initialize(getActivity().getApplicationContext(), getResources().getString(R.string.banner_ad_unit_id));
+        MobileAds.initialize(getActivity().getApplicationContext(), getResources().getString(R.string.app_id));
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
