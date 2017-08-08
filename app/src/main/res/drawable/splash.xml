@@ -3,7 +3,7 @@
 
     <item android:drawable="@color/negro"/>
     <item>
-        <bitmap android:src="@drawable/splash_programas_partidarios"
+        <bitmap android:src="@drawable/splashnuevo"
             android:tileMode="disabled"
             android:gravity="center" />
     </item>

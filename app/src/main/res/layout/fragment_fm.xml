@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="android.dariojolo.com.ar.programaspartidarios.com.dariojolo.com.ar.programaspartidarios.Fragments.FmFragment">
+    tools:context=".Fragments.FmFragment">
 
     <!-- A RecyclerView with some commonly used attributes -->
     <android.support.v7.widget.RecyclerView

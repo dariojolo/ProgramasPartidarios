@@ -9,7 +9,7 @@
     </style>
 
     <style name="AppTheme.BrandedLaunch" parent="AppTheme">
-        <item name="android:windowBackground">@drawable/splash_programas_partidarios</item>
+        <item name="android:windowBackground">@drawable/splashnuevo</item>
     </style>
 
     <style name="FullscreenTheme" parent="AppTheme">
@@ -17,7 +17,7 @@
         <item name="android:windowActionBarOverlay">true</item>
         <item name="metaButtonBarStyle">?android:attr/buttonBarStyle</item>
         <item name="metaButtonBarButtonStyle">?android:attr/buttonBarButtonStyle</item>
-        <item name="android:windowBackground">@drawable/splash_programas_partidarios</item>
+        <item name="android:windowBackground">@drawable/splashnuevo</item>
     </style>
 
     <style name="FullscreenActionBarStyle" parent="Widget.AppCompat.ActionBar">

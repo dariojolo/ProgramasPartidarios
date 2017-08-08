@@ -8,18 +8,62 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:14924270753:android:7188152fb1ef1453",
+        "mobilesdk_app_id": "1:14924270753:android:bb2ec1ac7608d960",
         "android_client_info": {
-          "package_name": "dario.dariojolo.com.ar.programaspartidarios"
+          "package_name": "dario3.dariojolo.com.ar.programaspartidarios"
         }
       },
       "oauth_client": [
         {
-          "client_id": "14924270753-gtlbs74sm6bu64i1ogikvqs0co86fnn3.apps.googleusercontent.com",
+          "client_id": "14924270753-d9vbqmqdjp6t5uloj3o0edfk9b105ci7.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "dario.dariojolo.com.ar.programaspartidarios",
-            "certificate_hash": "a83dca8ac016dc0c4bef63271b44518b7143db8f"
+            "package_name": "dario3.dariojolo.com.ar.programaspartidarios",
+            "certificate_hash": "46b8355264aa2b454622550a5650a381489a85df"
+          }
+        },
+        {
+          "client_id": "14924270753-7o0i69e5ie4bvmmqdnggdtc0e8q40onn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCB9k7RKof_wmj5QRwjUB2GpNe3LkAMtcA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "14924270753-7o0i69e5ie4bvmmqdnggdtc0e8q40onn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:14924270753:android:fc89e8fb6104ccfe",
+        "android_client_info": {
+          "package_name": "dario4.dariojolo.com.ar.programaspartidarios"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "14924270753-q6vlmcguquqomprrl4eo6gh4qohlvvud.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "dario4.dariojolo.com.ar.programaspartidarios",
+            "certificate_hash": "46b8355264aa2b454622550a5650a381489a85df"
           }
         },
         {
