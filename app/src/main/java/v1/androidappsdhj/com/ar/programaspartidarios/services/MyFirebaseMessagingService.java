@@ -6,6 +6,8 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
@@ -77,14 +79,21 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         }
 
         int currentapiVersion = android.os.Build.VERSION.SDK_INT;
+        int currentIcon;
         if (currentapiVersion >= android.os.Build.VERSION_CODES.LOLLIPOP){
             currentapiVersion = R.mipmap.ic_launcher_cuervo;
+            currentIcon = R.drawable.iconocuervo;
         } else{
             currentapiVersion = R.mipmap.ic_launcher_cuervo;
+            currentIcon = R.drawable.iconocuervo;
         }
 
+        Bitmap rawBitmap = BitmapFactory.decodeResource(getResources(),
+                R.mipmap.ic_launcher);
+
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
-                .setSmallIcon(currentapiVersion)
+                .setSmallIcon(currentIcon)
+                .setLargeIcon(rawBitmap)
                 .setContentTitle(this.getResources().getString(R.string.app_name))
                 .setStyle(new NotificationCompat.BigTextStyle().bigText(title))
                 .setContentText(text)
