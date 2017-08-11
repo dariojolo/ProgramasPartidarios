@@ -1,10 +1,6 @@
 package v1.androidappsdhj.com.ar.programaspartidarios.adapters;
 
 import android.content.Context;
-
-import v1.androidappsdhj.com.ar.programaspartidarios.R;
-import v1.androidappsdhj.com.ar.programaspartidarios.models.Programa;
-
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +11,9 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+
+import v1.androidappsdhj.com.ar.programaspartidarios.R;
+import v1.androidappsdhj.com.ar.programaspartidarios.models.Programa;
 
 /**
  * Created by Dario on 08/05/2017.
@@ -58,12 +57,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView textViewName;
         public TextView textViewEmisora;
+        public TextView textViewHora;
         public ImageView imageViewPoster;
 
         public ViewHolder(View v) {
             super(v);
             textViewName = (TextView) v.findViewById(R.id.txtNombrePrograma);
             textViewEmisora = (TextView)v.findViewById(R.id.txtEmisoraPrograma);
+            textViewHora = (TextView)v.findViewById(R.id.txtHoraInicio);
             imageViewPoster = (ImageView) v.findViewById(R.id.imagenPrograma);
         }
 
@@ -71,6 +72,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             //Procesamos los datos a renderizar
             textViewName.setText(programa.getNombre());
             textViewEmisora.setText(programa.getEmisora());
+            if (programa.getId()== 24){
+                textViewHora.setText("");
+            }else{
+                textViewHora.setText(programa.getDiaUno().substring(programa.getDiaUno().length()-4,programa.getDiaUno().length()) + " - ");
+            }
+
             //Picasso
             Picasso.with(context).load(programa.getImagen()).fit().into(imageViewPoster);
             //imageViewPoster.setImageResource(movie.getPoster());

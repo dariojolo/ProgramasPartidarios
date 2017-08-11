@@ -15,6 +15,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
@@ -31,10 +32,10 @@ import com.google.android.gms.ads.InterstitialAd;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.squareup.picasso.Picasso;
 
+import io.realm.Realm;
 import v1.androidappsdhj.com.ar.programaspartidarios.R;
 import v1.androidappsdhj.com.ar.programaspartidarios.app.MyApp;
 import v1.androidappsdhj.com.ar.programaspartidarios.models.Programa;
-import io.realm.Realm;
 
 
 public class DetalleActivity extends AppCompatActivity {
@@ -83,9 +84,14 @@ public class DetalleActivity extends AppCompatActivity {
         if (MyApp.contadorPantallas % 5 == 0) {
 
             interstitialAd = new InterstitialAd(this);
-            interstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+            interstitialAd.setAdUnitId("ca-app-pub-2411851199893992/8385419738");
             AdRequest adRequest1 = new AdRequest.Builder().build();
             interstitialAd.loadAd(adRequest1);
+            if (interstitialAd.isLoaded()) {
+                interstitialAd.show();
+            } else {
+                Log.d("TAG", "The interstitial wasn't loaded yet.");
+            }
             interstitialAd.setAdListener(new AdListener() {
                 @Override
                 public void onAdLoaded() {
@@ -197,6 +203,15 @@ public class DetalleActivity extends AppCompatActivity {
                 }
             }
         });
+        txtWeb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(programa.getWeb().toString()));
+                startActivity(i);
+            }
+        });
+
         DisplayMetrics displaymetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
         int height = displaymetrics.heightPixels;
@@ -273,7 +288,6 @@ public class DetalleActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     private void updateNotificar(Programa programa, boolean notificar, Realm realm) {

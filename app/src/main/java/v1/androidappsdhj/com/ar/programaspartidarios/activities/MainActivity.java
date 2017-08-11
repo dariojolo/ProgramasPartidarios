@@ -5,25 +5,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import v1.androidappsdhj.com.ar.programaspartidarios.Fragments.AmFragment;
-import v1.androidappsdhj.com.ar.programaspartidarios.Fragments.DomingoFragment;
-import v1.androidappsdhj.com.ar.programaspartidarios.Fragments.FavoritosFragment;
-import v1.androidappsdhj.com.ar.programaspartidarios.Fragments.FmFragment;
-import v1.androidappsdhj.com.ar.programaspartidarios.Fragments.JuevesFragment;
-import v1.androidappsdhj.com.ar.programaspartidarios.Fragments.LunesFragment;
-import v1.androidappsdhj.com.ar.programaspartidarios.Fragments.MananaFragment;
-import v1.androidappsdhj.com.ar.programaspartidarios.Fragments.MartesFragment;
-import v1.androidappsdhj.com.ar.programaspartidarios.Fragments.MiercolesFragment;
-import v1.androidappsdhj.com.ar.programaspartidarios.Fragments.NocheFragment;
-import v1.androidappsdhj.com.ar.programaspartidarios.Fragments.PartidosFragment;
-import v1.androidappsdhj.com.ar.programaspartidarios.Fragments.SabadoFragment;
-import v1.androidappsdhj.com.ar.programaspartidarios.Fragments.TardeFragment;
-import v1.androidappsdhj.com.ar.programaspartidarios.Fragments.TvFragment;
-import v1.androidappsdhj.com.ar.programaspartidarios.Fragments.ViernesFragment;
-
-import v1.androidappsdhj.com.ar.programaspartidarios.R;
-import v1.androidappsdhj.com.ar.programaspartidarios.models.Programa;
-
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -48,6 +29,23 @@ import com.google.firebase.messaging.FirebaseMessaging;
 
 import io.realm.Realm;
 import io.realm.RealmResults;
+import v1.androidappsdhj.com.ar.programaspartidarios.Fragments.AmFragment;
+import v1.androidappsdhj.com.ar.programaspartidarios.Fragments.DomingoFragment;
+import v1.androidappsdhj.com.ar.programaspartidarios.Fragments.FavoritosFragment;
+import v1.androidappsdhj.com.ar.programaspartidarios.Fragments.FmFragment;
+import v1.androidappsdhj.com.ar.programaspartidarios.Fragments.JuevesFragment;
+import v1.androidappsdhj.com.ar.programaspartidarios.Fragments.LunesFragment;
+import v1.androidappsdhj.com.ar.programaspartidarios.Fragments.MananaFragment;
+import v1.androidappsdhj.com.ar.programaspartidarios.Fragments.MartesFragment;
+import v1.androidappsdhj.com.ar.programaspartidarios.Fragments.MiercolesFragment;
+import v1.androidappsdhj.com.ar.programaspartidarios.Fragments.NocheFragment;
+import v1.androidappsdhj.com.ar.programaspartidarios.Fragments.PartidosFragment;
+import v1.androidappsdhj.com.ar.programaspartidarios.Fragments.SabadoFragment;
+import v1.androidappsdhj.com.ar.programaspartidarios.Fragments.TardeFragment;
+import v1.androidappsdhj.com.ar.programaspartidarios.Fragments.TvFragment;
+import v1.androidappsdhj.com.ar.programaspartidarios.Fragments.ViernesFragment;
+import v1.androidappsdhj.com.ar.programaspartidarios.R;
+import v1.androidappsdhj.com.ar.programaspartidarios.models.Programa;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -391,8 +389,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 Intent intent2 = new Intent(Intent.ACTION_SENDTO);
                 //intent2.setType("*/*");
-                intent2.setData(Uri.parse("mailto:dariojolo@gmail.com")); // only email apps should handle this
-                intent2.putExtra(Intent.EXTRA_EMAIL, "dariojolo@gmail.com");
+                intent2.setData(Uri.parse("mailto:androidappsdj@gmail.com")); // only email apps should handle this
+                intent2.putExtra(Intent.EXTRA_EMAIL, "androidappsdj@gmail.com");
                 intent2.putExtra(Intent.EXTRA_SUBJECT, txtSubject.getText().toString());
                 intent2.putExtra(Intent.EXTRA_TEXT, txtTexto.getText().toString());
                 if (intent2.resolveActivity(getPackageManager()) != null) {
@@ -426,7 +424,7 @@ public class MainActivity extends AppCompatActivity {
                 " \nTodos los datos incluidos en esta aplicación fueron extraídos de la página oficial de San Lorenzo de Almagro y de las redes sociales de cada programa." +
                 " \nSi alguna información mostrada en esta aplicación infringe alguna restricción de copyright, por favor contáctenos y eliminaremos inmediatamente dicha información de la aplicación." +
                 " \nSi algún dato es erróneo o cambió, por favor notifíquenos del mismo así podremos corregirlo. " +
-                " \nEl logo fue creado con un Fondo de vector creado por Macrovector - Freepik.com (http://www.freepik.es/fotos-vectores-gratis/fondo)");
+                " \nEl día y horario de los programas es responsabilidad de los mismos, así como la transmisión online es responsabilidad de cada radio");
 
 
         builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
