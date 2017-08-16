@@ -21,6 +21,7 @@ import java.util.List;
 import io.realm.Realm;
 import io.realm.RealmChangeListener;
 import io.realm.RealmResults;
+import io.realm.Sort;
 import v1.androidappsdhj.com.ar.programaspartidarios.R;
 import v1.androidappsdhj.com.ar.programaspartidarios.activities.DetalleActivity;
 import v1.androidappsdhj.com.ar.programaspartidarios.adapters.MyAdapter;
@@ -95,7 +96,7 @@ public class AmFragment extends Fragment implements RealmChangeListener<RealmRes
 
     private RealmResults<Programa> getAllProgramasR() {
         //return realm.where(Programa.class).findAll();
-        return realm.where(Programa.class).equalTo("medio", "AM").findAll();
+        return realm.where(Programa.class).equalTo("medio", "AM").findAllSorted("nombre", Sort.ASCENDING);
     }
 
     @Override

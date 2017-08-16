@@ -4,12 +4,6 @@ package v1.androidappsdhj.com.ar.programaspartidarios.Fragments;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-
-import v1.androidappsdhj.com.ar.programaspartidarios.activities.DetalleActivity;
-import v1.androidappsdhj.com.ar.programaspartidarios.adapters.MyAdapter;
-import v1.androidappsdhj.com.ar.programaspartidarios.models.Programa;
-
-import v1.androidappsdhj.com.ar.programaspartidarios.R;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -27,6 +21,11 @@ import java.util.List;
 import io.realm.Realm;
 import io.realm.RealmChangeListener;
 import io.realm.RealmResults;
+import io.realm.Sort;
+import v1.androidappsdhj.com.ar.programaspartidarios.R;
+import v1.androidappsdhj.com.ar.programaspartidarios.activities.DetalleActivity;
+import v1.androidappsdhj.com.ar.programaspartidarios.adapters.MyAdapter;
+import v1.androidappsdhj.com.ar.programaspartidarios.models.Programa;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -101,7 +100,7 @@ public class TvFragment extends Fragment implements RealmChangeListener<RealmRes
 
     private RealmResults<Programa> getAllProgramasR() {
         //return realm.where(Programa.class).findAll();
-        return realm.where(Programa.class).equalTo("medio", "TV").findAll();
+        return realm.where(Programa.class).equalTo("medio", "TV").findAllSorted("nombre", Sort.ASCENDING);
     }
 
     @Override
