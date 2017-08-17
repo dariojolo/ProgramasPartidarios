@@ -2,12 +2,6 @@ package v1.androidappsdhj.com.ar.programaspartidarios.Fragments;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-
-import v1.androidappsdhj.com.ar.programaspartidarios.activities.DetalleActivity;
-import v1.androidappsdhj.com.ar.programaspartidarios.adapters.MyAdapter;
-import v1.androidappsdhj.com.ar.programaspartidarios.models.Programa;
-
-import v1.androidappsdhj.com.ar.programaspartidarios.R;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -31,6 +25,11 @@ import java.util.List;
 import io.realm.Realm;
 import io.realm.RealmChangeListener;
 import io.realm.RealmResults;
+import io.realm.Sort;
+import v1.androidappsdhj.com.ar.programaspartidarios.R;
+import v1.androidappsdhj.com.ar.programaspartidarios.activities.DetalleActivity;
+import v1.androidappsdhj.com.ar.programaspartidarios.adapters.MyAdapter;
+import v1.androidappsdhj.com.ar.programaspartidarios.models.Programa;
 
 public class MainFragment extends Fragment implements RealmChangeListener<RealmResults<Programa>> {
 
@@ -119,7 +118,7 @@ public class MainFragment extends Fragment implements RealmChangeListener<RealmR
     } */
 
     private RealmResults<Programa> getAllProgramasR() {
-        return realm.where(Programa.class).findAll();
+        return realm.where(Programa.class).findAllSorted("nombre", Sort.ASCENDING);
     }
 
     //Ventana para agregar un nuevo Programa

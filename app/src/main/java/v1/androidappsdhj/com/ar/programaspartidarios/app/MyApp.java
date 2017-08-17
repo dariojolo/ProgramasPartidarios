@@ -4,14 +4,12 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import io.realm.RealmObject;
 import io.realm.RealmResults;
-import io.realm.Sort;
 import v1.androidappsdhj.com.ar.programaspartidarios.R;
 import v1.androidappsdhj.com.ar.programaspartidarios.models.Programa;
 
@@ -69,7 +67,7 @@ public class MyApp extends Application {
     }
 
     private void actualizarListaProgramas() {
-        /*Programa programa = realm.where(Programa.class).equalTo("nombre","A Todo San Lorenzo").findFirst();
+        Programa programa = realm.where(Programa.class).equalTo("nombre","A Todo San Lorenzo").findFirst();
         realm.beginTransaction();
         programa.setTwitter("ATodoSanLorenzo");
         realm.copyToRealmOrUpdate(programa);
@@ -82,26 +80,9 @@ public class MyApp extends Application {
 
         realm.beginTransaction();
         Programa p1000 = new Programa("La Botica de Boedo", R.drawable.laboticadeboedo, "Daniel Hector Aspiro", "AM970","No disponible","No disponible","https://twitter.com/BoticaBoedo","No disponible","No disponible",false,false,false,false,true,false,false,false,"Viernes 22Hs","","AM","http://tunein.com/radio/Radio-G%C3%A9nesis-970-s228340/",false,false,"LaBoticaDeBoedo",false,false,true);
-        realm.copyToRealmOrUpdate(p1000);
-        realm.commitTransaction();*/
+        realm.copyToRealm(p1000);
+        realm.commitTransaction();
 
-        RealmResults<Programa> todos = realm.where(Programa.class).findAllSorted("nombre", Sort.ASCENDING);
-
-        List<Programa> lista = todos;
-
-        // RealmQuery<Programa> todos = realm.where(Programa.class);
-        removeAll();
-        iniciarListaProgramas();
-
-        for (Programa prog:lista) {
-            realm.beginTransaction();
-            Programa pp = realm.where(Programa.class).equalTo("nombre", prog.getNombre()).findFirst();
-            pp.setFavorito(prog.isFavorito());
-            pp.setNotificar(prog.isNotificar());
-
-            realm.copyToRealmOrUpdate(pp);
-            realm.commitTransaction();
-        }
         saveOnPreferences("hayUpdate");
     }
 
@@ -181,7 +162,7 @@ public class MyApp extends Application {
                 realm.copyToRealmOrUpdate(p28);
 
                 saveOnPreferences("firstTime");
-            //    saveOnPreferences("hayUpdate");
+                saveOnPreferences("hayUpdate");
             }
         });
     }
