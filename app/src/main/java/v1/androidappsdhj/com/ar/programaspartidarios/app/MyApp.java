@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import io.realm.Realm;
@@ -69,6 +71,22 @@ public class MyApp extends Application {
     }
 
     private void actualizarListaProgramas() {
+
+        int i = 0;
+        RealmResults<Programa> listaA = realm.where(Programa.class).findAll();
+
+        List<Programa>listaB = new ArrayList<>();
+        for (Programa pro: listaA
+             ) {
+            listaB.add(i,listaA.get(i));
+            i++;
+        }
+
+        for (Programa prog: listaB
+             ) {
+            Log.i("PP",prog.getNombre());
+        }
+
         Programa laCicloneta =  realm.where(Programa.class).equalTo("nombre", "La Cicloneta").findFirst();
         Log.i("LA CICLONETA ID: ",""+ laCicloneta.getId());
         Log.i("LA CICLONETA Nombre: ",""+ laCicloneta.getNombre());
