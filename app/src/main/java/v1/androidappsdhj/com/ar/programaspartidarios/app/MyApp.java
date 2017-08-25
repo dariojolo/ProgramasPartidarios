@@ -3,10 +3,8 @@ package v1.androidappsdhj.com.ar.programaspartidarios.app;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
+import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import io.realm.Realm;
@@ -65,8 +63,8 @@ public class MyApp extends Application {
             iniciarListaProgramas();
         }else if(!validarHayUpdate()) {
             actualizarListaProgramas();
+            Toast.makeText(getApplicationContext(), "Actualizacion", Toast.LENGTH_LONG).show();
         }
-
         realm.close();
     }
 
@@ -84,36 +82,40 @@ public class MyApp extends Application {
         realm.commitTransaction();
 
         //Traigo los programas existentes en Realm
-        RealmResults<Programa> listaA = realm.where(Programa.class).findAll();
+       // RealmResults<Programa> listaA = realm.where(Programa.class).findAll();
 
         //List<Programa>listaB = new ArrayList<Programa>(listaA);
 
         //Copio la lista de programas
-        List<Programa>listaB = new ArrayList<Programa>();
+    /*    List<Programa>listaB = new ArrayList<Programa>();
         for (Programa pro: listaA
              ) {
             listaB.add(pro.clone());
-        }
+        }*/
         //Agrego el programa nuevo
-        listaB.add(new Programa("La Botica de Boedo", R.drawable.laboticadeboedo, "Daniel Hector Aspiro", "AM970","No disponible","No disponible","https://twitter.com/BoticaBoedo","No disponible","No disponible",false,false,false,false,true,false,false,false,"Viernes 22Hs","","AM","http://tunein.com/radio/Radio-G%C3%A9nesis-970-s228340/",false,false,"LaBoticaDeBoedo",false,false,true));
-        Programa pr = listaB.get(listaB.size()-1);
+        Programa pr = new Programa("La Botica de Boedo", R.drawable.laboticadeboedo, "Daniel Hector Aspiro", "AM970","No disponible","No disponible","https://twitter.com/BoticaBoedo","No disponible","No disponible",false,false,false,false,true,false,false,false,"Viernes 22Hs","","AM","http://tunein.com/radio/Radio-G%C3%A9nesis-970-s228340/",false,false,"LaBoticaDeBoedo",false,false,true);
+        realm.beginTransaction();
+        realm.copyToRealmOrUpdate(pr);
+        realm.commitTransaction();
+
+      //  Programa pr = listaB.get(listaB.size()-1);
 
         //Borro los programas existentes en Realm
-        removeAll();
+        //removeAll();
 
         //Copio a realm los programas existentes
-        for (int j = 0; j < listaB.size();j++ ) {
+      /*  for (int j = 0; j < listaB.size();j++ ) {
             Programa prog = listaB.get(j);
             realm.beginTransaction();
             realm.copyToRealmOrUpdate(prog);
             realm.commitTransaction();
-        }
+        }*/
+        saveOnPreferences("hayUpdate3");
 
-        saveOnPreferences("hayUpdate2");
     }
 
     private boolean validarHayUpdate() {
-        return prefs.getBoolean("hayUpdate2", false);
+        return prefs.getBoolean("hayUpdate3", false);
     }
 
     private <T extends RealmObject>  AtomicInteger setAtomicId(Realm realm, Class<T>anyClass){
@@ -188,7 +190,7 @@ public class MyApp extends Application {
                 realm.copyToRealmOrUpdate(p28);
 
                 saveOnPreferences("firstTime");
-                saveOnPreferences("hayUpdate2");
+                saveOnPreferences("hayUpdate3");
             }
         });
     }

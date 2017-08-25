@@ -74,6 +74,7 @@ public class AmFragment extends Fragment implements RealmChangeListener<RealmRes
         // programas = getAllProgramas();
         recycler = (RecyclerView) view.findViewById(R.id.recyclerView2);
         layoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
+
         adapter = new MyAdapter(programasR, R.layout.list_item_recycler, new MyAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Programa programa, int position) {
@@ -85,12 +86,14 @@ public class AmFragment extends Fragment implements RealmChangeListener<RealmRes
             }
         });
 
+
         //Este metodo se puede usar cuando sabemos que el layout del recycler no van a cambiar de tamaño
         recycler.setHasFixedSize(true);
         //Se le agrega una animacion por defecto
         recycler.setItemAnimator(new DefaultItemAnimator());
         recycler.setLayoutManager(layoutManager);
         recycler.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
         return view;
     }
 
