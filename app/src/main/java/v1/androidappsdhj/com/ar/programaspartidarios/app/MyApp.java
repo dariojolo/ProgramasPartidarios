@@ -70,52 +70,78 @@ public class MyApp extends Application {
 
     private void actualizarListaProgramas() {
         //Actualizo programas existentes con errores
+        //Actualizo A todo san lorenzo
         Programa programa = realm.where(Programa.class).equalTo("nombre","A Todo San Lorenzo").findFirst();
         realm.beginTransaction();
         programa.setTwitter("https://twitter.com/ATodoSanLorenzo");
         realm.copyToRealmOrUpdate(programa);
         realm.commitTransaction();
+        //Actualizo A todo ciclon
         programa = realm.where(Programa.class).equalTo("nombre","A Todo Ciclón").findFirst();
         realm.beginTransaction();
+        programa.setLink("https://tunein.com/radio/radio-federal-am-810-s293827/");
         programa.setFacebook("https://www.facebook.com/Atodociclonsl-791938394307854/");
         realm.copyToRealmOrUpdate(programa);
         realm.commitTransaction();
-
-        //Traigo los programas existentes en Realm
-       // RealmResults<Programa> listaA = realm.where(Programa.class).findAll();
-
-        //List<Programa>listaB = new ArrayList<Programa>(listaA);
-
-        //Copio la lista de programas
-    /*    List<Programa>listaB = new ArrayList<Programa>();
-        for (Programa pro: listaA
-             ) {
-            listaB.add(pro.clone());
-        }*/
-        //Agrego el programa nuevo
-        Programa pr = new Programa("La Botica de Boedo", R.drawable.laboticadeboedo, "Daniel Hector Aspiro", "AM970","No disponible","No disponible","https://twitter.com/BoticaBoedo","No disponible","No disponible",false,false,false,false,true,false,false,false,"Viernes 22Hs","","AM","http://tunein.com/radio/Radio-G%C3%A9nesis-970-s228340/",false,false,"LaBoticaDeBoedo",false,false,true);
+        //Actualizo El plateista
+        programa = realm.where(Programa.class).equalTo("nombre","El Plateista").findFirst();
         realm.beginTransaction();
-        realm.copyToRealmOrUpdate(pr);
+        programa.setLink("https://tunein.com/radio/radio-federal-am-810-s293827/");
+        realm.copyToRealmOrUpdate(programa);
+        realm.commitTransaction();
+        //Actualizo Mundo Azulgrana Radio
+        programa = realm.where(Programa.class).equalTo("nombre","Mundo Azulgrana radio").findFirst();
+        realm.beginTransaction();
+        programa.setLink("https://tunein.com/radio/radio-federal-am-810-s293827/");
+        realm.copyToRealmOrUpdate(programa);
         realm.commitTransaction();
 
-      //  Programa pr = listaB.get(listaB.size()-1);
+        //Inserto nuevo programa
+        programa = realm.where(Programa.class).equalTo("nombre","Gente de San Lorenzo").findFirst();
+        realm.beginTransaction();
+        programa.setNombre("La Botica de Boedo");
+        programa.setImagen(R.drawable.laboticadeboedo);
+        programa.setConductores("Daniel Hector Aspiro");
+        programa.setEmisora("AM970");
+        programa.seteMail("No disponible");
+        programa.setWeb("No disponible");
+        programa.setTwitter("https://twitter.com/BoticaBoedo");
+        programa.setFacebook("No disponible");
+        programa.setTelefono("No disponible");
+        programa.setLunes(false);
+        programa.setMartes(false);
+        programa.setMiercoles(false);
+        programa.setJueves(false);
+        programa.setViernes(true);
+        programa.setSabado(false);
+        programa.setDomingo(false);
+        programa.setDiaPartido(false);
+        programa.setDiaUno("Viernes 22Hs");
+        programa.setDiaDos("");
+        programa.setMedio("AM");
+        programa.setLink("http://tunein.com/radio/Radio-G%C3%A9nesis-970-s228340/");
+        programa.setFavorito(false);
+        programa.setNotificar(false);
+        programa.setTopicNotificacion("LaBoticaDeBoedo");
+        programa.setManana(false);
+        programa.setTarde(false);
+        programa.setNoche(true);
+        realm.copyToRealmOrUpdate(programa);
+        realm.commitTransaction();
 
-        //Borro los programas existentes en Realm
-        //removeAll();
+        //Agrego el programa nuevo
+        //Programa pr = new Programa("La Botica de Boedo", R.drawable.laboticadeboedo, "Daniel Hector Aspiro", "AM970","No disponible","No disponible","https://twitter.com/BoticaBoedo","No disponible","No disponible",false,false,false,false,true,false,false,false,"Viernes 22Hs","","AM","http://tunein.com/radio/Radio-G%C3%A9nesis-970-s228340/",false,false,"LaBoticaDeBoedo",false,false,true);
+        //realm.beginTransaction();
+        //realm.copyToRealmOrUpdate(pr);
+        //realm.commitTransaction();
 
-        //Copio a realm los programas existentes
-      /*  for (int j = 0; j < listaB.size();j++ ) {
-            Programa prog = listaB.get(j);
-            realm.beginTransaction();
-            realm.copyToRealmOrUpdate(prog);
-            realm.commitTransaction();
-        }*/
-        saveOnPreferences("hayUpdate3");
+
+        saveOnPreferences("aplicaUpdate2");
 
     }
 
     private boolean validarHayUpdate() {
-        return prefs.getBoolean("hayUpdate3", false);
+        return prefs.getBoolean("aplicaUpdate2", false);
     }
 
     private <T extends RealmObject>  AtomicInteger setAtomicId(Realm realm, Class<T>anyClass){
@@ -142,7 +168,8 @@ public class MyApp extends Application {
                 Programa p8 = new Programa("Equipo Desafío", R.drawable.equipodesafio, "Julio Axel / Maximiliano Berardo", "AM990","mensajes@equipodesafio.com","http://www.equipodesafio.com/","https://twitter.com/equipodesafio","https://www.facebook.com/Equipo-Desaf%C3%ADo-362011670569256/","No disponible",false,true,false,false,false,false,false,true,"Martes 21Hs","Días de partidos","AM","http://www.splendid990.com.ar/",false,false,"EquipoDesafio",false,false,true);
                 Programa p9 = new Programa("Estación Boedo", R.drawable.estacionboedo,"Antonella González - Juan Cruz De Rosa - Matías Ávila - Claudio Pandelo","FM105.9","estacionboedo6@gmail.com","No disponible","https://twitter.com/estacionboedo","https://www.facebook.com/Estacion-Boedo-PQV-792475577446550/","4912-1059 / 15-4079-2402 (WhatsApp)",true,false,false,false,false,false,false,false,"Lunes 21hs","","FM","",false,false,"EstacionBoedo",false,false,true);
                 Programa p10 = new Programa("Frenesi Azulgrana", R.drawable.frenesiazulgrana,"Alejandro Marrero , Ale Romero y Pepe Vázquez","AM1050","frenesiazulgranaradio@outlook.com","http://www.frenesiazulgrana.com/","https://twitter.com/FrenesiAzulgran","https://www.facebook.com/frenesiazulgrana/","4381-1672 / 4381 - 2569",false,true,false,true,false,false,false,false,"Martes y Jueves 19Hs","","AM","http://tunein.com/radio/Radio-General-G%C3%BCemes-1050-s135700/",false,false,"FrenesiAzulgrana",false,true,false);
-                Programa p11 = new Programa("Gente de San Lorenzo", R.drawable.gentedesanlorenzo,"Claudio Morrone","AM840","No disponible","No disponible","No disponible","No disponible","No disponible",false,false,false,false,true,false,false,false,"Viernes 20Hs","","AM","http://tunein.com/radio/Radio-General-Belgrano-840-s84325/",false,false,"GenteDeSanLorenzo",false,false,true);
+                //Programa p11 = new Programa("Gente de San Lorenzo", R.drawable.gentedesanlorenzo,"Claudio Morrone","AM840","No disponible","No disponible","No disponible","No disponible","No disponible",false,false,false,false,true,false,false,false,"Viernes 20Hs","","AM","http://tunein.com/radio/Radio-General-Belgrano-840-s84325/",false,false,"GenteDeSanLorenzo",false,false,true);
+                Programa p11 = new Programa("La Botica de Boedo", R.drawable.laboticadeboedo, "Daniel Hector Aspiro", "AM970","No disponible","No disponible","https://twitter.com/BoticaBoedo","No disponible","No disponible",false,false,false,false,true,false,false,false,"Viernes 22Hs","","AM","http://tunein.com/radio/Radio-G%C3%A9nesis-970-s228340/",false,false,"LaBoticaDeBoedo",false,false,true);
                 Programa p12 = new Programa("Glorioso San Lorenzo", R.drawable.gloriososanlorenzo,"No disponible","FM88.1","marcosnext@hotmail.com"," No disponible","https://twitter.com/gloriosocasla"," No disponible"," No disponible",false,false,true,false,false,false,false,true,"Miércoles 21Hs","Días de partidos","FM","",false,false,"GloriosoSanLorenzo",false,false,true);
                 Programa p13 = new Programa("Hablemos de San Lorenzo", R.drawable.hablemosdesanlorenzo, "Cristian Pagliaro, Rodrigo Castellano y Nicolas Morandi", "AM770","cris_pagliaro05@yahoo.com.ar","http://www.desanlorenzo.com/","https://twitter.com/hablemosdesl","https://www.facebook.com/hablemosdesl/","5275-0770/71/72",true,true,true,true,true,false,true,false,"Lunes a Viernes 22Hs","Domingos 22Hs","AM","http://tunein.com/radio/Radio-Cooperativa-770-s101604/",false,false,"HablemosDeSanLorenzo",false,false,true);
                 Programa p14 = new Programa("La Cicloneta", R.drawable.lacicloneta, "Leandro Alves", "AM970","lacicloneta@gmail.com","No disponible","https://twitter.com/lacicloneta","https://www.facebook.com/LaCiclonetaRadio/","4912-0497/0906",false,false,true,false,true,false,true,false,"Miércoles y viernes 21hs","Domingos 22hs","AM","http://tunein.com/radio/Radio-G%C3%A9nesis-970-s228340/",false,false,"LaCicloneta",false,false,true);
@@ -159,7 +186,7 @@ public class MyApp extends Application {
                 //Programa p25 = new Programa("Simplemente San Lorenzo", R.drawable.simplementesanlorenzo,"Gustavo Bennasar y Adrián Disabato", "AM610", "simplementesanlorenzo@hotmail.com","http://simplementesanlorenzoweb.blogspot.com.ar/","No disponible","https://www.facebook.com/SimplementeSanLorenzo/","4542-6500",false,false,false,false,true,false,false,false,"Viernes 14hs","","AM","http://tunein.com/radio/AM610-Radio-General-San-Martin-s253609/",false,false,"SimplementeSanLorenzo",false,true,true);
                 Programa p26 = new Programa("Soy San Lorenzo", R.drawable.soysanlorenzo,"Mario Andrés Benigni","AM690","soysanlorenzo@gmail.com","http://www.soysanlorenzo.com.ar/","https://twitter.com/cirujanomb","https://www.facebook.com/soysan.lorenzo.3", "46425533 / 46425315 / 15-5335-0310",true,true,true,true,true,false,false,false,"Lunes a Viernes 23Hs","","AM","http://tunein.com/radio/K24-s288566/",false,false,"SoySanLorenzo",false,false,true );
                 Programa p27 = new Programa("Equipo Desafío TV", R.drawable.equipodesafio,"Julio Axel yPablo Sassone","Canal 360TV","mensajes@equipodesafio.com","http://www.equipodesafio.com/","https://twitter.com/equipodesafio","https://www.facebook.com/Equipo-Desaf%C3%ADo-362011670569256/","No disponible",false,true,true,false,false,false,false,false,"Martes 20Hs","Miércoles 13Hs","TV","",false,false,"EquipoDesafioTV",false,true,true );
-                Programa p28 = new Programa("La Botica de Boedo", R.drawable.laboticadeboedo, "Daniel Hector Aspiro", "AM970","No disponible","No disponible","https://twitter.com/BoticaBoedo","No disponible","No disponible",false,false,false,false,true,false,false,false,"Viernes 22Hs","","AM","http://tunein.com/radio/Radio-G%C3%A9nesis-970-s228340/",false,false,"LaBoticaDeBoedo",false,false,true);
+
                 realm.copyToRealmOrUpdate(p1);
                 realm.copyToRealmOrUpdate(p2);
                 realm.copyToRealmOrUpdate(p3);
@@ -187,10 +214,9 @@ public class MyApp extends Application {
                 //realm.copyToRealmOrUpdate(p25);
                 realm.copyToRealmOrUpdate(p26);
                 realm.copyToRealmOrUpdate(p27);
-                realm.copyToRealmOrUpdate(p28);
 
                 saveOnPreferences("firstTime");
-                saveOnPreferences("hayUpdate3");
+                saveOnPreferences("aplicaUpdate2");
             }
         });
     }
