@@ -93,7 +93,7 @@ public class AmFragment extends Fragment implements RealmChangeListener<RealmRes
         recycler.setItemAnimator(new DefaultItemAnimator());
         recycler.setLayoutManager(layoutManager);
         recycler.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+        adapter.notifyItemRangeChanged(26,27);
         return view;
     }
 
