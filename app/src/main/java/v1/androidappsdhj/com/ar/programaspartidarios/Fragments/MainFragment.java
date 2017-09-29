@@ -80,6 +80,9 @@ public class MainFragment extends Fragment implements RealmChangeListener<RealmR
 
         realm = Realm.getDefaultInstance();
 
+        programasR.clear();
+        adapter.notifyDataSetChanged();
+
         programasR = getAllProgramasR();
         programasR.addChangeListener(this);
         // programas = getAllProgramas();
@@ -104,6 +107,7 @@ public class MainFragment extends Fragment implements RealmChangeListener<RealmR
         recycler.setItemAnimator(new DefaultItemAnimator());
         recycler.setLayoutManager(layoutManager);
         recycler.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
         return view;
     }
 

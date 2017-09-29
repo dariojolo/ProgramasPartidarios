@@ -68,6 +68,9 @@ public class TvFragment extends Fragment implements RealmChangeListener<RealmRes
 
         realm = Realm.getDefaultInstance();
 
+        programasR.clear();
+        adapter.notifyDataSetChanged();
+
         programasR = getAllProgramasR();
         programasR.addChangeListener(this);
         // programas = getAllProgramas();
@@ -97,6 +100,7 @@ public class TvFragment extends Fragment implements RealmChangeListener<RealmRes
         recycler.setItemAnimator(new DefaultItemAnimator());
         recycler.setLayoutManager(layoutManager);
         recycler.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
         return view;
     }
 

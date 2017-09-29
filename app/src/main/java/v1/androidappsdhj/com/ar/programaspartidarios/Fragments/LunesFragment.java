@@ -69,6 +69,9 @@ public class LunesFragment extends Fragment implements RealmChangeListener<Realm
 
         realm = Realm.getDefaultInstance();
 
+        programasR.clear();
+        adapter.notifyDataSetChanged();
+
         programasR = getAllProgramasR();
         programasR.addChangeListener(this);
         // programas = getAllProgramas();
@@ -93,6 +96,7 @@ public class LunesFragment extends Fragment implements RealmChangeListener<Realm
         recycler.setItemAnimator(new DefaultItemAnimator());
         recycler.setLayoutManager(layoutManager);
         recycler.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
         return view;
     }
 

@@ -69,6 +69,9 @@ public class DomingoFragment extends Fragment  implements RealmChangeListener<Re
 
         realm = Realm.getDefaultInstance();
 
+              /*  programasR.clear();
+        adapter.notifyDataSetChanged();*/
+
         programasR = getAllProgramasR();
         programasR.addChangeListener(this);
         // programas = getAllProgramas();
@@ -87,12 +90,14 @@ public class DomingoFragment extends Fragment  implements RealmChangeListener<Re
 
         adapter.notifyDataSetChanged();
 
+
         //Este metodo se puede usar cuando sabemos que el layout del recycler no van a cambiar de tamaño
         recycler.setHasFixedSize(true);
         //Se le agrega una animacion por defecto
         recycler.setItemAnimator(new DefaultItemAnimator());
         recycler.setLayoutManager(layoutManager);
         recycler.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
         return view;
     }
 
@@ -113,4 +118,5 @@ public class DomingoFragment extends Fragment  implements RealmChangeListener<Re
         realm.close();
         super.onDestroy();
     }
+
 }

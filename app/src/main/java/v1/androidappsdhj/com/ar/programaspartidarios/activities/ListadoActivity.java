@@ -43,6 +43,9 @@ public class ListadoActivity extends AppCompatActivity implements RealmChangeLis
 
         realm = Realm.getDefaultInstance();
 
+        programasR.clear();
+        adapter.notifyDataSetChanged();
+
         programasR = getAllProgramasR();
         programasR.addChangeListener(this);
         // programas = getAllProgramas();
@@ -59,13 +62,14 @@ public class ListadoActivity extends AppCompatActivity implements RealmChangeLis
             }
         });
 
-        adapter.notifyDataSetChanged();
+
         //Este metodo se puede usar cuando sabemos que el layout del recycler no van a cambiar de tamaño
         recycler.setHasFixedSize(true);
         //Se le agrega una animacion por defecto
         recycler.setItemAnimator(new DefaultItemAnimator());
         recycler.setLayoutManager(layoutManager);
         recycler.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
 
     }
 
