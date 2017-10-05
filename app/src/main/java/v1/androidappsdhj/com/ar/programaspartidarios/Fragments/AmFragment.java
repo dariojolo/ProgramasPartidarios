@@ -1,16 +1,13 @@
 package v1.androidappsdhj.com.ar.programaspartidarios.Fragments;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -23,8 +20,7 @@ import io.realm.RealmChangeListener;
 import io.realm.RealmResults;
 import io.realm.Sort;
 import v1.androidappsdhj.com.ar.programaspartidarios.R;
-import v1.androidappsdhj.com.ar.programaspartidarios.activities.DetalleActivity;
-import v1.androidappsdhj.com.ar.programaspartidarios.adapters.MyAdapter;
+import v1.androidappsdhj.com.ar.programaspartidarios.adapters.MyAdapterListView;
 import v1.androidappsdhj.com.ar.programaspartidarios.models.Programa;
 
 /**
@@ -33,9 +29,11 @@ import v1.androidappsdhj.com.ar.programaspartidarios.models.Programa;
 public class AmFragment extends Fragment implements RealmChangeListener<RealmResults<Programa>> {
 
     private List<Programa> programas;
-    private RecyclerView recycler;
-    private RecyclerView.Adapter adapter;
-    private RecyclerView.LayoutManager layoutManager;
+    //private RecyclerView recycler;
+    private ListView listView;
+    //private RecyclerView.Adapter adapter;
+    private MyAdapterListView myAdapter;
+   // private RecyclerView.LayoutManager layoutManager;
     private int contador = 0;
 
     private Realm realm;
@@ -74,11 +72,13 @@ public class AmFragment extends Fragment implements RealmChangeListener<RealmRes
 
         programasR = getAllProgramasR();
         programasR.addChangeListener(this);
-        // programas = getAllProgramas();
-        recycler = (RecyclerView) view.findViewById(R.id.recyclerView2);
-        layoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
 
-        adapter = new MyAdapter(programasR, R.layout.list_item_recycler, new MyAdapter.OnItemClickListener() {
+        // programas = getAllProgramas();
+        listView = (ListView)view.findViewById(R.id.listView);
+       // recycler = (RecyclerView) view.findViewById(R.id.recyclerView2);
+       // layoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
+
+     /*   adapter = new MyAdapter(programasR, R.layout.list_item_recycler, new MyAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Programa programa, int position) {
                 //deletePrograma(position);
@@ -87,19 +87,21 @@ public class AmFragment extends Fragment implements RealmChangeListener<RealmRes
                 intent.putExtra("Fragment", 1);
                 startActivity(intent);
             }
-        });
+        });*/
 
+    myAdapter = new MyAdapterListView(getContext(), R.layout.list_item_recycler,programasR);
 
-        adapter.notifyDataSetChanged();
-        recycler.getRecycledViewPool().clear();
+        myAdapter.notifyDataSetChanged();
+        //recycler.getRecycledViewPool().clear();
         //Este metodo se puede usar cuando sabemos que el layout del recycler no van a cambiar de tamaño
-        recycler.setHasFixedSize(true);
+        //recycler.setHasFixedSize(true);
         //Se le agrega una animacion por defecto
-        recycler.setItemAnimator(new DefaultItemAnimator());
-        recycler.setLayoutManager(layoutManager);
-        recycler.setAdapter(adapter);
+        //recycler.setItemAnimator(new DefaultItemAnimator());
+        //recycler.setLayoutManager(layoutManager);
+        //recycler.setAdapter(adapter);
+        listView.setAdapter(myAdapter);
         //adapter.notifyItemRangeChanged(26,27);
-        adapter.notifyDataSetChanged();
+        myAdapter.notifyDataSetChanged();
         return view;
     }
 
@@ -110,7 +112,7 @@ public class AmFragment extends Fragment implements RealmChangeListener<RealmRes
 
     @Override
     public void onChange(RealmResults<Programa> element) {
-        adapter.notifyDataSetChanged();
+        myAdapter.notifyDataSetChanged();
     }
 
     @Override
