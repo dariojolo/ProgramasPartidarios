@@ -1,12 +1,14 @@
 package v1.androidappsdhj.com.ar.programaspartidarios.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.google.android.gms.ads.AdRequest;
@@ -20,6 +22,7 @@ import io.realm.RealmChangeListener;
 import io.realm.RealmResults;
 import io.realm.Sort;
 import v1.androidappsdhj.com.ar.programaspartidarios.R;
+import v1.androidappsdhj.com.ar.programaspartidarios.activities.DetalleActivity;
 import v1.androidappsdhj.com.ar.programaspartidarios.adapters.MyAdapterListView;
 import v1.androidappsdhj.com.ar.programaspartidarios.models.Programa;
 
@@ -89,7 +92,7 @@ public class AmFragment extends Fragment implements RealmChangeListener<RealmRes
             }
         });*/
 
-    myAdapter = new MyAdapterListView(getContext(), R.layout.list_item_recycler,programasR);
+    myAdapter = new MyAdapterListView(getContext(), R.layout.list_item_listview,programasR);
 
         myAdapter.notifyDataSetChanged();
         //recycler.getRecycledViewPool().clear();
@@ -100,10 +103,20 @@ public class AmFragment extends Fragment implements RealmChangeListener<RealmRes
         //recycler.setLayoutManager(layoutManager);
         //recycler.setAdapter(adapter);
         listView.setAdapter(myAdapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getActivity().getApplicationContext(), DetalleActivity.class);
+                intent.putExtra("Programa", programasR.get(position).getId());
+                intent.putExtra("Fragment", 1);
+                startActivity(intent);
+            }
+        });
         //adapter.notifyItemRangeChanged(26,27);
         myAdapter.notifyDataSetChanged();
         return view;
     }
+
 
     private RealmResults<Programa> getAllProgramasR() {
         //return realm.where(Programa.class).findAll();

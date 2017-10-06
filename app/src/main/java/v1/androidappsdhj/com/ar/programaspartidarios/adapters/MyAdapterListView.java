@@ -54,7 +54,7 @@ public class MyAdapterListView extends BaseAdapter{
         View v = convertView;
 
         LayoutInflater layoutInflater = LayoutInflater.from(this.context);
-        v = layoutInflater.inflate(R.layout.list_item_recycler,null);
+        v = layoutInflater.inflate(R.layout.list_item_listview,null);
 
         Programa currentPrograma = programas.get(position);
 
