@@ -6,12 +6,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -24,7 +24,7 @@ import io.realm.RealmResults;
 import io.realm.Sort;
 import v1.androidappsdhj.com.ar.programaspartidarios.R;
 import v1.androidappsdhj.com.ar.programaspartidarios.activities.DetalleActivity;
-import v1.androidappsdhj.com.ar.programaspartidarios.adapters.MyAdapter;
+import v1.androidappsdhj.com.ar.programaspartidarios.adapters.MyAdapterListView;
 import v1.androidappsdhj.com.ar.programaspartidarios.models.Programa;
 
 /**
@@ -34,7 +34,8 @@ public class DomingoFragment extends Fragment  implements RealmChangeListener<Re
 
     private List<Programa> programas;
     private RecyclerView recycler;
-    private RecyclerView.Adapter adapter;
+    //private RecyclerView.Adapter adapter;
+    private MyAdapterListView myAdapter;
     private RecyclerView.LayoutManager layoutManager;
     private int contador = 0;
 
@@ -42,6 +43,7 @@ public class DomingoFragment extends Fragment  implements RealmChangeListener<Re
     private RealmResults<Programa> programasR;
 
     private View view;
+    private ListView listView;
 
     public DomingoFragment() {
         // Required empty public constructor
@@ -52,7 +54,7 @@ public class DomingoFragment extends Fragment  implements RealmChangeListener<Re
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_domingo, container, false);
+        view = inflater.inflate(R.layout.fragment_am, container, false);
 
         SharedPreferences prefs;
         prefs = this.getActivity().getSharedPreferences("Preferences", Context.MODE_PRIVATE);
@@ -72,12 +74,14 @@ public class DomingoFragment extends Fragment  implements RealmChangeListener<Re
               /*  programasR.clear();
         adapter.notifyDataSetChanged();*/
 
+        listView = (ListView)view.findViewById(R.id.listView);
+
         programasR = getAllProgramasR();
         programasR.addChangeListener(this);
         // programas = getAllProgramas();
-        recycler = (RecyclerView) view.findViewById(R.id.recyclerView2);
-        layoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
-        adapter = new MyAdapter(programasR, R.layout.list_item_recycler, new MyAdapter.OnItemClickListener() {
+        //recycler = (RecyclerView) view.findViewById(R.id.recyclerView2);
+        //layoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
+       /* adapter = new MyAdapter(programasR, R.layout.list_item_recycler, new MyAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Programa programa, int position) {
                 //deletePrograma(position);
@@ -86,18 +90,29 @@ public class DomingoFragment extends Fragment  implements RealmChangeListener<Re
                 intent.putExtra("Fragment", 12);
                 startActivity(intent);
             }
+        }); */
+        myAdapter = new MyAdapterListView(getContext(),R.layout.list_item_listview,programasR);
+        listView.setAdapter(myAdapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getActivity().getApplicationContext(), DetalleActivity.class);
+                intent.putExtra("Programa", programasR.get(position).getId());
+                intent.putExtra("Fragment", 1);
+                startActivity(intent);
+            }
         });
-
-        adapter.notifyDataSetChanged();
-
+        //adapter.notifyItemRangeChanged(26,27);
+        myAdapter.notifyDataSetChanged();
 
         //Este metodo se puede usar cuando sabemos que el layout del recycler no van a cambiar de tamaño
-        recycler.setHasFixedSize(true);
+       // recycler.setHasFixedSize(true);
         //Se le agrega una animacion por defecto
-        recycler.setItemAnimator(new DefaultItemAnimator());
-        recycler.setLayoutManager(layoutManager);
-        recycler.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+        //recycler.setItemAnimator(new DefaultItemAnimator());
+        //recycler.setLayoutManager(layoutManager);
+        //recycler.setAdapter(adapter);
+
+        myAdapter.notifyDataSetChanged();
         return view;
     }
 
@@ -109,7 +124,7 @@ public class DomingoFragment extends Fragment  implements RealmChangeListener<Re
 
     @Override
     public void onChange(RealmResults<Programa> element) {
-        adapter.notifyDataSetChanged();
+        myAdapter.notifyDataSetChanged();
     }
 
     @Override
