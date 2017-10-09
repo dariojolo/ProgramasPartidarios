@@ -1,9 +1,14 @@
 package v1.androidappsdhj.com.ar.programaspartidarios.app;
 
 import android.app.Application;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.widget.Toast;
+
+import com.facebook.stetho.Stetho;
+import com.uphyca.stetho_realm.RealmInspectorModulesProvider;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -13,6 +18,7 @@ import io.realm.RealmObject;
 import io.realm.RealmResults;
 import v1.androidappsdhj.com.ar.programaspartidarios.R;
 import v1.androidappsdhj.com.ar.programaspartidarios.models.Programa;
+import v1.androidappsdhj.com.ar.programaspartidarios.models.ProgramaSQLiteHelper;
 
 /**
  * Created by rodrigrl on 09/05/2017.
@@ -24,6 +30,8 @@ public class MyApp extends Application {
     public static AtomicInteger ProgramaID = new AtomicInteger();
     private SharedPreferences prefs;
     public static int contadorPantallas = 1;
+    private ProgramaSQLiteHelper programaHelper;
+    private SQLiteDatabase db;
 
 
     @Override
@@ -33,6 +41,11 @@ public class MyApp extends Application {
         prefs = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
         //prefs.edit().remove("firstTime").apply();
         initRealm();
+        Stetho.initialize(
+                Stetho.newInitializerBuilder(this)
+                        .enableDumpapp(Stetho.defaultDumperPluginsProvider(this))
+                        .enableWebKitInspector(RealmInspectorModulesProvider.builder(this).build())
+                        .build());
 
 
 }
@@ -107,8 +120,28 @@ public class MyApp extends Application {
         realm.commitTransaction();
 
 
+        //Abrimos la base de datos en modo escritura
+        programaHelper = new ProgramaSQLiteHelper(this,"Programas1",null,1);
+        db = programaHelper.getWritableDatabase();
+        insertarEnSQLite(programa);
+
+
         saveOnPreferences("aplicaUpdate10");
 
+    }
+
+    private void insertarEnSQLite(Programa programa) {
+        //Validamos que la base de datos este abierta
+        if (db != null){
+            //Creamos el registro a insertar
+            ContentValues nuevoRegistro = new ContentValues();
+            //
+            nuevoRegistro.put("nombre",programa.getNombre());
+            nuevoRegistro.put("consductores",programa.getConductores());
+            //Insertamos el registro en la base de datos
+            db.insert("programas",null, nuevoRegistro);
+
+        }
     }
 
     private boolean validarHayUpdate() {
