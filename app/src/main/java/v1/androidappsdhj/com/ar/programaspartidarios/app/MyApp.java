@@ -16,6 +16,7 @@ import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import io.realm.RealmObject;
 import io.realm.RealmResults;
+import io.realm.Sort;
 import v1.androidappsdhj.com.ar.programaspartidarios.R;
 import v1.androidappsdhj.com.ar.programaspartidarios.models.Programa;
 import v1.androidappsdhj.com.ar.programaspartidarios.models.ProgramaSQLiteHelper;
@@ -110,23 +111,31 @@ public class MyApp extends Application {
         realm.commitTransaction();
 
         //Agrego el programa nuevo
-        Programa pr = new Programa("La Botica de Boedo", R.drawable.laboticadeboedo, "Daniel Hector Aspiro", "AM970","No disponible","No disponible","https://twitter.com/BoticaBoedo","No disponible","No disponible",false,false,false,false,true,false,false,false,"Viernes 22Hs","","AM","http://tunein.com/radio/Radio-G%C3%A9nesis-970-s228340/",false,false,"LaBoticaDeBoedo",false,false,true);
+        /*Programa pr = new Programa("La Botica de Boedo", R.drawable.laboticadeboedo, "Daniel Hector Aspiro", "AM970","No disponible","No disponible","https://twitter.com/BoticaBoedo","No disponible","No disponible",false,false,false,false,true,false,false,false,"Viernes 22Hs","","AM","http://tunein.com/radio/Radio-G%C3%A9nesis-970-s228340/",false,false,"LaBoticaDeBoedo",false,false,true);
         realm.beginTransaction();
         realm.copyToRealmOrUpdate(pr);
         realm.commitTransaction();
         Programa pr2 = new Programa("Pintalo de cuervo", R.drawable.pintalodecuervo, "Ariel Petrosino - Leonardo Álvarez - Gustavo Lavalle", "www.larz.com.ar","No disponible","No disponible","https://twitter.com/pdcuervo2017","https://www.facebook.com/1982pdc/","No disponible",true,false,false,false,false,false,false,false,"Lunes 22Hs","","","http://www.larz.com.ar",false,false,"PintalodeCuervo",false,false,true);
         realm.beginTransaction();
         realm.copyToRealmOrUpdate(pr2);
-        realm.commitTransaction();
+        realm.commitTransaction();*/
 
 
         //Abrimos la base de datos en modo escritura
         programaHelper = new ProgramaSQLiteHelper(this,"Programas1",null,1);
         db = programaHelper.getWritableDatabase();
-        insertarEnSQLite(programa);
 
+        RealmResults<Programa> programasR =  realm.where(Programa.class).findAllSorted("nombre", Sort.ASCENDING);
+        for (Programa p : programasR){
+            insertarEnSQLite(p);
+        }
+        Programa pr = new Programa("La Botica de Boedo", R.drawable.laboticadeboedo, "Daniel Hector Aspiro", "AM970","No disponible","No disponible","https://twitter.com/BoticaBoedo","No disponible","No disponible",false,false,false,false,true,false,false,false,"Viernes 22Hs","","AM","http://tunein.com/radio/Radio-G%C3%A9nesis-970-s228340/",false,false,"LaBoticaDeBoedo",false,false,true);
+        insertarEnSQLite(pr);
+        Programa pr2 = new Programa("Pintalo de cuervo", R.drawable.pintalodecuervo, "Ariel Petrosino - Leonardo Álvarez - Gustavo Lavalle", "www.larz.com.ar","No disponible","No disponible","https://twitter.com/pdcuervo2017","https://www.facebook.com/1982pdc/","No disponible",true,false,false,false,false,false,false,false,"Lunes 22Hs","","","http://www.larz.com.ar",false,false,"PintalodeCuervo",false,false,true);
+        insertarEnSQLite(pr2);
 
-        saveOnPreferences("aplicaUpdate10");
+        db.close();
+        saveOnPreferences("aplicaUpdate2");
 
     }
 
@@ -136,8 +145,9 @@ public class MyApp extends Application {
             //Creamos el registro a insertar
             ContentValues nuevoRegistro = new ContentValues();
             //
-            nuevoRegistro.put("nombre",programa.getNombre());
-            nuevoRegistro.put("consductores",programa.getConductores());
+            nuevoRegistro.put("_nombre",programa.getNombre());
+            nuevoRegistro.put("_conductores",programa.getConductores());
+            nuevoRegistro.put("_medio",programa.getMedio());
             //Insertamos el registro en la base de datos
             db.insert("programas",null, nuevoRegistro);
 
@@ -145,7 +155,7 @@ public class MyApp extends Application {
     }
 
     private boolean validarHayUpdate() {
-        return prefs.getBoolean("aplicaUpdate10", false);
+        return prefs.getBoolean("aplicaUpdate2", false);
     }
 
     private <T extends RealmObject>  AtomicInteger setAtomicId(Realm realm, Class<T>anyClass){
@@ -224,7 +234,7 @@ public class MyApp extends Application {
                 realm.copyToRealmOrUpdate(p29);
 
                 saveOnPreferences("firstTime");
-                saveOnPreferences("aplicaUpdate10");
+                saveOnPreferences("aplicaUpdate2");
             }
         });
     }

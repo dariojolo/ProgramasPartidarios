@@ -44,8 +44,9 @@ public class AmFragment extends Fragment implements RealmChangeListener<RealmRes
    // private RecyclerView.LayoutManager layoutManager;
     private int contador = 0;
 
-    private Realm realm;
-    private RealmResults<Programa> programasR;
+    //private Realm realm;
+    //private RealmResults<Programa> programasR;
+    private List<Programa>listadoProg;
 
     private View view;
 
@@ -76,13 +77,18 @@ public class AmFragment extends Fragment implements RealmChangeListener<RealmRes
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
-        realm = Realm.getDefaultInstance();
+        //realm = Realm.getDefaultInstance();
 
       /*  programasR.clear();
         adapter.notifyDataSetChanged();*/
 
-        programasR = getAllProgramasR();
-        programasR.addChangeListener(this);
+
+        //programasR = getAllProgramasR();
+        //programasR.addChangeListener(this);
+
+        listadoProg = new ArrayList<Programa>();
+        listadoProg.clear();
+        listadoProg = getAllProgramasSQL();
 
         // programas = getAllProgramas();
         listView = (ListView)view.findViewById(R.id.listView);
@@ -111,14 +117,14 @@ public class AmFragment extends Fragment implements RealmChangeListener<RealmRes
 
 
 
-        myAdapter = new MyAdapterListView(getContext(), R.layout.list_item_listview,programasR);
+        myAdapter = new MyAdapterListView(getContext(), R.layout.list_item_listview,listadoProg);
         myAdapter.notifyDataSetChanged();
         listView.setAdapter(myAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getActivity().getApplicationContext(), DetalleActivity.class);
-                intent.putExtra("Programa", programasR.get(position).getId());
+                intent.putExtra("Programa", listadoProg.get(position).getId());
                 intent.putExtra("Fragment", 1);
                 startActivity(intent);
             }
@@ -131,13 +137,16 @@ public class AmFragment extends Fragment implements RealmChangeListener<RealmRes
     }
 
 
-    private RealmResults<Programa> getAllProgramasR() {
+  /*  private RealmResults<Programa> getAllProgramasR() {
         //return realm.where(Programa.class).findAll();
         return realm.where(Programa.class).equalTo("medio", "AM").findAllSorted("nombre", Sort.ASCENDING);
-    }
+    }*/
     private List<Programa>getAllProgramasSQL(){
+
+        programaHelper = new ProgramaSQLiteHelper(getContext(),"Programas1",null,1);
+        db = programaHelper.getReadableDatabase();
         //Seleccionamos los registros a mostrar en la lista
-        Cursor cursor = db.rawQuery("select * from programas where medio = 'AM'",null);
+        Cursor cursor = db.rawQuery("select * from programas where _medio = 'AM'",null);
         List<Programa> lista = new ArrayList<Programa>();
 
         if (cursor.moveToFirst()){
@@ -146,34 +155,34 @@ public class AmFragment extends Fragment implements RealmChangeListener<RealmRes
             while(cursor.isAfterLast() == false){
                 int _id = cursor.getInt(cursor.getColumnIndex("_id"));
                 String _nombre = cursor.getString(cursor.getColumnIndex("_nombre"));
-                int _imagen = cursor.getInt(cursor.getColumnIndex("_imagen"));
+                //int _imagen = cursor.getInt(cursor.getColumnIndex("_imagen"));
                 String _conductores = cursor.getString(cursor.getColumnIndex("_conductores"));
                 String _emisora = cursor.getString(cursor.getColumnIndex("_emisora"));
-                String _email = cursor.getString(cursor.getColumnIndex("_eMail"));
-                String _web = cursor.getString(cursor.getColumnIndex("_web"));
-                String _twitter = cursor.getString(cursor.getColumnIndex("_twitter"));
-                String _facebook = cursor.getString(cursor.getColumnIndex("_facebook"));
-                String _telefono = cursor.getString(cursor.getColumnIndex("_telefono"));
-                boolean _lunes = cursor.getInt(8) > 0;
-                boolean _martes = cursor.getInt(9) > 0;
-                boolean _miercoles = cursor.getInt(10) > 0;
-                boolean _jueves = cursor.getInt(11) > 0;
-                boolean _viernes = cursor.getInt(12) > 0;
-                boolean _sabado = cursor.getInt(13) > 0;
-                boolean _domingo = cursor.getInt(14) > 0;
-                boolean _diaPartido = cursor.getInt(15) > 0;
-                String _diaUno = cursor.getString(cursor.getColumnIndex("_diaUno"));
-                String _diaDos = cursor.getString(cursor.getColumnIndex("_diaDos"));
-                String _medio = cursor.getString(cursor.getColumnIndex("_medio"));
-                String _link = cursor.getString(cursor.getColumnIndex("_link"));
-                boolean _favorito = cursor.getInt(16) > 0;
-                boolean _notificar = cursor.getInt(17) > 0;
-                String _topicNotification = cursor.getString(cursor.getColumnIndex("_topicNotificacion"));
-                boolean _manana = cursor.getInt(18) > 0;
-                boolean _tarde = cursor.getInt(19) > 0;
-                boolean _noche = cursor.getInt(20) > 0;
+                //String _email = cursor.getString(cursor.getColumnIndex("_eMail"));
+                //String _web = cursor.getString(cursor.getColumnIndex("_web"));
+                //String _twitter = cursor.getString(cursor.getColumnIndex("_twitter"));
+                //String _facebook = cursor.getString(cursor.getColumnIndex("_facebook"));
+                //String _telefono = cursor.getString(cursor.getColumnIndex("_telefono"));
+                //boolean _lunes = cursor.getInt(8) > 0;
+                //boolean _martes = cursor.getInt(9) > 0;
+                //boolean _miercoles = cursor.getInt(10) > 0;
+                //boolean _jueves = cursor.getInt(11) > 0;
+                //boolean _viernes = cursor.getInt(12) > 0;
+                //boolean _sabado = cursor.getInt(13) > 0;
+                //boolean _domingo = cursor.getInt(14) > 0;
+                //boolean _diaPartido = cursor.getInt(15) > 0;
+                //String _diaUno = cursor.getString(cursor.getColumnIndex("_diaUno"));
+                //String _diaDos = cursor.getString(cursor.getColumnIndex("_diaDos"));
+                //String _medio = cursor.getString(cursor.getColumnIndex("_medio"));
+                //String _link = cursor.getString(cursor.getColumnIndex("_link"));
+                //boolean _favorito = cursor.getInt(16) > 0;
+                //boolean _notificar = cursor.getInt(17) > 0;
+                //String _topicNotification = cursor.getString(cursor.getColumnIndex("_topicNotificacion"));
+                //boolean _manana = cursor.getInt(18) > 0;
+                //boolean _tarde = cursor.getInt(19) > 0;
+                //boolean _noche = cursor.getInt(20) > 0;
 
-                lista.add(new Programa(_nombre,_imagen,_conductores,_emisora,_email,_web,_twitter,_facebook,_telefono,_lunes,_martes,_miercoles,_jueves,_viernes,_sabado,_domingo,_diaPartido,_diaUno,_diaDos,_medio,_link,_favorito,_notificar,_topicNotification,_manana,_tarde,_noche));
+                //lista.add(new Programa(_nombre,_imagen,_conductores,_emisora,_email,_web,_twitter,_facebook,_telefono,_lunes,_martes,_miercoles,_jueves,_viernes,_sabado,_domingo,_diaPartido,_diaUno,_diaDos,_medio,_link,_favorito,_notificar,_topicNotification,_manana,_tarde,_noche));
                 cursor.moveToNext();
             }
         }
@@ -197,8 +206,8 @@ public class AmFragment extends Fragment implements RealmChangeListener<RealmRes
     @Override
     public void onDestroy() {
         db.close();
-        realm.removeAllChangeListeners();
-        realm.close();
+        //realm.removeAllChangeListeners();
+        //realm.close();
         super.onDestroy();
     }
 }
