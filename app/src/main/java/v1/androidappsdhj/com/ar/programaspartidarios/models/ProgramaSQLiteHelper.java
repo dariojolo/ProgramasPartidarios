@@ -11,7 +11,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class ProgramaSQLiteHelper extends SQLiteOpenHelper{
 
     //Sentencia para crear la tabla
-    String sqlCreate = "CREATE TABLE programas (_id integer primary key autoincrement not null, " +
+    String sqlCreate = "CREATE TABLE programas (" +
+            "_id integer primary key autoincrement not null, " +
             "_nombre TEXT, " +
             "_imagen INT," +
             "_conductores TEXT," +

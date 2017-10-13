@@ -5,6 +5,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.facebook.stetho.Stetho;
@@ -42,8 +43,8 @@ public class MyApp extends Application {
         prefs = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
         //prefs.edit().remove("firstTime").apply();
         //Abrimos la base de datos en modo escritura
-        programaHelper = new ProgramaSQLiteHelper(this,"Programas1",null,3);
-        db = programaHelper.getWritableDatabase();
+        //programaHelper = new ProgramaSQLiteHelper(this,"Programas1",null,3);
+        //db = programaHelper.getWritableDatabase();
         initRealm();
         Stetho.initialize(
                 Stetho.newInitializerBuilder(this)
@@ -125,7 +126,7 @@ public class MyApp extends Application {
 
 
         //Abrimos la base de datos en modo escritura
-        programaHelper = new ProgramaSQLiteHelper(this,"Programas1",null,2);
+        programaHelper = new ProgramaSQLiteHelper(this,"Programas1",null,3);
         db = programaHelper.getWritableDatabase();
 
         RealmResults<Programa> programasR =  realm.where(Programa.class).findAllSorted("nombre", Sort.ASCENDING);
@@ -176,7 +177,8 @@ public class MyApp extends Application {
             nuevoRegistro.put("_tarde",programa.isTarde());
             nuevoRegistro.put("_noche",programa.isNoche());
             //Insertamos el registro en la base de datos
-            db.insert("programas",null, nuevoRegistro);
+            Long inserto = db.insert("programas",null, nuevoRegistro);
+            Log.i("TAG",""+inserto);
 
         }
     }
