@@ -42,9 +42,12 @@ public class MyApp extends Application {
         //SystemClock.sleep(3000);
         prefs = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
         //prefs.edit().remove("firstTime").apply();
+<<<<<<< HEAD
         //Abrimos la base de datos en modo escritura
         //programaHelper = new ProgramaSQLiteHelper(this,"Programas1",null,3);
         //db = programaHelper.getWritableDatabase();
+=======
+>>>>>>> parent of cf4596a... Cambiando a ListView IV no se ven los listados
         initRealm();
         Stetho.initialize(
                 Stetho.newInitializerBuilder(this)
@@ -126,7 +129,11 @@ public class MyApp extends Application {
 
 
         //Abrimos la base de datos en modo escritura
+<<<<<<< HEAD
         programaHelper = new ProgramaSQLiteHelper(this,"Programas1",null,3);
+=======
+        programaHelper = new ProgramaSQLiteHelper(this,"Programas1",null,1);
+>>>>>>> parent of cf4596a... Cambiando a ListView IV no se ven los listados
         db = programaHelper.getWritableDatabase();
 
         RealmResults<Programa> programasR =  realm.where(Programa.class).findAllSorted("nombre", Sort.ASCENDING);
@@ -150,32 +157,8 @@ public class MyApp extends Application {
             ContentValues nuevoRegistro = new ContentValues();
             //
             nuevoRegistro.put("_nombre",programa.getNombre());
-            nuevoRegistro.put("_imagen",programa.getImagen());
             nuevoRegistro.put("_conductores",programa.getConductores());
-            nuevoRegistro.put("_emisora",programa.getEmisora());
-            nuevoRegistro.put("_eMail",programa.geteMail());
-            nuevoRegistro.put("_web",programa.getWeb());
-            nuevoRegistro.put("_twitter",programa.getTwitter());
-            nuevoRegistro.put("_facebook",programa.getFacebook());
-            nuevoRegistro.put("_telefono",programa.getTelefono());
-            nuevoRegistro.put("_lunes",programa.isLunes());
-            nuevoRegistro.put("_martes",programa.isMartes());
-            nuevoRegistro.put("_miercoles",programa.isMiercoles());
-            nuevoRegistro.put("_jueves",programa.isJueves());
-            nuevoRegistro.put("_viernes",programa.isViernes());
-            nuevoRegistro.put("_sabado",programa.isSabado());
-            nuevoRegistro.put("_domingo",programa.isDomingo());
-            nuevoRegistro.put("_diaPartido",programa.isDiaPartido());
-            nuevoRegistro.put("_diaUno",programa.getDiaUno());
-            nuevoRegistro.put("_diaDos",programa.getDiaDos());
             nuevoRegistro.put("_medio",programa.getMedio());
-            nuevoRegistro.put("_link",programa.getLink());
-            nuevoRegistro.put("_favorito",programa.isFavorito());
-            nuevoRegistro.put("_notificar",programa.isNotificar());
-            nuevoRegistro.put("_topicNotificacion",programa.getTopicNotificacion());
-            nuevoRegistro.put("_manana",programa.isManana());
-            nuevoRegistro.put("_tarde",programa.isTarde());
-            nuevoRegistro.put("_noche",programa.isNoche());
             //Insertamos el registro en la base de datos
             Long inserto = db.insert("programas",null, nuevoRegistro);
             Log.i("TAG",""+inserto);
@@ -259,11 +242,11 @@ public class MyApp extends Application {
                 realm.copyToRealmOrUpdate(p25);
                 realm.copyToRealmOrUpdate(p26);
                 realm.copyToRealmOrUpdate(p27);
-                //realm.copyToRealmOrUpdate(p28);
-                //realm.copyToRealmOrUpdate(p29);
+                realm.copyToRealmOrUpdate(p28);
+                realm.copyToRealmOrUpdate(p29);
 
                 saveOnPreferences("firstTime");
-             //   saveOnPreferences("aplicaUpdate2");
+                saveOnPreferences("aplicaUpdate2");
             }
         });
     }

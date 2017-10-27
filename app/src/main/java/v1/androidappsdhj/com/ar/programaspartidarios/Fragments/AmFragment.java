@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -86,7 +87,7 @@ public class AmFragment extends Fragment implements RealmChangeListener<RealmRes
         //programasR.addChangeListener(this);
 
         listadoProg = new ArrayList<Programa>();
-        //listadoProg.clear();
+        listadoProg.clear();
         listadoProg = getAllProgramasSQL();
         if (listadoProg.size() == 0 ){
             realm = Realm.getDefaultInstance();
@@ -134,6 +135,12 @@ public class AmFragment extends Fragment implements RealmChangeListener<RealmRes
                 startActivity(intent);
             }
         });
+<<<<<<< HEAD
+=======
+        //adapter.notifyItemRangeChanged(26,27);
+        myAdapter.notifyDataSetChanged();
+        update();
+>>>>>>> parent of cf4596a... Cambiando a ListView IV no se ven los listados
 
         myAdapter.notifyDataSetChanged();
         return view;
@@ -158,32 +165,32 @@ public class AmFragment extends Fragment implements RealmChangeListener<RealmRes
             while(cursor.isAfterLast() == false){
                 int _id = cursor.getInt(cursor.getColumnIndex("_id"));
                 String _nombre = cursor.getString(cursor.getColumnIndex("_nombre"));
-                int _imagen = cursor.getInt(cursor.getColumnIndex("_imagen"));
+                //int _imagen = cursor.getInt(cursor.getColumnIndex("_imagen"));
                 String _conductores = cursor.getString(cursor.getColumnIndex("_conductores"));
                 String _emisora = cursor.getString(cursor.getColumnIndex("_emisora"));
-                String _email = cursor.getString(cursor.getColumnIndex("_eMail"));
-                String _web = cursor.getString(cursor.getColumnIndex("_web"));
-                String _twitter = cursor.getString(cursor.getColumnIndex("_twitter"));
-                String _facebook = cursor.getString(cursor.getColumnIndex("_facebook"));
-                String _telefono = cursor.getString(cursor.getColumnIndex("_telefono"));
-                boolean _lunes = cursor.getInt(10) > 0;
-                boolean _martes = cursor.getInt(11) > 0;
-                boolean _miercoles = cursor.getInt(12) > 0;
-                boolean _jueves = cursor.getInt(13) > 0;
-                boolean _viernes = cursor.getInt(14) > 0;
-                boolean _sabado = cursor.getInt(15) > 0;
-                boolean _domingo = cursor.getInt(16) > 0;
-                boolean _diaPartido = cursor.getInt(17) > 0;
-                String _diaUno = cursor.getString(cursor.getColumnIndex("_diaUno"));
-                String _diaDos = cursor.getString(cursor.getColumnIndex("_diaDos"));
-                String _medio = cursor.getString(cursor.getColumnIndex("_medio"));
-                String _link = cursor.getString(cursor.getColumnIndex("_link"));
-                boolean _favorito = cursor.getInt(22) > 0;
-                boolean _notificar = cursor.getInt(23) > 0;
-                String _topicNotification = cursor.getString(cursor.getColumnIndex("_topicNotificacion"));
-                boolean _manana = cursor.getInt(25) > 0;
-                boolean _tarde = cursor.getInt(26) > 0;
-                boolean _noche = cursor.getInt(27) > 0;
+                //String _email = cursor.getString(cursor.getColumnIndex("_eMail"));
+                //String _web = cursor.getString(cursor.getColumnIndex("_web"));
+                //String _twitter = cursor.getString(cursor.getColumnIndex("_twitter"));
+                //String _facebook = cursor.getString(cursor.getColumnIndex("_facebook"));
+                //String _telefono = cursor.getString(cursor.getColumnIndex("_telefono"));
+                //boolean _lunes = cursor.getInt(8) > 0;
+                //boolean _martes = cursor.getInt(9) > 0;
+                //boolean _miercoles = cursor.getInt(10) > 0;
+                //boolean _jueves = cursor.getInt(11) > 0;
+                //boolean _viernes = cursor.getInt(12) > 0;
+                //boolean _sabado = cursor.getInt(13) > 0;
+                //boolean _domingo = cursor.getInt(14) > 0;
+                //boolean _diaPartido = cursor.getInt(15) > 0;
+                //String _diaUno = cursor.getString(cursor.getColumnIndex("_diaUno"));
+                //String _diaDos = cursor.getString(cursor.getColumnIndex("_diaDos"));
+                //String _medio = cursor.getString(cursor.getColumnIndex("_medio"));
+                //String _link = cursor.getString(cursor.getColumnIndex("_link"));
+                //boolean _favorito = cursor.getInt(16) > 0;
+                //boolean _notificar = cursor.getInt(17) > 0;
+                //String _topicNotification = cursor.getString(cursor.getColumnIndex("_topicNotificacion"));
+                //boolean _manana = cursor.getInt(18) > 0;
+                //boolean _tarde = cursor.getInt(19) > 0;
+                //boolean _noche = cursor.getInt(20) > 0;
 
                 //lista.add(new Programa(_nombre,_imagen,_conductores,_emisora,_email,_web,_twitter,_facebook,_telefono,_lunes,_martes,_miercoles,_jueves,_viernes,_sabado,_domingo,_diaPartido,_diaUno,_diaDos,_medio,_link,_favorito,_notificar,_topicNotification,_manana,_tarde,_noche));
                 cursor.moveToNext();
