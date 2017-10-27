@@ -5,7 +5,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.facebook.stetho.Stetho;
@@ -44,10 +43,15 @@ public class MyApp extends Application {
         //prefs.edit().remove("firstTime").apply();
 <<<<<<< HEAD
         //Abrimos la base de datos en modo escritura
+<<<<<<< HEAD
         //programaHelper = new ProgramaSQLiteHelper(this,"Programas1",null,3);
         //db = programaHelper.getWritableDatabase();
 =======
 >>>>>>> parent of cf4596a... Cambiando a ListView IV no se ven los listados
+=======
+        programaHelper = new ProgramaSQLiteHelper(this,"Programas1",null,3);
+        db = programaHelper.getWritableDatabase();
+>>>>>>> parent of 027a0f0... Migrando a SQLite III
         initRealm();
         Stetho.initialize(
                 Stetho.newInitializerBuilder(this)
@@ -130,10 +134,14 @@ public class MyApp extends Application {
 
         //Abrimos la base de datos en modo escritura
 <<<<<<< HEAD
+<<<<<<< HEAD
         programaHelper = new ProgramaSQLiteHelper(this,"Programas1",null,3);
 =======
         programaHelper = new ProgramaSQLiteHelper(this,"Programas1",null,1);
 >>>>>>> parent of cf4596a... Cambiando a ListView IV no se ven los listados
+=======
+        programaHelper = new ProgramaSQLiteHelper(this,"Programas1",null,2);
+>>>>>>> parent of 027a0f0... Migrando a SQLite III
         db = programaHelper.getWritableDatabase();
 
         RealmResults<Programa> programasR =  realm.where(Programa.class).findAllSorted("nombre", Sort.ASCENDING);
@@ -160,8 +168,7 @@ public class MyApp extends Application {
             nuevoRegistro.put("_conductores",programa.getConductores());
             nuevoRegistro.put("_medio",programa.getMedio());
             //Insertamos el registro en la base de datos
-            Long inserto = db.insert("programas",null, nuevoRegistro);
-            Log.i("TAG",""+inserto);
+            db.insert("programas",null, nuevoRegistro);
 
         }
     }

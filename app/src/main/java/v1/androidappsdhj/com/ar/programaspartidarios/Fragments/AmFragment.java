@@ -21,10 +21,8 @@ import com.google.android.gms.ads.MobileAds;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.realm.Realm;
 import io.realm.RealmChangeListener;
 import io.realm.RealmResults;
-import io.realm.Sort;
 import v1.androidappsdhj.com.ar.programaspartidarios.R;
 import v1.androidappsdhj.com.ar.programaspartidarios.activities.DetalleActivity;
 import v1.androidappsdhj.com.ar.programaspartidarios.adapters.MyAdapterListView;
@@ -44,8 +42,8 @@ public class AmFragment extends Fragment implements RealmChangeListener<RealmRes
    // private RecyclerView.LayoutManager layoutManager;
     private int contador = 0;
 
-    private Realm realm;
-    private RealmResults<Programa> programasR;
+    //private Realm realm;
+    //private RealmResults<Programa> programasR;
     private List<Programa>listadoProg;
 
     private View view;
@@ -89,12 +87,6 @@ public class AmFragment extends Fragment implements RealmChangeListener<RealmRes
         listadoProg = new ArrayList<Programa>();
         listadoProg.clear();
         listadoProg = getAllProgramasSQL();
-        if (listadoProg.size() == 0 ){
-            realm = Realm.getDefaultInstance();
-            programasR = getAllProgramasR();
-            programasR.addChangeListener(this);
-            listadoProg = programasR;
-        }
 
         // programas = getAllProgramas();
         listView = (ListView)view.findViewById(R.id.listView);
@@ -136,27 +128,33 @@ public class AmFragment extends Fragment implements RealmChangeListener<RealmRes
             }
         });
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         //adapter.notifyItemRangeChanged(26,27);
         myAdapter.notifyDataSetChanged();
         update();
 >>>>>>> parent of cf4596a... Cambiando a ListView IV no se ven los listados
 
+=======
+        //adapter.notifyItemRangeChanged(26,27);
+>>>>>>> parent of 027a0f0... Migrando a SQLite III
         myAdapter.notifyDataSetChanged();
+        //update();
+
         return view;
     }
 
 
-    private RealmResults<Programa> getAllProgramasR() {
+  /*  private RealmResults<Programa> getAllProgramasR() {
         //return realm.where(Programa.class).findAll();
         return realm.where(Programa.class).equalTo("medio", "AM").findAllSorted("nombre", Sort.ASCENDING);
-    }
+    }*/
     private List<Programa>getAllProgramasSQL(){
 
-        programaHelper = new ProgramaSQLiteHelper(getContext(),"Programas1",null,3);
+        programaHelper = new ProgramaSQLiteHelper(getContext(),"Programas1",null,1);
         db = programaHelper.getReadableDatabase();
         //Seleccionamos los registros a mostrar en la lista
-        Cursor cursor = db.rawQuery("select * from programas",null);
+        Cursor cursor = db.rawQuery("select * from programas where _medio = 'AM'",null);
         List<Programa> lista = new ArrayList<Programa>();
 
         if (cursor.moveToFirst()){
