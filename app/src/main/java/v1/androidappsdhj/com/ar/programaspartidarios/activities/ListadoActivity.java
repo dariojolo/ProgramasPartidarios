@@ -62,7 +62,7 @@ public class ListadoActivity extends AppCompatActivity implements RealmChangeLis
             }
         });
         */
-        myAdapter = new MyAdapterListView(this,R.layout.list_item_listview,programasR);
+        myAdapter = new MyAdapterListView(this,R.layout.list_item_recycler,programasR);
 
 
         //Este metodo se puede usar cuando sabemos que el layout del recycler no van a cambiar de tamaño

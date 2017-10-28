@@ -1,14 +1,12 @@
 package v1.androidappsdhj.com.ar.programaspartidarios.Fragments;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.google.android.gms.ads.AdRequest;
@@ -20,7 +18,6 @@ import java.util.List;
 import io.realm.RealmChangeListener;
 import io.realm.RealmResults;
 import v1.androidappsdhj.com.ar.programaspartidarios.R;
-import v1.androidappsdhj.com.ar.programaspartidarios.activities.DetalleActivity;
 import v1.androidappsdhj.com.ar.programaspartidarios.adapters.MyAdapterListView;
 import v1.androidappsdhj.com.ar.programaspartidarios.models.Programa;
 
@@ -90,7 +87,7 @@ public class AmFragment extends Fragment implements RealmChangeListener<RealmRes
             }
         });*/
 
-    myAdapter = new MyAdapterListView(getContext(), R.layout.list_item_listview,programasR);
+    myAdapter = new MyAdapterListView(getContext(), R.layout.list_item_recycler,programasR);
 
         myAdapter.notifyDataSetChanged();
         //recycler.getRecycledViewPool().clear();
@@ -101,6 +98,7 @@ public class AmFragment extends Fragment implements RealmChangeListener<RealmRes
         //recycler.setLayoutManager(layoutManager);
         //recycler.setAdapter(adapter);
         listView.setAdapter(myAdapter);
+<<<<<<< HEAD
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -113,6 +111,8 @@ public class AmFragment extends Fragment implements RealmChangeListener<RealmRes
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of 16d3144... Cambiando a ListView II
         //adapter.notifyItemRangeChanged(26,27);
         myAdapter.notifyDataSetChanged();
 <<<<<<< HEAD
@@ -129,7 +129,6 @@ public class AmFragment extends Fragment implements RealmChangeListener<RealmRes
 >>>>>>> parent of 64e82a2... Migrando a SQLite I
         return view;
     }
-
 
     private RealmResults<Programa> getAllProgramasR() {
         //return realm.where(Programa.class).findAll();
