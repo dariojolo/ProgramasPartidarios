@@ -33,11 +33,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         this.itemClickListener = itemClickListener;
 
     }
-    public void clear() {
-        int size = this.programas.size();
-        this.programas.clear();
-        notifyItemRangeRemoved(0, size);
-    }
+
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {

@@ -112,12 +112,9 @@ public class MyApp extends Application {
         realm.beginTransaction();
         realm.copyToRealmOrUpdate(pr);
         realm.commitTransaction();
-        Programa pr2 = new Programa("Pintalo de cuervo", R.drawable.pintalodecuervo, "Ariel Petrosino - Leonardo Álvarez - Gustavo Lavalle", "www.larz.com.ar","No disponible","No disponible","https://twitter.com/pdcuervo2017","https://www.facebook.com/1982pdc/","No disponible",true,false,false,false,false,false,false,false,"Lunes 22Hs","","","http://www.larz.com.ar",false,false,"PintalodeCuervo",false,false,true);
-        realm.beginTransaction();
-        realm.copyToRealmOrUpdate(pr2);
-        realm.commitTransaction();
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         //Abrimos la base de datos en modo escritura
@@ -139,11 +136,14 @@ public class MyApp extends Application {
 =======
 >>>>>>> parent of 64e82a2... Migrando a SQLite I
         saveOnPreferences("aplicaUpdate10");
+=======
+        saveOnPreferences("aplicaUpdate2");
+>>>>>>> parent of 42874ea... Intentando refrescar el recyclerview V
 
     }
 
     private boolean validarHayUpdate() {
-        return prefs.getBoolean("aplicaUpdate10", false);
+        return prefs.getBoolean("aplicaUpdate2", false);
     }
 
     private <T extends RealmObject>  AtomicInteger setAtomicId(Realm realm, Class<T>anyClass){
@@ -156,7 +156,6 @@ public class MyApp extends Application {
         realm.commitTransaction();
     }
     private void iniciarListaProgramas(){
-       // removeAll();
         realm.executeTransaction(new Realm.Transaction(){
 
             @Override
@@ -185,11 +184,10 @@ public class MyApp extends Application {
                 Programa p22 = new Programa("San Lorenzo eterno", R.drawable.sanlorenzoeternonew,"Marcelo Culotta","AM970","sanlorenzoeterno@gmail.com","No disponible","https://twitter.com/sleterno","https://www.facebook.com/SanLorenzoEterno/","4926-1622",false,true,false,false,false,false,false,false,"Martes 20Hs","","AM","http://tunein.com/radio/Radio-G%C3%A9nesis-970-s228340/",false,false,"SanLorenzoEterno",false,false,true);
                 Programa p23 = new Programa("San Lorenzo mi pasión", R.drawable.sanlorenzomipasionnew,"Víctor Federico","AM970","victorfederico970@gmail.com","No disponible","https://twitter.com/vueltaboedo","https://www.facebook.com/victor.federico.7","No disponible",false,false,false,false,false,true,false,false,"Sábados 12Hs","","AM","http://tunein.com/radio/Radio-G%C3%A9nesis-970-s228340/",false,false,"SanLorenzoMiPasion",true,false,false);
                 Programa p24 = new Programa("Sentimiento Azulgrana", R.drawable.sentimientoazulgrana,"Mario Massi","AM890","alejogarcia10@hotmail.com","No disponible","No disponible","https://www.facebook.com/profile.php?id=100006642735130","No disponible",false,false,false,false,false,false,false,true,"Días de partidos","","AM","http://tunein.com/radio/Radio-Libre-890-s137009/",false,false,"SentimientoAzulGrana",false,false,false);
-                Programa p25 = new Programa("Simplemente San Lorenzo", R.drawable.simplementesanlorenzo,"Gustavo Bennasar y Adrián Disabato", "AM610", "simplementesanlorenzo@hotmail.com","http://simplementesanlorenzoweb.blogspot.com.ar/","No disponible","https://www.facebook.com/SimplementeSanLorenzo/","4542-6500",false,false,false,false,true,false,false,false,"Viernes 14hs","","AM","http://tunein.com/radio/AM610-Radio-General-San-Martin-s253609/",false,false,"SimplementeSanLorenzo",false,true,true);
+                //Programa p25 = new Programa("Simplemente San Lorenzo", R.drawable.simplementesanlorenzo,"Gustavo Bennasar y Adrián Disabato", "AM610", "simplementesanlorenzo@hotmail.com","http://simplementesanlorenzoweb.blogspot.com.ar/","No disponible","https://www.facebook.com/SimplementeSanLorenzo/","4542-6500",false,false,false,false,true,false,false,false,"Viernes 14hs","","AM","http://tunein.com/radio/AM610-Radio-General-San-Martin-s253609/",false,false,"SimplementeSanLorenzo",false,true,true);
                 Programa p26 = new Programa("Soy San Lorenzo", R.drawable.soysanlorenzo,"Mario Andrés Benigni","AM690","soysanlorenzo@gmail.com","http://www.soysanlorenzo.com.ar/","https://twitter.com/cirujanomb","https://www.facebook.com/soysan.lorenzo.3", "46425533 / 46425315 / 15-5335-0310",true,true,true,true,true,false,false,false,"Lunes a Viernes 23Hs","","AM","http://tunein.com/radio/K24-s288566/",false,false,"SoySanLorenzo",false,false,true );
                 Programa p27 = new Programa("Equipo Desafío TV", R.drawable.equipodesafio,"Julio Axel yPablo Sassone","Canal 360TV","mensajes@equipodesafio.com","http://www.equipodesafio.com/","https://twitter.com/equipodesafio","https://www.facebook.com/Equipo-Desaf%C3%ADo-362011670569256/","No disponible",false,true,true,false,false,false,false,false,"Martes 20Hs","Miércoles 13Hs","TV","",false,false,"EquipoDesafioTV",false,true,true );
                 Programa p28 = new Programa("La Botica de Boedo", R.drawable.laboticadeboedo, "Daniel Hector Aspiro", "AM970","No disponible","No disponible","https://twitter.com/BoticaBoedo","No disponible","No disponible",false,false,false,false,true,false,false,false,"Viernes 22Hs","","AM","http://tunein.com/radio/Radio-G%C3%A9nesis-970-s228340/",false,false,"LaBoticaDeBoedo",false,false,true);
-                Programa p29 = new Programa("Pintalo de cuervo", R.drawable.pintalodecuervo, "Ariel Petrosino - Leonardo Álvarez - Gustavo Lavalle", "www.larz.com.ar","No disponible","No disponible","https://twitter.com/pdcuervo2017","https://www.facebook.com/1982pdc/","No disponible",true,false,false,false,false,false,false,false,"Lunes 22Hs","","","http://www.larz.com.ar",false,false,"PintalodeCuervo",false,false,true);
 
                 realm.copyToRealmOrUpdate(p1);
                 realm.copyToRealmOrUpdate(p2);
@@ -215,14 +213,12 @@ public class MyApp extends Application {
                 realm.copyToRealmOrUpdate(p22);
                 realm.copyToRealmOrUpdate(p23);
                 realm.copyToRealmOrUpdate(p24);
-                realm.copyToRealmOrUpdate(p25);
+                //realm.copyToRealmOrUpdate(p25);
                 realm.copyToRealmOrUpdate(p26);
                 realm.copyToRealmOrUpdate(p27);
-                realm.copyToRealmOrUpdate(p28);
-                realm.copyToRealmOrUpdate(p29);
 
                 saveOnPreferences("firstTime");
-                saveOnPreferences("aplicaUpdate10");
+                saveOnPreferences("aplicaUpdate2");
             }
         });
     }

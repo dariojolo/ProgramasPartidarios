@@ -67,9 +67,6 @@ public class FmFragment extends Fragment implements RealmChangeListener<RealmRes
 
         realm = Realm.getDefaultInstance();
 
-      /*  programasR.clear();
-        adapter.notifyDataSetChanged();*/
-
         programasR = getAllProgramasR();
         programasR.addChangeListener(this);
 
@@ -86,7 +83,6 @@ public class FmFragment extends Fragment implements RealmChangeListener<RealmRes
             }
         });
 
-
         adapter.notifyDataSetChanged();
 
         //Este metodo se puede usar cuando sabemos que el layout del recycler no van a cambiar de tamaño
@@ -95,7 +91,6 @@ public class FmFragment extends Fragment implements RealmChangeListener<RealmRes
         recycler.setItemAnimator(new DefaultItemAnimator());
         recycler.setLayoutManager(layoutManager);
         recycler.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
         return view;
     }
 

@@ -67,9 +67,6 @@ public class AmFragment extends Fragment implements RealmChangeListener<RealmRes
 
         realm = Realm.getDefaultInstance();
 
-      /*  programasR.clear();
-        adapter.notifyDataSetChanged();*/
-
         programasR = getAllProgramasR();
         programasR.addChangeListener(this);
         // programas = getAllProgramas();
@@ -87,8 +84,6 @@ public class AmFragment extends Fragment implements RealmChangeListener<RealmRes
             }
         });
 
-
-        adapter.notifyDataSetChanged();
         recycler.getRecycledViewPool().clear();
         //Este metodo se puede usar cuando sabemos que el layout del recycler no van a cambiar de tamaño
         recycler.setHasFixedSize(true);
@@ -140,9 +135,13 @@ public class AmFragment extends Fragment implements RealmChangeListener<RealmRes
         recycler.setItemAnimator(new DefaultItemAnimator());
         recycler.setLayoutManager(layoutManager);
         recycler.setAdapter(adapter);
+<<<<<<< HEAD
         //adapter.notifyItemRangeChanged(26,27);
         adapter.notifyDataSetChanged();
 >>>>>>> parent of ab89806... Cambiando a ListView I
+=======
+        adapter.notifyItemRangeChanged(26,27);
+>>>>>>> parent of 42874ea... Intentando refrescar el recyclerview V
         return view;
     }
 

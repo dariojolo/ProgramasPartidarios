@@ -68,9 +68,6 @@ public class MartesFragment extends Fragment implements RealmChangeListener<Real
 
         realm = Realm.getDefaultInstance();
 
-        programasR.clear();
-        adapter.notifyDataSetChanged();
-
         programasR = getAllProgramasR();
         programasR.addChangeListener(this);
         // programas = getAllProgramas();
@@ -95,7 +92,6 @@ public class MartesFragment extends Fragment implements RealmChangeListener<Real
         recycler.setItemAnimator(new DefaultItemAnimator());
         recycler.setLayoutManager(layoutManager);
         recycler.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
         return view;
     }
 
