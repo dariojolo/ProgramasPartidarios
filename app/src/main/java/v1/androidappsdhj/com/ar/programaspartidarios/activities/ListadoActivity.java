@@ -1,6 +1,12 @@
 package v1.androidappsdhj.com.ar.programaspartidarios.activities;
 
 import android.content.Intent;
+
+import v1.androidappsdhj.com.ar.programaspartidarios.R;
+import v1.androidappsdhj.com.ar.programaspartidarios.adapters.MyAdapter;
+import v1.androidappsdhj.com.ar.programaspartidarios.models.Programa;
+
+
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -15,9 +21,6 @@ import java.util.List;
 import io.realm.Realm;
 import io.realm.RealmChangeListener;
 import io.realm.RealmResults;
-import v1.androidappsdhj.com.ar.programaspartidarios.R;
-import v1.androidappsdhj.com.ar.programaspartidarios.adapters.MyAdapter;
-import v1.androidappsdhj.com.ar.programaspartidarios.models.Programa;
 
 public class ListadoActivity extends AppCompatActivity implements RealmChangeListener<RealmResults<Programa>> {
 
@@ -59,7 +62,6 @@ public class ListadoActivity extends AppCompatActivity implements RealmChangeLis
             }
         });
 
-        adapter.notifyDataSetChanged();
         //Este metodo se puede usar cuando sabemos que el layout del recycler no van a cambiar de tamaño
         recycler.setHasFixedSize(true);
         //Se le agrega una animacion por defecto

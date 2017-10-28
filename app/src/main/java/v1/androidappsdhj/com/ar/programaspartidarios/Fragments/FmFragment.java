@@ -83,7 +83,11 @@ public class FmFragment extends Fragment implements RealmChangeListener<RealmRes
             }
         });
 
-        adapter.notifyDataSetChanged();
+        //Probando posicion
+        //int index = layoutManager.findFirstVisibleItemPosition();
+        //layoutManager.
+        //View v = linearLayoutManager.getChildAt(0);
+        //int top = (v == null) ? 0 : (v.getTop() - linearLayoutManager.getPaddingTop());
 
         //Este metodo se puede usar cuando sabemos que el layout del recycler no van a cambiar de tamaño
         recycler.setHasFixedSize(true);

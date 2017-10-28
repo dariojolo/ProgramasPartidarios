@@ -72,7 +72,6 @@ public class AmFragment extends Fragment implements RealmChangeListener<RealmRes
         // programas = getAllProgramas();
         recycler = (RecyclerView) view.findViewById(R.id.recyclerView2);
         layoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
-
         adapter = new MyAdapter(programasR, R.layout.list_item_recycler, new MyAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Programa programa, int position) {
@@ -83,7 +82,6 @@ public class AmFragment extends Fragment implements RealmChangeListener<RealmRes
                 startActivity(intent);
             }
         });
-
 
         //Este metodo se puede usar cuando sabemos que el layout del recycler no van a cambiar de tamaño
         recycler.setHasFixedSize(true);
@@ -137,6 +135,7 @@ public class AmFragment extends Fragment implements RealmChangeListener<RealmRes
         recycler.setAdapter(adapter);
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         //adapter.notifyItemRangeChanged(26,27);
         adapter.notifyDataSetChanged();
 >>>>>>> parent of ab89806... Cambiando a ListView I
@@ -146,6 +145,8 @@ public class AmFragment extends Fragment implements RealmChangeListener<RealmRes
 =======
         adapter.notifyDataSetChanged();
 >>>>>>> parent of bbd35c1... Intentando refrescar el recyclerview IIII
+=======
+>>>>>>> parent of 0e26300... Intentando refrescar el recyclerview
         return view;
     }
 
