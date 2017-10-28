@@ -82,7 +82,20 @@ public class MyApp extends Application {
     }
 
     private void actualizarListaProgramas() {
-        //Actualizo programas existentes con errores
+        iniciarListaProgramas();
+        int i = 0;
+        RealmResults<Programa> listaA = realm.where(Programa.class).findAll();
+
+        //List<Programa>listaB = new ArrayList<Programa>(listaA);
+
+        List<Programa>listaB = new ArrayList<Programa>();
+        for (Programa pro: listaA
+             ) {
+            listaB.add(pro.clone());
+        }
+        listaB.add(new Programa("La Botica de Boedo", R.drawable.laboticadeboedo, "Daniel Hector Aspiro", "AM970","No disponible","No disponible","https://twitter.com/BoticaBoedo","No disponible","No disponible",false,false,false,false,true,false,false,false,"Viernes 22Hs","","AM","http://tunein.com/radio/Radio-G%C3%A9nesis-970-s228340/",false,false,"LaBoticaDeBoedo",false,false,true));
+        Programa pr = listaB.get(listaB.size()-1);
+
         Programa programa = realm.where(Programa.class).equalTo("nombre","A Todo San Lorenzo").findFirst();
         realm.beginTransaction();
         programa.setTwitter("https://twitter.com/ATodoSanLorenzo");
@@ -94,24 +107,9 @@ public class MyApp extends Application {
         realm.copyToRealmOrUpdate(programa);
         realm.commitTransaction();
 
-        //Traigo los programas existentes en Realm
-        RealmResults<Programa> listaA = realm.where(Programa.class).findAll();
-
-        //List<Programa>listaB = new ArrayList<Programa>(listaA);
-
-        //Copio la lista de programas
-        List<Programa>listaB = new ArrayList<Programa>();
-        for (Programa pro: listaA
-             ) {
-            listaB.add(pro.clone());
-        }
-        //Agrego el programa nuevo
-        listaB.add(new Programa("La Botica de Boedo", R.drawable.laboticadeboedo, "Daniel Hector Aspiro", "AM970","No disponible","No disponible","https://twitter.com/BoticaBoedo","No disponible","No disponible",false,false,false,false,true,false,false,false,"Viernes 22Hs","","AM","http://tunein.com/radio/Radio-G%C3%A9nesis-970-s228340/",false,false,"LaBoticaDeBoedo",false,false,true));
-        Programa pr = listaB.get(listaB.size()-1);
-
-        //Borro los programas existentes en Realm
         removeAll();
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -150,14 +148,30 @@ public class MyApp extends Application {
         saveOnPreferences("hayUpdate3");
 >>>>>>> parent of a524c47... Intentando refrescar el recyclerview III
 =======
+=======
+        for (int j = 0; j < listaB.size();j++ ) {
+            Programa prog = listaB.get(j);
+            Log.i("PP",prog.getId()+"");
+>>>>>>> parent of f142c38... Ver. 1.2.1
         }
 >>>>>>> parent of 0e26300... Intentando refrescar el recyclerview
 
-        saveOnPreferences("hayUpdate2");
+        /*Programa laCicloneta =  realm.where(Programa.class).equalTo("nombre", "La Cicloneta").findFirst();
+        Log.i("LA CICLONETA ID: ",""+ laCicloneta.getId());
+        Log.i("LA CICLONETA Nombre: ",""+ laCicloneta.getNombre());
+        Log.i("LA CICLONETA Imagen: ", ""+laCicloneta.getImagen()); */
+
+/*
+        realm.beginTransaction();
+        Programa p1000 = new Programa("La Botica de Boedo", R.drawable.laboticadeboedo, "Daniel Hector Aspiro", "AM970","No disponible","No disponible","https://twitter.com/BoticaBoedo","No disponible","No disponible",false,false,false,false,true,false,false,false,"Viernes 22Hs","","AM","http://tunein.com/radio/Radio-G%C3%A9nesis-970-s228340/",false,false,"LaBoticaDeBoedo",false,false,true);
+        realm.copyToRealm(p1000);
+        realm.commitTransaction();
+
+        saveOnPreferences("hayUpdate");*/
     }
 
     private boolean validarHayUpdate() {
-        return prefs.getBoolean("hayUpdate2", false);
+        return prefs.getBoolean("hayUpdate", false);
     }
 
     private <T extends RealmObject>  AtomicInteger setAtomicId(Realm realm, Class<T>anyClass){
@@ -201,7 +215,7 @@ public class MyApp extends Application {
                 //Programa p25 = new Programa("Simplemente San Lorenzo", R.drawable.simplementesanlorenzo,"Gustavo Bennasar y Adrián Disabato", "AM610", "simplementesanlorenzo@hotmail.com","http://simplementesanlorenzoweb.blogspot.com.ar/","No disponible","https://www.facebook.com/SimplementeSanLorenzo/","4542-6500",false,false,false,false,true,false,false,false,"Viernes 14hs","","AM","http://tunein.com/radio/AM610-Radio-General-San-Martin-s253609/",false,false,"SimplementeSanLorenzo",false,true,true);
                 Programa p26 = new Programa("Soy San Lorenzo", R.drawable.soysanlorenzo,"Mario Andrés Benigni","AM690","soysanlorenzo@gmail.com","http://www.soysanlorenzo.com.ar/","https://twitter.com/cirujanomb","https://www.facebook.com/soysan.lorenzo.3", "46425533 / 46425315 / 15-5335-0310",true,true,true,true,true,false,false,false,"Lunes a Viernes 23Hs","","AM","http://tunein.com/radio/K24-s288566/",false,false,"SoySanLorenzo",false,false,true );
                 Programa p27 = new Programa("Equipo Desafío TV", R.drawable.equipodesafio,"Julio Axel yPablo Sassone","Canal 360TV","mensajes@equipodesafio.com","http://www.equipodesafio.com/","https://twitter.com/equipodesafio","https://www.facebook.com/Equipo-Desaf%C3%ADo-362011670569256/","No disponible",false,true,true,false,false,false,false,false,"Martes 20Hs","Miércoles 13Hs","TV","",false,false,"EquipoDesafioTV",false,true,true );
-                Programa p28 = new Programa("La Botica de Boedo", R.drawable.laboticadeboedo, "Daniel Hector Aspiro", "AM970","No disponible","No disponible","https://twitter.com/BoticaBoedo","No disponible","No disponible",false,false,false,false,true,false,false,false,"Viernes 22Hs","","AM","http://tunein.com/radio/Radio-G%C3%A9nesis-970-s228340/",false,false,"LaBoticaDeBoedo",false,false,true);
+             //   Programa p28 = new Programa("La Botica de Boedo", R.drawable.laboticadeboedo, "Daniel Hector Aspiro", "AM970","No disponible","No disponible","https://twitter.com/BoticaBoedo","No disponible","No disponible",false,false,false,false,true,false,false,false,"Viernes 22Hs","","AM","http://tunein.com/radio/Radio-G%C3%A9nesis-970-s228340/",false,false,"LaBoticaDeBoedo",false,false,true);
                 realm.copyToRealmOrUpdate(p1);
                 realm.copyToRealmOrUpdate(p2);
                 realm.copyToRealmOrUpdate(p3);
@@ -229,10 +243,14 @@ public class MyApp extends Application {
                 //realm.copyToRealmOrUpdate(p25);
                 realm.copyToRealmOrUpdate(p26);
                 realm.copyToRealmOrUpdate(p27);
-                realm.copyToRealmOrUpdate(p28);
+            //    realm.copyToRealmOrUpdate(p28);
 
                 saveOnPreferences("firstTime");
-                saveOnPreferences("hayUpdate2");
+                //saveOnPreferences("hayUpdate");
+                Programa laCicloneta =  realm.where(Programa.class).equalTo("nombre", "La Cicloneta").findFirst();
+                Log.i("LA CICLONETA ID: ",""+ laCicloneta.getId());
+                Log.i("LA CICLONETA Nombre: ",""+ laCicloneta.getNombre());
+                Log.i("LA CICLONETA Imagen: ", ""+laCicloneta.getImagen());
             }
         });
     }

@@ -7,8 +7,8 @@ apply plugin: 'com.android.application'
                 applicationId 'v1.androidappsdhj.com.ar.programaspartidarios'
                 minSdkVersion 16
         targetSdkVersion 25
-        versionCode 22
-        versionName "1.2.1"
+        versionCode 19
+        versionName "1.0.5"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
