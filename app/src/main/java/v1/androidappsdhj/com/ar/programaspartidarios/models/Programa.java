@@ -11,7 +11,7 @@ import io.realm.annotations.PrimaryKey;
  * Created by rodrigrl on 08/05/2017.
  */
 
-public class Programa extends RealmObject implements Serializable, Cloneable {
+public class Programa extends RealmObject implements Serializable {
 
     @PrimaryKey
     private int Id;
@@ -80,39 +80,6 @@ public class Programa extends RealmObject implements Serializable, Cloneable {
         this.topicNotificacion = topicNotificacion;
     }
 
-    public Programa clone(){
-        Programa p = new Programa();
-        p.Id = this.Id;
-        p.nombre = this. nombre;
-        p.imagen = this. imagen;
-        p.conductores = this. conductores;
-        p.emisora = this. emisora;
-        p.eMail = this. eMail;
-        p.web = this. web;
-        p.twitter = this. twitter;
-        p.facebook = this. facebook;
-        p.telefono = this. telefono;
-        p.lunes = this. lunes;
-        p.martes = this. martes;
-        p.miercoles = this. miercoles;
-        p.jueves = this. jueves;
-        p.viernes = this. viernes;
-        p.sabado = this. sabado;
-        p.domingo = this. domingo;
-        p.diaPartido = this. diaPartido;
-        p.diaUno = this. diaUno;
-        p.diaDos = this. diaDos;
-        p.medio = this. medio;
-        p.favorito = this. favorito;
-        p.manana = this. manana;
-        p.tarde = this. tarde;
-        p.noche = this. noche;
-        p.link = this. link;
-        p.notificar = this. notificar;
-        p.topicNotificacion = this. topicNotificacion;
-        return p;
-
-    }
     public int getId() {
         return Id;
     }

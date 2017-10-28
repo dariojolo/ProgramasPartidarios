@@ -82,20 +82,26 @@ public class MyApp extends Application {
     }
 
     private void actualizarListaProgramas() {
-        iniciarListaProgramas();
+
         int i = 0;
         RealmResults<Programa> listaA = realm.where(Programa.class).findAll();
 
-        //List<Programa>listaB = new ArrayList<Programa>(listaA);
-
-        List<Programa>listaB = new ArrayList<Programa>();
+        List<Programa>listaB = new ArrayList<>();
         for (Programa pro: listaA
              ) {
-            listaB.add(pro.clone());
+            listaB.add(i,listaA.get(i));
+            i++;
         }
-        listaB.add(new Programa("La Botica de Boedo", R.drawable.laboticadeboedo, "Daniel Hector Aspiro", "AM970","No disponible","No disponible","https://twitter.com/BoticaBoedo","No disponible","No disponible",false,false,false,false,true,false,false,false,"Viernes 22Hs","","AM","http://tunein.com/radio/Radio-G%C3%A9nesis-970-s228340/",false,false,"LaBoticaDeBoedo",false,false,true));
-        Programa pr = listaB.get(listaB.size()-1);
 
+        for (Programa prog: listaB
+             ) {
+            Log.i("PP",prog.getNombre());
+        }
+
+        Programa laCicloneta =  realm.where(Programa.class).equalTo("nombre", "La Cicloneta").findFirst();
+        Log.i("LA CICLONETA ID: ",""+ laCicloneta.getId());
+        Log.i("LA CICLONETA Nombre: ",""+ laCicloneta.getNombre());
+        Log.i("LA CICLONETA Imagen: ", ""+laCicloneta.getImagen());
         Programa programa = realm.where(Programa.class).equalTo("nombre","A Todo San Lorenzo").findFirst();
         realm.beginTransaction();
         programa.setTwitter("https://twitter.com/ATodoSanLorenzo");
@@ -107,6 +113,7 @@ public class MyApp extends Application {
         realm.copyToRealmOrUpdate(programa);
         realm.commitTransaction();
 
+<<<<<<< HEAD
         removeAll();
 
 <<<<<<< HEAD
@@ -162,12 +169,14 @@ public class MyApp extends Application {
         Log.i("LA CICLONETA Imagen: ", ""+laCicloneta.getImagen()); */
 
 /*
+=======
+>>>>>>> parent of 6f3915b... Arreglo primera parte - CLONE
         realm.beginTransaction();
         Programa p1000 = new Programa("La Botica de Boedo", R.drawable.laboticadeboedo, "Daniel Hector Aspiro", "AM970","No disponible","No disponible","https://twitter.com/BoticaBoedo","No disponible","No disponible",false,false,false,false,true,false,false,false,"Viernes 22Hs","","AM","http://tunein.com/radio/Radio-G%C3%A9nesis-970-s228340/",false,false,"LaBoticaDeBoedo",false,false,true);
         realm.copyToRealm(p1000);
         realm.commitTransaction();
 
-        saveOnPreferences("hayUpdate");*/
+        saveOnPreferences("hayUpdate");
     }
 
     private boolean validarHayUpdate() {
