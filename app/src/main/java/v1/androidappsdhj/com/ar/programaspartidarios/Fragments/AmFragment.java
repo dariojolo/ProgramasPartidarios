@@ -90,13 +90,15 @@ public class AmFragment extends Fragment implements RealmChangeListener<RealmRes
             }
         });*/
 
+        myAdapter = new MyAdapterListView(getContext(), R.layout.list_item_listview,programasR);
+        myAdapter.notifyDataSetChanged();
         //recycler.getRecycledViewPool().clear();
         //Este metodo se puede usar cuando sabemos que el layout del recycler no van a cambiar de tamaño
         //recycler.setHasFixedSize(true);
         //Se le agrega una animacion por defecto
         //recycler.setItemAnimator(new DefaultItemAnimator());
         //recycler.setLayoutManager(layoutManager);
-        //recycler.setAda   pter(adapter);
+        //recycler.setAdapter(adapter);
         myAdapter = new MyAdapterListView(getContext(), R.layout.list_item_listview,programasR);
         myAdapter.notifyDataSetChanged();
         listView.setAdapter(myAdapter);
