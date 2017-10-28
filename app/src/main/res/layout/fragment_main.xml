@@ -6,19 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".Fragments.MainFragment">
 
-    <!-- A RecyclerView with some commonly used attributes
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerView2"
-            android:scrollbars="vertical"
-            android:background="#E2E2E2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/> -->
-    <ListView
-        android:id="@+id/listView"
+    <!-- A RecyclerView with some commonly used attributes -->
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:scrollbars="vertical"
         android:background="#E2E2E2"
         android:layout_width="match_parent"
-        android:layout_height="0dp" />
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"

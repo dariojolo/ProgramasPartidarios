@@ -6,11 +6,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ListView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -23,7 +24,7 @@ import io.realm.RealmResults;
 import io.realm.Sort;
 import v1.androidappsdhj.com.ar.programaspartidarios.R;
 import v1.androidappsdhj.com.ar.programaspartidarios.activities.DetalleActivity;
-import v1.androidappsdhj.com.ar.programaspartidarios.adapters.MyAdapterListView;
+import v1.androidappsdhj.com.ar.programaspartidarios.adapters.MyAdapter;
 import v1.androidappsdhj.com.ar.programaspartidarios.models.Programa;
 
 /**
@@ -32,11 +33,9 @@ import v1.androidappsdhj.com.ar.programaspartidarios.models.Programa;
 public class JuevesFragment extends Fragment implements RealmChangeListener<RealmResults<Programa>> {
 
     private List<Programa> programas;
-    // private RecyclerView recycler;
-    // private RecyclerView.Adapter adapter;
-    // private RecyclerView.LayoutManager layoutManager;
-    private ListView listView;
-    private MyAdapterListView myAdapter;
+    private RecyclerView recycler;
+    private RecyclerView.Adapter adapter;
+    private RecyclerView.LayoutManager layoutManager;
     private int contador = 0;
 
     private Realm realm;
@@ -53,7 +52,7 @@ public class JuevesFragment extends Fragment implements RealmChangeListener<Real
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_am, container, false);
+        view = inflater.inflate(R.layout.fragment_jueves, container, false);
 
         SharedPreferences prefs;
         prefs = this.getActivity().getSharedPreferences("Preferences", Context.MODE_PRIVATE);
@@ -76,7 +75,7 @@ public class JuevesFragment extends Fragment implements RealmChangeListener<Real
         programasR = getAllProgramasR();
         programasR.addChangeListener(this);
         // programas = getAllProgramas();
-        /*recycler = (RecyclerView) view.findViewById(R.id.recyclerView2);
+        recycler = (RecyclerView) view.findViewById(R.id.recyclerView2);
         layoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
         adapter = new MyAdapter(programasR, R.layout.list_item_recycler, new MyAdapter.OnItemClickListener() {
             @Override
@@ -97,21 +96,7 @@ public class JuevesFragment extends Fragment implements RealmChangeListener<Real
         recycler.setItemAnimator(new DefaultItemAnimator());
         recycler.setLayoutManager(layoutManager);
         recycler.setAdapter(adapter);
-        adapter.notifyDataSetChanged();*/
-        myAdapter = new MyAdapterListView(getContext(), R.layout.list_item_listview,programasR);
-        myAdapter.notifyDataSetChanged();
-        listView = (ListView)view.findViewById(R.id.listView);
-        listView.setAdapter(myAdapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getActivity().getApplicationContext(), DetalleActivity.class);
-                intent.putExtra("Programa", programasR.get(position).getId());
-                intent.putExtra("Fragment", 1);
-                startActivity(intent);
-            }
-        });
-        myAdapter.notifyDataSetChanged();
+        adapter.notifyDataSetChanged();
         return view;
     }
 
@@ -122,7 +107,7 @@ public class JuevesFragment extends Fragment implements RealmChangeListener<Real
 
     @Override
     public void onChange(RealmResults<Programa> element) {
-        myAdapter.notifyDataSetChanged();
+        adapter.notifyDataSetChanged();
     }
 
     @Override
