@@ -1,11 +1,14 @@
 package v1.androidappsdhj.com.ar.programaspartidarios.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -13,17 +16,15 @@ import io.realm.Realm;
 import io.realm.RealmChangeListener;
 import io.realm.RealmResults;
 import v1.androidappsdhj.com.ar.programaspartidarios.R;
-import v1.androidappsdhj.com.ar.programaspartidarios.adapters.MyAdapterListView;
+import v1.androidappsdhj.com.ar.programaspartidarios.adapters.MyAdapter;
 import v1.androidappsdhj.com.ar.programaspartidarios.models.Programa;
 
 public class ListadoActivity extends AppCompatActivity implements RealmChangeListener<RealmResults<Programa>> {
 
     private List<Programa> programas;
     private RecyclerView recycler;
-    //private RecyclerView.Adapter adapter;
-    private MyAdapterListView myAdapter;
+    private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-    private ListView listView;
     private int contador = 0;
     private Boolean isLunes = false;
     private Boolean isMartes = false;
@@ -43,15 +44,14 @@ public class ListadoActivity extends AppCompatActivity implements RealmChangeLis
         realm = Realm.getDefaultInstance();
 
         programasR.clear();
-        //adapter.notifyDataSetChanged();
+        adapter.notifyDataSetChanged();
 
         programasR = getAllProgramasR();
         programasR.addChangeListener(this);
         // programas = getAllProgramas();
-        //recycler = (RecyclerView) findViewById(R.id.recyclerView);
-        //layoutManager = new LinearLayoutManager(this);
-        listView = (ListView)findViewById(R.id.listView);
-      /*  adapter = new MyAdapter(programasR, R.layout.list_item_recycler, new MyAdapter.OnItemClickListener() {
+        recycler = (RecyclerView) findViewById(R.id.recyclerView);
+        layoutManager = new LinearLayoutManager(this);
+        adapter = new MyAdapter(programasR, R.layout.list_item_recycler, new MyAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Programa programa, int position) {
                 //deletePrograma(position);
@@ -61,17 +61,15 @@ public class ListadoActivity extends AppCompatActivity implements RealmChangeLis
                 startActivity(intent);
             }
         });
-        */
-        myAdapter = new MyAdapterListView(this,R.layout.list_item_recycler,programasR);
 
 
         //Este metodo se puede usar cuando sabemos que el layout del recycler no van a cambiar de tamaño
-       // recycler.setHasFixedSize(true);
+        recycler.setHasFixedSize(true);
         //Se le agrega una animacion por defecto
-       // recycler.setItemAnimator(new DefaultItemAnimator());
-      //  recycler.setLayoutManager(layoutManager);
-        listView.setAdapter(myAdapter);
-        //adapter.notifyDataSetChanged();
+        recycler.setItemAnimator(new DefaultItemAnimator());
+        recycler.setLayoutManager(layoutManager);
+        recycler.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
 
     }
 
@@ -112,14 +110,14 @@ public class ListadoActivity extends AppCompatActivity implements RealmChangeLis
 
     private void deletePrograma(int position){
         programas.remove(position);
-        //adapter.notifyItemRemoved(position);
+        adapter.notifyItemRemoved(position);
     }
 
 
     @Override
     public void onChange(RealmResults<Programa> element) {
-      myAdapter.notifyDataSetChanged();
-   }
+        adapter.notifyDataSetChanged();
+    }
 
     @Override
     protected void onDestroy() {
