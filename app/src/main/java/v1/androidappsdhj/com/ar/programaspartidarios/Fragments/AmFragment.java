@@ -96,7 +96,13 @@ public class AmFragment extends Fragment implements RealmChangeListener<RealmRes
         //Se le agrega una animacion por defecto
         //recycler.setItemAnimator(new DefaultItemAnimator());
         //recycler.setLayoutManager(layoutManager);
+<<<<<<< HEAD
         //recycler.setAdapter(adapter);
+=======
+        //recycler.setAda   pter(adapter);
+        myAdapter = new MyAdapterListView(getContext(), R.layout.list_item_listview,programasR);
+        myAdapter.notifyDataSetChanged();
+>>>>>>> parent of 64e82a2... Migrando a SQLite I
         listView.setAdapter(myAdapter);
 <<<<<<< HEAD
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -116,6 +122,7 @@ public class AmFragment extends Fragment implements RealmChangeListener<RealmRes
         //adapter.notifyItemRangeChanged(26,27);
         myAdapter.notifyDataSetChanged();
 <<<<<<< HEAD
+<<<<<<< HEAD
         update();
 >>>>>>> parent of cf4596a... Cambiando a ListView IV no se ven los listados
 
@@ -125,6 +132,8 @@ public class AmFragment extends Fragment implements RealmChangeListener<RealmRes
         myAdapter.notifyDataSetChanged();
         //update();
 
+=======
+>>>>>>> parent of 64e82a2... Migrando a SQLite I
 =======
 >>>>>>> parent of 64e82a2... Migrando a SQLite I
         return view;

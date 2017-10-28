@@ -119,6 +119,7 @@ public class MyApp extends Application {
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         //Abrimos la base de datos en modo escritura
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -133,6 +134,8 @@ public class MyApp extends Application {
         insertarEnSQLite(programa);
 
 
+=======
+>>>>>>> parent of 64e82a2... Migrando a SQLite I
 =======
 >>>>>>> parent of 64e82a2... Migrando a SQLite I
         saveOnPreferences("aplicaUpdate10");
