@@ -1,10 +1,11 @@
 package v1.androidappsdhj.com.ar.programaspartidarios.models;
 
+import v1.androidappsdhj.com.ar.programaspartidarios.app.MyApp;
+
 import java.io.Serializable;
 
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
-import v1.androidappsdhj.com.ar.programaspartidarios.app.MyApp;
 
 /**
  * Created by rodrigrl on 08/05/2017.
@@ -170,38 +171,6 @@ public class Programa extends RealmObject implements Serializable, Cloneable {
 
     public boolean isJueves() {
         return jueves;
-    }
-
-    public void setLunes(boolean lunes) {
-        this.lunes = lunes;
-    }
-
-    public void setMartes(boolean martes) {
-        this.martes = martes;
-    }
-
-    public void setMiercoles(boolean miercoles) {
-        this.miercoles = miercoles;
-    }
-
-    public void setJueves(boolean jueves) {
-        this.jueves = jueves;
-    }
-
-    public void setViernes(boolean viernes) {
-        this.viernes = viernes;
-    }
-
-    public void setSabado(boolean sabado) {
-        this.sabado = sabado;
-    }
-
-    public void setDomingo(boolean domingo) {
-        this.domingo = domingo;
-    }
-
-    public void setDiaPartido(boolean diaPartido) {
-        this.diaPartido = diaPartido;
     }
 
     public boolean isViernes() {
