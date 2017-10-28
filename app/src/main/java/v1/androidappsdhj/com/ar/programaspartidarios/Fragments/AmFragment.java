@@ -136,12 +136,16 @@ public class AmFragment extends Fragment implements RealmChangeListener<RealmRes
         recycler.setLayoutManager(layoutManager);
         recycler.setAdapter(adapter);
 <<<<<<< HEAD
+<<<<<<< HEAD
         //adapter.notifyItemRangeChanged(26,27);
         adapter.notifyDataSetChanged();
 >>>>>>> parent of ab89806... Cambiando a ListView I
 =======
         adapter.notifyItemRangeChanged(26,27);
 >>>>>>> parent of 42874ea... Intentando refrescar el recyclerview V
+=======
+        adapter.notifyDataSetChanged();
+>>>>>>> parent of bbd35c1... Intentando refrescar el recyclerview IIII
         return view;
     }
 
