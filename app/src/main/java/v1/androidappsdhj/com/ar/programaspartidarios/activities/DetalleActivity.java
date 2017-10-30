@@ -24,13 +24,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.firebase.messaging.FirebaseMessaging;
-import com.squareup.picasso.Picasso;
+//import com.squareup.picasso.Picasso;
 
 import io.realm.Realm;
 import v1.androidappsdhj.com.ar.programaspartidarios.R;
@@ -47,10 +48,10 @@ public class DetalleActivity extends AppCompatActivity {
     private TextView txtDia1;
     private TextView txtDia2;
     private TextView txtConductores;
-    private TextView txtWeb;
-    private TextView txtTel;
-    private TextView txtFace;
-    private TextView txtTwi;
+    //private TextView txtWeb;
+    //private TextView txtTel;
+    //private TextView txtFace;
+    //private TextView txtTwi;
     private int _fragment;
     //private WebView webview;
     private android.support.design.widget.FloatingActionButton fab;
@@ -78,7 +79,7 @@ public class DetalleActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detalle);
+        setContentView(R.layout.activity_detalle2);
 
 
         if (MyApp.contadorPantallas % 5 == 0) {
@@ -137,15 +138,15 @@ public class DetalleActivity extends AppCompatActivity {
         txtDia2 = (TextView) findViewById(R.id.txtDia2);
         txtConductores = (TextView) findViewById(R.id.txtConductores);
         //webview = (WebView) findViewById(R.id.webview);
-        txtWeb = (TextView) findViewById(R.id.txtWeb);
-        txtTel = (TextView) findViewById(R.id.txtTelefono);
-        txtFace = (TextView) findViewById(R.id.txtFacebook);
-        txtTwi = (TextView) findViewById(R.id.txtTwitter);
-        txtEscuchar = (TextView) findViewById(R.id.txtEscuchar);
-        imgEscuchar = (ImageView) findViewById(R.id.imgEscuchar);
+        //txtWeb = (TextView) findViewById(R.id.txtWeb);
+        //txtTel = (TextView) findViewById(R.id.txtTelefono);
+        //txtFace = (TextView) findViewById(R.id.txtFacebook);
+        //txtTwi = (TextView) findViewById(R.id.txtTwitter);
+        //txtEscuchar = (TextView) findViewById(R.id.txtEscuchar);
+        //imgEscuchar = (ImageView) findViewById(R.id.imgEscuchar);
 
 
-        txtEscuchar.setOnClickListener(new View.OnClickListener() {
+        /*txtEscuchar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showAlertEscuchar("Escuchar en vivo", "Para poder escuchar saldra de la aplicacion y puede generarle consumos de su plan de datos");
@@ -156,7 +157,7 @@ public class DetalleActivity extends AppCompatActivity {
             public void onClick(View view) {
                 showAlertEscuchar("Escuchar en vivo", "Para poder escuchar saldra de la aplicacion y puede generarle consumos de su plan de datos");
             }
-        });
+        });*/
         final Realm realm = Realm.getDefaultInstance();
 
         programa = realm.where(Programa.class).equalTo("Id", _id).findFirst();
@@ -166,9 +167,13 @@ public class DetalleActivity extends AppCompatActivity {
             linearEscuchar.setVisibility(View.INVISIBLE);
         }
         this.setTitle(programa.getNombre());
-        Picasso.with(this)
+        /*Picasso.with(this)
                 .load(programa.getImagen())
                 .fit()
+                .into(imagen);*/
+        Glide.with(this)
+                .load(programa.getImagen())
+                .fitCenter()
                 .into(imagen);
         imagen.setImageResource(programa.getImagen());
         txtNombre.setText(programa.getNombre());
@@ -178,7 +183,7 @@ public class DetalleActivity extends AppCompatActivity {
             txtDia2.setText(" -- " + programa.getDiaDos());
         }
         txtConductores.setText(programa.getConductores());
-        txtTel.setText("   " + programa.getTelefono());
+        /*txtTel.setText("   " + programa.getTelefono());
         txtWeb.setText("   " + programa.getWeb());
         txtFace.setText("   " + programa.getFacebook());
         txtTwi.setText("   " + programa.getTwitter());
@@ -210,7 +215,7 @@ public class DetalleActivity extends AppCompatActivity {
                 i.setData(Uri.parse(programa.getWeb().toString()));
                 startActivity(i);
             }
-        });
+        });*/
 
         DisplayMetrics displaymetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
@@ -243,7 +248,7 @@ public class DetalleActivity extends AppCompatActivity {
                 }
             }
         });*/
-        materialDesignFAM = (FloatingActionMenu) findViewById(R.id.material_design_android_floating_action_menu);
+/*        materialDesignFAM = (FloatingActionMenu) findViewById(R.id.material_design_android_floating_action_menu);
         floatingActionButton1 = (FloatingActionButton) findViewById(R.id.material_design_floating_action_menu_item1);
         floatingActionButton2 = (FloatingActionButton) findViewById(R.id.material_design_floating_action_menu_item2);
         if (programa.isFavorito()) {
@@ -287,7 +292,7 @@ public class DetalleActivity extends AppCompatActivity {
                     updateNotificar(programa, true, realm);
                 }
             }
-        });
+        });*/
     }
 
     private void updateNotificar(Programa programa, boolean notificar, Realm realm) {

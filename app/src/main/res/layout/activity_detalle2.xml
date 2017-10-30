@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.40">
+
+        <ImageView
+            android:id="@+id/imagenPrograma"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:elevation="5dp"
+            android:src="@drawable/lacicloneta"/>
+
+    </FrameLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.10"
+        android:orientation="horizontal"
+        android:background="@drawable/border_shadow_all"
+        android:layout_marginBottom="10dp">
+        <ImageView
+            android:id="@+id/imagenTelefono"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:elevation="5dp"
+            android:layout_weight="0.25"
+            android:src="@drawable/iconphone"/>
+        <ImageView
+            android:id="@+id/imagenWeb"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:elevation="5dp"
+            android:layout_weight="0.25"
+            android:src="@drawable/iconchrome"/>
+        <ImageView
+            android:id="@+id/imagenFacebook"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:elevation="5dp"
+            android:layout_weight="0.25"
+            android:src="@drawable/iconfacebook"/>
+        <ImageView
+            android:id="@+id/imagenTwitter"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:elevation="5dp"
+            android:layout_weight="0.25"
+            android:src="@drawable/icontwitter"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.50"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txtNombre2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
+                android:textStyle="bold" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txtConductores"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txtEmisora"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" -- "
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead" />
+
+            <TextView
+                android:id="@+id/txtDia1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead" />
+
+            <TextView
+                android:id="@+id/txtDia2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead" />
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>
