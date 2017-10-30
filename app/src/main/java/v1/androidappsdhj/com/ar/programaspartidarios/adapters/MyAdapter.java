@@ -2,12 +2,14 @@ package v1.androidappsdhj.com.ar.programaspartidarios.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -79,7 +81,17 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             }
 
             //Picasso
-            Picasso.with(context).load(programa.getImagen()).fit().into(imageViewPoster);
+
+            //Picasso.with(context).load(programa.getImagen()).fit().into(imageViewPoster);
+            //Glide
+            Log.i("Dario",programa.getNombre());
+            Glide.with(context)
+                    .load(programa.getImagen())
+                    .centerCrop()
+                    .placeholder(R.drawable.coloresazulgrana)
+                    .into(imageViewPoster);
+
+
             //imageViewPoster.setImageResource(movie.getPoster());
 
             //Definimos que por cada elemento de nuestro RecyclerView, tenemos un clickListener

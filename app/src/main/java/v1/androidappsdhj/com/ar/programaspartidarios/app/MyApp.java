@@ -32,22 +32,9 @@ public class MyApp extends Application {
         //SystemClock.sleep(3000);
         prefs = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
         //prefs.edit().remove("firstTime").apply();
-<<<<<<< HEAD
-        //Abrimos la base de datos en modo escritura
-<<<<<<< HEAD
-        //programaHelper = new ProgramaSQLiteHelper(this,"Programas1",null,3);
-        //db = programaHelper.getWritableDatabase();
-=======
->>>>>>> parent of cf4596a... Cambiando a ListView IV no se ven los listados
-=======
-        programaHelper = new ProgramaSQLiteHelper(this,"Programas1",null,3);
-        db = programaHelper.getWritableDatabase();
->>>>>>> parent of 027a0f0... Migrando a SQLite III
+
         initRealm();
-
-
-}
-
+        }
     private boolean validarFirstTime() {
         return prefs.getBoolean("firstTime", false);
     }
@@ -80,10 +67,6 @@ public class MyApp extends Application {
     }
 
     private void actualizarListaProgramas() {
-        Programa laCicloneta =  realm.where(Programa.class).equalTo("nombre", "La Cicloneta").findFirst();
-        Log.i("LA CICLONETA ID: ",""+ laCicloneta.getId());
-        Log.i("LA CICLONETA Nombre: ",""+ laCicloneta.getNombre());
-        Log.i("LA CICLONETA Imagen: ", ""+laCicloneta.getImagen());
         Programa programa = realm.where(Programa.class).equalTo("nombre","A Todo San Lorenzo").findFirst();
         realm.beginTransaction();
         programa.setTwitter("https://twitter.com/ATodoSanLorenzo");
@@ -95,64 +78,8 @@ public class MyApp extends Application {
         realm.copyToRealmOrUpdate(programa);
         realm.commitTransaction();
 
-<<<<<<< HEAD
-        removeAll();
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        //Abrimos la base de datos en modo escritura
-<<<<<<< HEAD
-<<<<<<< HEAD
-        programaHelper = new ProgramaSQLiteHelper(this,"Programas1",null,3);
-=======
-        programaHelper = new ProgramaSQLiteHelper(this,"Programas1",null,1);
->>>>>>> parent of cf4596a... Cambiando a ListView IV no se ven los listados
-=======
-        programaHelper = new ProgramaSQLiteHelper(this,"Programas1",null,2);
->>>>>>> parent of 027a0f0... Migrando a SQLite III
-        db = programaHelper.getWritableDatabase();
-        insertarEnSQLite(programa);
 
 
-=======
->>>>>>> parent of 64e82a2... Migrando a SQLite I
-=======
->>>>>>> parent of 64e82a2... Migrando a SQLite I
-        saveOnPreferences("aplicaUpdate10");
-=======
-        saveOnPreferences("aplicaUpdate2");
->>>>>>> parent of 42874ea... Intentando refrescar el recyclerview V
-=======
-        //Copio a realm los programas existentes
-        for (int j = 0; j < listaB.size();j++ ) {
-            Programa prog = listaB.get(j);
-            realm.beginTransaction();
-            realm.copyToRealmOrUpdate(prog);
-            realm.commitTransaction();
-<<<<<<< HEAD
-        }*/
-        saveOnPreferences("hayUpdate3");
->>>>>>> parent of a524c47... Intentando refrescar el recyclerview III
-=======
-=======
-        for (int j = 0; j < listaB.size();j++ ) {
-            Programa prog = listaB.get(j);
-            Log.i("PP",prog.getId()+"");
->>>>>>> parent of f142c38... Ver. 1.2.1
-        }
->>>>>>> parent of 0e26300... Intentando refrescar el recyclerview
-
-        /*Programa laCicloneta =  realm.where(Programa.class).equalTo("nombre", "La Cicloneta").findFirst();
-        Log.i("LA CICLONETA ID: ",""+ laCicloneta.getId());
-        Log.i("LA CICLONETA Nombre: ",""+ laCicloneta.getNombre());
-        Log.i("LA CICLONETA Imagen: ", ""+laCicloneta.getImagen()); */
-
-/*
-=======
->>>>>>> parent of 6f3915b... Arreglo primera parte - CLONE
         realm.beginTransaction();
         Programa p1000 = new Programa("La Botica de Boedo", R.drawable.laboticadeboedo, "Daniel Hector Aspiro", "AM970","No disponible","No disponible","https://twitter.com/BoticaBoedo","No disponible","No disponible",false,false,false,false,true,false,false,false,"Viernes 22Hs","","AM","http://tunein.com/radio/Radio-G%C3%A9nesis-970-s228340/",false,false,"LaBoticaDeBoedo",false,false,true);
         realm.copyToRealm(p1000);
@@ -238,10 +165,6 @@ public class MyApp extends Application {
 
                 saveOnPreferences("firstTime");
                 //saveOnPreferences("hayUpdate");
-                Programa laCicloneta =  realm.where(Programa.class).equalTo("nombre", "La Cicloneta").findFirst();
-                Log.i("LA CICLONETA ID: ",""+ laCicloneta.getId());
-                Log.i("LA CICLONETA Nombre: ",""+ laCicloneta.getNombre());
-                Log.i("LA CICLONETA Imagen: ", ""+laCicloneta.getImagen());
             }
         });
     }
