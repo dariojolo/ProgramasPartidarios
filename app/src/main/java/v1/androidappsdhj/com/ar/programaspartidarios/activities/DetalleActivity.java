@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -24,19 +25,17 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
-import com.google.firebase.messaging.FirebaseMessaging;
-//import com.squareup.picasso.Picasso;
 
 import io.realm.Realm;
 import v1.androidappsdhj.com.ar.programaspartidarios.R;
 import v1.androidappsdhj.com.ar.programaspartidarios.app.MyApp;
 import v1.androidappsdhj.com.ar.programaspartidarios.models.Programa;
+
+//import com.squareup.picasso.Picasso;
 
 
 public class DetalleActivity extends AppCompatActivity {
@@ -170,12 +169,18 @@ public class DetalleActivity extends AppCompatActivity {
         /*Picasso.with(this)
                 .load(programa.getImagen())
                 .fit()
-                .into(imagen);*/
+                .into(imagen);
         Glide.with(this)
                 .load(programa.getImagen())
                 .fitCenter()
-                .into(imagen);
-        imagen.setImageResource(programa.getImagen());
+                .into(imagen);*/
+        Drawable drawable = this.getResources().getDrawable(programa.getImagen());
+
+        final Uri localImageUri = Uri.parse("res:/" + drawable);
+        //final Uri imageUri = Uri.parse("https://lh3.googleusercontent.com/-voUmhKJzNHc/VSJaPfSJ2pI/AAAAAAAABKw/-oFVzRZxI40/w140-h105-p/fresh_green_grass_bokeh-wallpaper-1024x768.jpg");
+
+        imagen.setImageURI(localImageUri);
+       // imagen.setImageResource(programa.getImagen());
         txtNombre.setText(programa.getNombre());
         txtEmisora.setText(programa.getEmisora());
         txtDia1.setText(programa.getDiaUno());

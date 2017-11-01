@@ -1,15 +1,14 @@
 package v1.androidappsdhj.com.ar.programaspartidarios.adapters;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-
-import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -83,10 +82,21 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             //  Picasso.with(context).load(programa.getImagen()).fit().into(imageViewPoster);
             //imageViewPoster.setImageResource(movie.getPoster());
 
-            Glide.with(context)
+           /* Glide.with(context)
                     .load(programa.getImagen())
                     .fitCenter()
-                    .into(imageViewPoster);
+                    .into(imageViewPoster);*/
+
+            //final Uri imageUri = Uri.parse(programa.getImagen());
+
+            Drawable drawable = context.getResources().getDrawable(programa.getImagen());
+
+            final Uri localImageUri = Uri.parse("res:/" + drawable);
+            //final Uri imageUri = Uri.("android.resource://v1.androidappsdhj.com.ar.programaspartidarios/drawable/");
+
+            imageViewPoster.setImageURI(localImageUri);
+
+
             //Definimos que por cada elemento de nuestro RecyclerView, tenemos un clickListener
             //Que se comporta de la siguiente manera
             itemView.setOnClickListener(new View.OnClickListener() {

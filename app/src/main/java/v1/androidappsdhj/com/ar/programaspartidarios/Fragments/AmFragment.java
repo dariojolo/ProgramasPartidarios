@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
 
 import java.util.List;
 
@@ -60,9 +59,9 @@ public class AmFragment extends Fragment  implements RealmChangeListener<RealmRe
         editor.putInt("fragment", 1);
         editor.apply();
 
-       // AdView mAdView = (AdView) view.findViewById(R.id.adView);
-       // AdRequest adRequest = new AdRequest.Builder().build();
-       // mAdView.loadAd(adRequest);
+        AdView mAdView = (AdView) view.findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         //RelativeLayout fl = (RelativeLayout) inflater.inflate(R.layout.fragment_am, container, false);
         //recycler = (RecyclerView) fl.findViewById(R.id.recyclerView2);

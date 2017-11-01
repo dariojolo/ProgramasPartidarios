@@ -3,8 +3,10 @@ package v1.androidappsdhj.com.ar.programaspartidarios.app;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
+
+import java.io.File;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import io.realm.Realm;
@@ -32,6 +34,9 @@ public class MyApp extends Application {
         //SystemClock.sleep(3000);
         prefs = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
         //prefs.edit().remove("firstTime").apply();
+
+        Fresco.initialize(this);
+        deleteDirectoryTree(getApplicationContext().getCacheDir());
 
         initRealm();
         }
@@ -168,7 +173,18 @@ public class MyApp extends Application {
             }
         });
     }
+    /**
+     * Deletes a directory tree recursively.
+     */
+    public static void deleteDirectoryTree(File fileOrDirectory) {
+        if (fileOrDirectory.isDirectory()) {
+            for (File child : fileOrDirectory.listFiles()) {
+                deleteDirectoryTree(child);
+            }
+        }
 
+        fileOrDirectory.delete();
+    }
     /*  Para enviar mensajes a Whatsapp
     public void onClickWhatsApp(View view) {
 
