@@ -25,6 +25,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.github.clans.fab.FloatingActionMenu;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
@@ -169,17 +172,26 @@ public class DetalleActivity extends AppCompatActivity {
         /*Picasso.with(this)
                 .load(programa.getImagen())
                 .fit()
-                .into(imagen);
-        Glide.with(this)
+                .into(imagen);*/
+        /*Glide.with(this)
                 .load(programa.getImagen())
                 .fitCenter()
                 .into(imagen);*/
-        Drawable drawable = this.getResources().getDrawable(programa.getImagen());
+        Glide.with(this)
+                .load(programa.getImagen())
+                .apply(new RequestOptions()
+                        .diskCacheStrategy(DiskCacheStrategy.NONE)
+                        .skipMemoryCache(true)
+                    .fitCenter()
+                    .placeholder(R.drawable.coloresazulgrana)
+                )
+                .into(imagen);
+        // Drawable drawable = this.getResources().getDrawable(programa.getImagen());
 
-        final Uri localImageUri = Uri.parse("res:/" + drawable);
+        //final Uri localImageUri = Uri.parse("res:/" + drawable);
         //final Uri imageUri = Uri.parse("https://lh3.googleusercontent.com/-voUmhKJzNHc/VSJaPfSJ2pI/AAAAAAAABKw/-oFVzRZxI40/w140-h105-p/fresh_green_grass_bokeh-wallpaper-1024x768.jpg");
 
-        imagen.setImageURI(localImageUri);
+        //imagen.setImageURI(localImageUri);
        // imagen.setImageResource(programa.getImagen());
         txtNombre.setText(programa.getNombre());
         txtEmisora.setText(programa.getEmisora());

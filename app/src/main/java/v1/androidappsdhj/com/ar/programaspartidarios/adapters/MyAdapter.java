@@ -10,6 +10,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
+
 import java.util.List;
 
 import v1.androidappsdhj.com.ar.programaspartidarios.R;
@@ -26,14 +30,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     private OnItemClickListener itemClickListener;
     private Context context;
 
-
     public MyAdapter(List<Programa> programas, int layout,OnItemClickListener itemClickListener) {
         this.programas = programas;
         this.layout = layout;
         this.itemClickListener = itemClickListener;
-
     }
-
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -41,7 +42,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         context = parent.getContext();
         ViewHolder vh = new ViewHolder(v);
         return vh;
-
     }
 
     @Override
@@ -81,21 +81,19 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             //Picasso
             //  Picasso.with(context).load(programa.getImagen()).fit().into(imageViewPoster);
             //imageViewPoster.setImageResource(movie.getPoster());
-
            /* Glide.with(context)
                     .load(programa.getImagen())
                     .fitCenter()
                     .into(imageViewPoster);*/
-
-            //final Uri imageUri = Uri.parse(programa.getImagen());
-
-            Drawable drawable = context.getResources().getDrawable(programa.getImagen());
-
-            final Uri localImageUri = Uri.parse("res:/" + drawable);
-            //final Uri imageUri = Uri.("android.resource://v1.androidappsdhj.com.ar.programaspartidarios/drawable/");
-
-            imageViewPoster.setImageURI(localImageUri);
-
+            Glide.with(context)
+                    .load(programa.getImagen())
+                    .apply(new RequestOptions()
+                            .diskCacheStrategy(DiskCacheStrategy.NONE)
+                            .skipMemoryCache(true)
+                            //.optionalFitCenter()
+                            .placeholder(R.drawable.coloresazulgrana)
+                    )
+                    .into(imageViewPoster);
 
             //Definimos que por cada elemento de nuestro RecyclerView, tenemos un clickListener
             //Que se comporta de la siguiente manera
@@ -110,6 +108,4 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     public interface OnItemClickListener {
         void onItemClick(Programa programa, int position);
     }
-
-
 }
