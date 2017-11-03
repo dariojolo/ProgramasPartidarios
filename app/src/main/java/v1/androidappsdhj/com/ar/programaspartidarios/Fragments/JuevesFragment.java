@@ -52,7 +52,7 @@ public class JuevesFragment extends Fragment implements RealmChangeListener<Real
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_jueves, container, false);
+        view = inflater.inflate(R.layout.fragment_am, container, false);
 
         SharedPreferences prefs;
         prefs = this.getActivity().getSharedPreferences("Preferences", Context.MODE_PRIVATE);

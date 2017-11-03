@@ -52,7 +52,7 @@ public class FmFragment extends Fragment implements RealmChangeListener<RealmRes
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_fm, container, false);
+        view = inflater.inflate(R.layout.fragment_am, container, false);
 
         SharedPreferences prefs;
         prefs = this.getActivity().getSharedPreferences("Preferences", Context.MODE_PRIVATE);
@@ -70,7 +70,7 @@ public class FmFragment extends Fragment implements RealmChangeListener<RealmRes
         programasR = getAllProgramasR();
         programasR.addChangeListener(this);
 
-        recycler = (RecyclerView) view.findViewById(R.id.recyclerView3);
+        recycler = (RecyclerView) view.findViewById(R.id.recyclerView2);
         layoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
         adapter = new MyAdapter(programasR, R.layout.list_item_recycler, new MyAdapter.OnItemClickListener() {
             @Override
@@ -83,11 +83,6 @@ public class FmFragment extends Fragment implements RealmChangeListener<RealmRes
             }
         });
 
-        //Probando posicion
-        //int index = layoutManager.findFirstVisibleItemPosition();
-        //layoutManager.
-        //View v = linearLayoutManager.getChildAt(0);
-        //int top = (v == null) ? 0 : (v.getTop() - linearLayoutManager.getPaddingTop());
 
         //Este metodo se puede usar cuando sabemos que el layout del recycler no van a cambiar de tamaño
         recycler.setHasFixedSize(true);

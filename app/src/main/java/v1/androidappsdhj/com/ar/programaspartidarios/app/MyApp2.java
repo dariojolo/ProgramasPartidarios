@@ -3,8 +3,8 @@ package v1.androidappsdhj.com.ar.programaspartidarios.app;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.widget.Toast;
 
-import java.io.File;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import io.realm.Realm;
@@ -15,10 +15,10 @@ import v1.androidappsdhj.com.ar.programaspartidarios.R;
 import v1.androidappsdhj.com.ar.programaspartidarios.models.Programa;
 
 /**
- * Created by rodrigrl on 09/05/2017.
+ * Created by rodrigrl on 03/11/2017.
  */
 
-public class MyApp extends Application {
+public class MyApp2 extends Application{
 
     private Realm realm;
     public static AtomicInteger ProgramaID = new AtomicInteger();
@@ -32,11 +32,11 @@ public class MyApp extends Application {
         //SystemClock.sleep(3000);
         prefs = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
         //prefs.edit().remove("firstTime").apply();
-
-        //PicassoTools.clearCache(Picasso.with(getApplicationContext()));
-
         initRealm();
-        }
+
+
+    }
+
     private boolean validarFirstTime() {
         return prefs.getBoolean("firstTime", false);
     }
@@ -63,35 +63,56 @@ public class MyApp extends Application {
             iniciarListaProgramas();
         }else if(!validarHayUpdate()) {
             actualizarListaProgramas();
+            Toast.makeText(getApplicationContext(), "Actualizacion", Toast.LENGTH_LONG).show();
         }
-
         realm.close();
     }
 
     private void actualizarListaProgramas() {
+        //Actualizo programas existentes con errores
+        //Actualizo A todo san lorenzo
         Programa programa = realm.where(Programa.class).equalTo("nombre","A Todo San Lorenzo").findFirst();
         realm.beginTransaction();
         programa.setTwitter("https://twitter.com/ATodoSanLorenzo");
         realm.copyToRealmOrUpdate(programa);
         realm.commitTransaction();
+        //Actualizo A todo ciclon
         programa = realm.where(Programa.class).equalTo("nombre","A Todo Ciclón").findFirst();
         realm.beginTransaction();
+        programa.setLink("https://tunein.com/radio/radio-federal-am-810-s293827/");
         programa.setFacebook("https://www.facebook.com/Atodociclonsl-791938394307854/");
         realm.copyToRealmOrUpdate(programa);
         realm.commitTransaction();
-
-
-
+        //Actualizo El plateista
+        programa = realm.where(Programa.class).equalTo("nombre","El Plateista").findFirst();
         realm.beginTransaction();
-        Programa p1000 = new Programa("La Botica de Boedo", R.drawable.zlaboticadeboedo, "Daniel Hector Aspiro", "AM970","No disponible","No disponible","https://twitter.com/BoticaBoedo","No disponible","No disponible",false,false,false,false,true,false,false,false,"Viernes 22Hs","","AM","http://tunein.com/radio/Radio-G%C3%A9nesis-970-s228340/",false,false,"LaBoticaDeBoedo",false,false,true);
-        realm.copyToRealm(p1000);
+        programa.setLink("https://tunein.com/radio/radio-federal-am-810-s293827/");
+        realm.copyToRealmOrUpdate(programa);
+        realm.commitTransaction();
+        //Actualizo Mundo Azulgrana Radio
+        programa = realm.where(Programa.class).equalTo("nombre","Mundo Azulgrana radio").findFirst();
+        realm.beginTransaction();
+        programa.setLink("https://tunein.com/radio/radio-federal-am-810-s293827/");
+        realm.copyToRealmOrUpdate(programa);
         realm.commitTransaction();
 
-        saveOnPreferences("hayUpdate");
+        //Agrego el programa nuevo
+        Programa pr = new Programa("La Botica de Boedo", R.drawable.laboticadeboedo, "Daniel Hector Aspiro", "AM970","No disponible","No disponible","https://twitter.com/BoticaBoedo","No disponible","No disponible",false,false,false,false,true,false,false,false,"Viernes 22Hs","","AM","http://tunein.com/radio/Radio-G%C3%A9nesis-970-s228340/",false,false,"LaBoticaDeBoedo",false,false,true);
+        realm.beginTransaction();
+        realm.copyToRealmOrUpdate(pr);
+        realm.commitTransaction();
+        Programa pr2 = new Programa("Pintalo de cuervo", R.drawable.zzpintalodecuervo, "Ariel Petrosino - Leonardo Álvarez - Gustavo Lavalle", "www.larz.com.ar","No disponible","No disponible","https://twitter.com/pdcuervo2017","https://www.facebook.com/1982pdc/","No disponible",true,false,false,false,false,false,false,false,"Lunes 22Hs","","","http://www.larz.com.ar",false,false,"PintalodeCuervo",false,false,true);
+        realm.beginTransaction();
+        realm.copyToRealmOrUpdate(pr2);
+        realm.commitTransaction();
+
+
+        saveOnPreferences("aplicaUpdate10");
+
     }
 
     private boolean validarHayUpdate() {
-        return prefs.getBoolean("hayUpdate", false);
+        return prefs.getBoolean("aplicaUpdate10", false);
     }
 
     private <T extends RealmObject>  AtomicInteger setAtomicId(Realm realm, Class<T>anyClass){
@@ -104,6 +125,7 @@ public class MyApp extends Application {
         realm.commitTransaction();
     }
     private void iniciarListaProgramas(){
+        // removeAll();
         realm.executeTransaction(new Realm.Transaction(){
 
             @Override
@@ -132,10 +154,12 @@ public class MyApp extends Application {
                 Programa p22 = new Programa("San Lorenzo eterno", R.drawable.sanlorenzoeternonew,"Marcelo Culotta","AM970","sanlorenzoeterno@gmail.com","No disponible","https://twitter.com/sleterno","https://www.facebook.com/SanLorenzoEterno/","4926-1622",false,true,false,false,false,false,false,false,"Martes 20Hs","","AM","http://tunein.com/radio/Radio-G%C3%A9nesis-970-s228340/",false,false,"SanLorenzoEterno",false,false,true);
                 Programa p23 = new Programa("San Lorenzo mi pasión", R.drawable.sanlorenzomipasionnew,"Víctor Federico","AM970","victorfederico970@gmail.com","No disponible","https://twitter.com/vueltaboedo","https://www.facebook.com/victor.federico.7","No disponible",false,false,false,false,false,true,false,false,"Sábados 12Hs","","AM","http://tunein.com/radio/Radio-G%C3%A9nesis-970-s228340/",false,false,"SanLorenzoMiPasion",true,false,false);
                 Programa p24 = new Programa("Sentimiento Azulgrana", R.drawable.sentimientoazulgrana,"Mario Massi","AM890","alejogarcia10@hotmail.com","No disponible","No disponible","https://www.facebook.com/profile.php?id=100006642735130","No disponible",false,false,false,false,false,false,false,true,"Días de partidos","","AM","http://tunein.com/radio/Radio-Libre-890-s137009/",false,false,"SentimientoAzulGrana",false,false,false);
-                //Programa p25 = new Programa("Simplemente San Lorenzo", R.drawable.simplementesanlorenzo,"Gustavo Bennasar y Adrián Disabato", "AM610", "simplementesanlorenzo@hotmail.com","http://simplementesanlorenzoweb.blogspot.com.ar/","No disponible","https://www.facebook.com/SimplementeSanLorenzo/","4542-6500",false,false,false,false,true,false,false,false,"Viernes 14hs","","AM","http://tunein.com/radio/AM610-Radio-General-San-Martin-s253609/",false,false,"SimplementeSanLorenzo",false,true,true);
+                Programa p25 = new Programa("Simplemente San Lorenzo", R.drawable.simplementesanlorenzo,"Gustavo Bennasar y Adrián Disabato", "AM610", "simplementesanlorenzo@hotmail.com","http://simplementesanlorenzoweb.blogspot.com.ar/","No disponible","https://www.facebook.com/SimplementeSanLorenzo/","4542-6500",false,false,false,false,true,false,false,false,"Viernes 14hs","","AM","http://tunein.com/radio/AM610-Radio-General-San-Martin-s253609/",false,false,"SimplementeSanLorenzo",false,true,true);
                 Programa p26 = new Programa("Soy San Lorenzo", R.drawable.soysanlorenzo,"Mario Andrés Benigni","AM690","soysanlorenzo@gmail.com","http://www.soysanlorenzo.com.ar/","https://twitter.com/cirujanomb","https://www.facebook.com/soysan.lorenzo.3", "46425533 / 46425315 / 15-5335-0310",true,true,true,true,true,false,false,false,"Lunes a Viernes 23Hs","","AM","http://tunein.com/radio/K24-s288566/",false,false,"SoySanLorenzo",false,false,true );
                 Programa p27 = new Programa("Equipo Desafío TV", R.drawable.equipodesafio,"Julio Axel yPablo Sassone","Canal 360TV","mensajes@equipodesafio.com","http://www.equipodesafio.com/","https://twitter.com/equipodesafio","https://www.facebook.com/Equipo-Desaf%C3%ADo-362011670569256/","No disponible",false,true,true,false,false,false,false,false,"Martes 20Hs","Miércoles 13Hs","TV","",false,false,"EquipoDesafioTV",false,true,true );
-             //   Programa p28 = new Programa("La Botica de Boedo", R.drawable.zlaboticadeboedo, "Daniel Hector Aspiro", "AM970","No disponible","No disponible","https://twitter.com/BoticaBoedo","No disponible","No disponible",false,false,false,false,true,false,false,false,"Viernes 22Hs","","AM","http://tunein.com/radio/Radio-G%C3%A9nesis-970-s228340/",false,false,"LaBoticaDeBoedo",false,false,true);
+                Programa p28 = new Programa("La Botica de Boedo", R.drawable.laboticadeboedo, "Daniel Hector Aspiro", "AM970","No disponible","No disponible","https://twitter.com/BoticaBoedo","No disponible","No disponible",false,false,false,false,true,false,false,false,"Viernes 22Hs","","AM","http://tunein.com/radio/Radio-G%C3%A9nesis-970-s228340/",false,false,"LaBoticaDeBoedo",false,false,true);
+                Programa p29 = new Programa("Pintalo de cuervo", R.drawable.zzpintalodecuervo, "Ariel Petrosino - Leonardo Álvarez - Gustavo Lavalle", "www.larz.com.ar","No disponible","No disponible","https://twitter.com/pdcuervo2017","https://www.facebook.com/1982pdc/","No disponible",true,false,false,false,false,false,false,false,"Lunes 22Hs","","","http://www.larz.com.ar",false,false,"PintalodeCuervo",false,false,true);
+
                 realm.copyToRealmOrUpdate(p1);
                 realm.copyToRealmOrUpdate(p2);
                 realm.copyToRealmOrUpdate(p3);
@@ -160,52 +184,35 @@ public class MyApp extends Application {
                 realm.copyToRealmOrUpdate(p22);
                 realm.copyToRealmOrUpdate(p23);
                 realm.copyToRealmOrUpdate(p24);
-                //realm.copyToRealmOrUpdate(p25);
+                realm.copyToRealmOrUpdate(p25);
                 realm.copyToRealmOrUpdate(p26);
                 realm.copyToRealmOrUpdate(p27);
-            //    realm.copyToRealmOrUpdate(p28);
+                realm.copyToRealmOrUpdate(p28);
+                realm.copyToRealmOrUpdate(p29);
 
                 saveOnPreferences("firstTime");
-                //saveOnPreferences("hayUpdate");
+                saveOnPreferences("aplicaUpdate10");
             }
         });
     }
-    /**
-     * Deletes a directory tree recursively.
-     */
-    public static void deleteDirectoryTree(File fileOrDirectory) {
-        if (fileOrDirectory.isDirectory()) {
-            for (File child : fileOrDirectory.listFiles()) {
-                deleteDirectoryTree(child);
-            }
-        }
 
-        fileOrDirectory.delete();
-    }
     /*  Para enviar mensajes a Whatsapp
     public void onClickWhatsApp(View view) {
-
     PackageManager pm=getPackageManager();
     try {
-
         Intent waIntent = new Intent(Intent.ACTION_SEND);
         waIntent.setType("text/plain");
         String text = "YOUR TEXT HERE";
-
         PackageInfo info=pm.getPackageInfo("com.whatsapp", PackageManager.GET_META_DATA);
         //Check if package exists or not. If not then code
         //in catch block will be called
         waIntent.setPackage("com.whatsapp");
-
         waIntent.putExtra(Intent.EXTRA_TEXT, text);
         startActivity(Intent.createChooser(waIntent, "Share with"));
-
    } catch (NameNotFoundException e) {
         Toast.makeText(this, "WhatsApp not Installed", Toast.LENGTH_SHORT)
                 .show();
    }
-
 }
      */
 }
-

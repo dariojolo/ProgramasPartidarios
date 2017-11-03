@@ -52,7 +52,7 @@ public class ViernesFragment extends Fragment implements RealmChangeListener<Rea
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_viernes, container, false);
+        view = inflater.inflate(R.layout.fragment_am, container, false);
 
         AdView mAdView = (AdView) view.findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();

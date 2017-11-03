@@ -63,9 +63,6 @@ public class AmFragment extends Fragment  implements RealmChangeListener<RealmRe
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
-        //RelativeLayout fl = (RelativeLayout) inflater.inflate(R.layout.fragment_am, container, false);
-        //recycler = (RecyclerView) fl.findViewById(R.id.recyclerView2);
-
         realm = Realm.getDefaultInstance();
 
         programasR = getAllProgramasR();

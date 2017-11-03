@@ -8,6 +8,8 @@
     <color name="fondoGris">#191818</color>
     <color name="fondoGrisClaro">#292626</color>
     <color name="letraBlanca">#f6f6f6</color>
-
+    <color name="background_button">#af0707</color>
+    <color name="background_button2">#06dad7</color>
+    <color name="color_azul">#080333</color>
     <color name="black_overlay">#66000000</color>
 </resources>

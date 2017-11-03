@@ -6,7 +6,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -20,18 +19,18 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.request.RequestOptions;
 import com.github.clans.fab.FloatingActionMenu;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
+import com.squareup.picasso.Picasso;
 
 import io.realm.Realm;
 import v1.androidappsdhj.com.ar.programaspartidarios.R;
@@ -50,17 +49,14 @@ public class DetalleActivity extends AppCompatActivity {
     private TextView txtDia1;
     private TextView txtDia2;
     private TextView txtConductores;
-    //private TextView txtWeb;
-    //private TextView txtTel;
-    //private TextView txtFace;
-    //private TextView txtTwi;
+
+    private Button btnEscuchar;
+    private ImageView imgWeb;
+    private ImageView imgTel;
+    private ImageView imgFace;
+    private ImageView imgTwi;
     private int _fragment;
-    //private WebView webview;
-    private android.support.design.widget.FloatingActionButton fab;
-    private android.support.design.widget.FloatingActionButton fabNotification;
-    private android.support.design.widget.FloatingActionButton fabfavorite;
-    private LinearLayout notificationLinear;
-    private LinearLayout favouriteLinear;
+
     private boolean favorito;
     private final int INTERNET_CODE = 100;
     private final int PHONE_CODE = 101;
@@ -71,6 +67,9 @@ public class DetalleActivity extends AppCompatActivity {
     private TextView txtEscuchar;
 
     private SharedPreferences prefs;
+
+    private Switch btnFavorito;
+    private Switch btnNotificaciones;
 
     InterstitialAd interstitialAd; // Publicidad Pantalla Completa
 
@@ -85,7 +84,6 @@ public class DetalleActivity extends AppCompatActivity {
 
 
         if (MyApp.contadorPantallas % 5 == 0) {
-
             interstitialAd = new InterstitialAd(this);
             interstitialAd.setAdUnitId("ca-app-pub-2411851199893992/8385419738");
             AdRequest adRequest1 = new AdRequest.Builder().build();
@@ -123,15 +121,8 @@ public class DetalleActivity extends AppCompatActivity {
             _fragment = bundle.getInt("Fragment");
         }
 
-
-      /*  }catch(Exception e){
-            Log.i("TAG","No encontramos el ID");
-            Intent i = new Intent(DetalleActivity.this, MainActivity.class);
-            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            i.putExtra("Fragment", _fragment);
-            startActivity(i);
-        }
-       // _fragment = bundle.getInt("Fragment");*/
+        btnNotificaciones = (Switch) findViewById(R.id.btnNotificaciones);
+        btnFavorito = (Switch) findViewById(R.id.btnFavorito);
 
         imagen = (ImageView) findViewById(R.id.imagenPrograma);
         txtNombre = (TextView) findViewById(R.id.txtNombre2);
@@ -139,27 +130,35 @@ public class DetalleActivity extends AppCompatActivity {
         txtDia1 = (TextView) findViewById(R.id.txtDia1);
         txtDia2 = (TextView) findViewById(R.id.txtDia2);
         txtConductores = (TextView) findViewById(R.id.txtConductores);
-        //webview = (WebView) findViewById(R.id.webview);
-        //txtWeb = (TextView) findViewById(R.id.txtWeb);
-        //txtTel = (TextView) findViewById(R.id.txtTelefono);
-        //txtFace = (TextView) findViewById(R.id.txtFacebook);
-        //txtTwi = (TextView) findViewById(R.id.txtTwitter);
-        //txtEscuchar = (TextView) findViewById(R.id.txtEscuchar);
-        //imgEscuchar = (ImageView) findViewById(R.id.imgEscuchar);
+        imgTel = (ImageView)findViewById(R.id.imagenTelefono);
+        imgTel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String texto = "";
+                if (programa.getTelefono().toString().equals("No disponible")) {
+                    texto = "El telefono no esta disponible o no fue informado por el programa";
+                }else{
+                    texto = programa.getTelefono().toString();
+                    }
+                showAlertInfo("Telefono del programa", texto);
+            }
+        });
+
+        imgWeb = (ImageView) findViewById(R.id.imagenWeb);
+        imgTel = (ImageView) findViewById(R.id.imagenTelefono);
+        imgFace = (ImageView) findViewById(R.id.imagenFacebook);
+        imgTwi = (ImageView) findViewById(R.id.imagenTwitter);
+
+        btnEscuchar = (Button) findViewById(R.id.btnEscuchar);
 
 
-        /*txtEscuchar.setOnClickListener(new View.OnClickListener() {
+        btnEscuchar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showAlertEscuchar("Escuchar en vivo", "Para poder escuchar saldra de la aplicacion y puede generarle consumos de su plan de datos");
             }
         });
-        imgEscuchar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showAlertEscuchar("Escuchar en vivo", "Para poder escuchar saldra de la aplicacion y puede generarle consumos de su plan de datos");
-            }
-        });*/
+
         final Realm realm = Realm.getDefaultInstance();
 
         programa = realm.where(Programa.class).equalTo("Id", _id).findFirst();
@@ -169,30 +168,15 @@ public class DetalleActivity extends AppCompatActivity {
             linearEscuchar.setVisibility(View.INVISIBLE);
         }
         this.setTitle(programa.getNombre());
-        /*Picasso.with(this)
+        Picasso.with(this)
                 .load(programa.getImagen())
                 .fit()
-                .into(imagen);*/
-        /*Glide.with(this)
-                .load(programa.getImagen())
-                .fitCenter()
-                .into(imagen);*/
-        Glide.with(this)
-                .load(programa.getImagen())
-                .apply(new RequestOptions()
-                        .diskCacheStrategy(DiskCacheStrategy.NONE)
-                        .skipMemoryCache(true)
-                    .fitCenter()
-                    .placeholder(R.drawable.coloresazulgrana)
-                )
                 .into(imagen);
-        // Drawable drawable = this.getResources().getDrawable(programa.getImagen());
 
-        //final Uri localImageUri = Uri.parse("res:/" + drawable);
-        //final Uri imageUri = Uri.parse("https://lh3.googleusercontent.com/-voUmhKJzNHc/VSJaPfSJ2pI/AAAAAAAABKw/-oFVzRZxI40/w140-h105-p/fresh_green_grass_bokeh-wallpaper-1024x768.jpg");
+        btnNotificaciones.setChecked(programa.isNotificar());
+        btnFavorito.setChecked(programa.isFavorito());
 
-        //imagen.setImageURI(localImageUri);
-       // imagen.setImageResource(programa.getImagen());
+
         txtNombre.setText(programa.getNombre());
         txtEmisora.setText(programa.getEmisora());
         txtDia1.setText(programa.getDiaUno());
@@ -200,39 +184,37 @@ public class DetalleActivity extends AppCompatActivity {
             txtDia2.setText(programa.getDiaDos());
         }
         txtConductores.setText(programa.getConductores());
-        /*txtTel.setText("   " + programa.getTelefono());
-        txtWeb.setText("   " + programa.getWeb());
-        txtFace.setText("   " + programa.getFacebook());
-        txtTwi.setText("   " + programa.getTwitter());
 
-        txtTwi.setOnClickListener(new View.OnClickListener() {
+        imgTwi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (txtTwi.getText().toString() != "") {
+                if (programa.getTwitter().toString() != "") {
                     Intent i = new Intent(Intent.ACTION_VIEW);
                     i.setData(Uri.parse(programa.getTwitter().toString()));
                     startActivity(i);
                 }
             }
         });
-        txtFace.setOnClickListener(new View.OnClickListener() {
+        imgFace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (txtFace.getText().toString() != "") {
+                if (programa.getFacebook().toString() != "") {
                     Intent i = new Intent(Intent.ACTION_VIEW);
                     i.setData(Uri.parse(programa.getFacebook().toString()));
                     startActivity(i);
                 }
             }
         });
-        txtWeb.setOnClickListener(new View.OnClickListener() {
+        imgWeb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse(programa.getWeb().toString()));
-                startActivity(i);
+                if (programa.getWeb().toString() != "") {
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+                    i.setData(Uri.parse(programa.getWeb().toString()));
+                    startActivity(i);
+                }
             }
-        });*/
+        });
 
         DisplayMetrics displaymetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
@@ -250,21 +232,39 @@ public class DetalleActivity extends AppCompatActivity {
             fabfavorite.setImageResource(R.drawable.ic_star_on);
         } else {
             fabfavorite.setImageResource(R.drawable.ic_star_off);
-        }
-        fabfavorite.setOnClickListener(new View.OnClickListener() {
+        }*/
+        btnFavorito.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (programa.isFavorito()) {
                     Toast.makeText(DetalleActivity.this, programa.getNombre() + " fue eliminado de favoritos", Toast.LENGTH_SHORT).show();
-                    fabfavorite.setImageResource(R.drawable.ic_star_off);
+                   // fabfavorite.setImageResource(R.drawable.ic_star_off);
+                    btnFavorito.setChecked(false);
                     updateFavorito(programa, false, realm);
                 } else {
                     Toast.makeText(DetalleActivity.this, programa.getNombre() + " fue agregado a favoritos", Toast.LENGTH_SHORT).show();
-                    fabfavorite.setImageResource(R.drawable.ic_star_on);
+                    //fabfavorite.setImageResource(R.drawable.ic_star_on);
+                    btnFavorito.setChecked(true);
                     updateFavorito(programa, true, realm);
                 }
             }
-        });*/
+        });
+        btnNotificaciones.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (programa.isFavorito()) {
+                    Toast.makeText(DetalleActivity.this, programa.getNombre() + " fue eliminado de favoritos", Toast.LENGTH_SHORT).show();
+                    //floatingActionButton1.setImageResource(R.drawable.ic_favorite_off); //off
+                    btnNotificaciones.setChecked(false);
+                    updateNotificar(programa, false, realm);
+                } else {
+                    Toast.makeText(DetalleActivity.this, programa.getNombre() + " fue agregado a favoritos", Toast.LENGTH_SHORT).show();
+                    //floatingActionButton1.setImageResource(R.drawable.ic_favorite_on); //on
+                    btnNotificaciones.setChecked(true);
+                    updateNotificar(programa, true, realm);
+                }
+            }
+        });
 /*        materialDesignFAM = (FloatingActionMenu) findViewById(R.id.material_design_android_floating_action_menu);
         floatingActionButton1 = (FloatingActionButton) findViewById(R.id.material_design_floating_action_menu_item1);
         floatingActionButton2 = (FloatingActionButton) findViewById(R.id.material_design_floating_action_menu_item2);
@@ -279,20 +279,7 @@ public class DetalleActivity extends AppCompatActivity {
             floatingActionButton2.setImageResource(R.drawable.ic_notifications_off); //off
         }
 
-        floatingActionButton1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (programa.isFavorito()) {
-                    Toast.makeText(DetalleActivity.this, programa.getNombre() + " fue eliminado de favoritos", Toast.LENGTH_SHORT).show();
-                    floatingActionButton1.setImageResource(R.drawable.ic_favorite_off); //off
-                    updateFavorito(programa, false, realm);
-                } else {
-                    Toast.makeText(DetalleActivity.this, programa.getNombre() + " fue agregado a favoritos", Toast.LENGTH_SHORT).show();
-                    floatingActionButton1.setImageResource(R.drawable.ic_favorite_on); //on
-                    updateFavorito(programa, true, realm);
-                }
-            }
-        });
+
 
         floatingActionButton2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -443,4 +430,24 @@ public class DetalleActivity extends AppCompatActivity {
         dialog.show();
     }
 
+    private void showAlertInfo(String titulo, String mensaje) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        if (titulo != null) {
+            builder.setTitle(titulo);
+        }
+        if (mensaje != null) {
+            builder.setMessage(mensaje);
+        }
+
+        builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.setNegativeButton("Cancelar", null);
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
 }

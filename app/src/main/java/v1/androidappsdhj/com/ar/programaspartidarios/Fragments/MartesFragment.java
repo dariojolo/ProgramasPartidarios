@@ -52,7 +52,7 @@ public class MartesFragment extends Fragment implements RealmChangeListener<Real
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_martes, container, false);
+        view = inflater.inflate(R.layout.fragment_am, container, false);
         //RelativeLayout fl = (RelativeLayout) inflater.inflate(R.layout.fragment_am, container, false);
         //recycler = (RecyclerView) fl.findViewById(R.id.recyclerView2);
 

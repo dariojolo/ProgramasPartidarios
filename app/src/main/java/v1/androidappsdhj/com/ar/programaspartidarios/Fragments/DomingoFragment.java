@@ -52,7 +52,7 @@ public class DomingoFragment extends Fragment  implements RealmChangeListener<Re
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_domingo, container, false);
+        view = inflater.inflate(R.layout.fragment_am, container, false);
 
         SharedPreferences prefs;
         prefs = this.getActivity().getSharedPreferences("Preferences", Context.MODE_PRIVATE);

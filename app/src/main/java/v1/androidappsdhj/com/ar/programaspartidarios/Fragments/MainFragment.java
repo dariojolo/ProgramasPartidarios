@@ -61,7 +61,7 @@ public class MainFragment extends Fragment implements RealmChangeListener<RealmR
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_main, container, false);
+        view = inflater.inflate(R.layout.fragment_am, container, false);
         RelativeLayout fl = (RelativeLayout) inflater.inflate(R.layout.fragment_main, container, false);
         recycler = (RecyclerView) fl.findViewById(R.id.recyclerView);
 
@@ -83,7 +83,7 @@ public class MainFragment extends Fragment implements RealmChangeListener<RealmR
         programasR = getAllProgramasR();
         programasR.addChangeListener(this);
         // programas = getAllProgramas();
-        recycler = (RecyclerView) view.findViewById(R.id.recyclerView);
+        recycler = (RecyclerView) view.findViewById(R.id.recyclerView2);
         layoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
         adapter = new MyAdapter(programasR, R.layout.list_item_recycler, new MyAdapter.OnItemClickListener() {
             @Override

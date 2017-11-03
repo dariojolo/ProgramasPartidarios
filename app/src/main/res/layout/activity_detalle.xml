@@ -121,7 +121,7 @@
                             android:layout_height="50dp"
                             android:layout_weight="0.1"
                             android:paddingBottom="4dp"
-                            android:src="@drawable/iconphone" />
+                            android:src="@drawable/zziconphone3" />
 
                         <TextView
                             android:id="@+id/txtTelefono"
