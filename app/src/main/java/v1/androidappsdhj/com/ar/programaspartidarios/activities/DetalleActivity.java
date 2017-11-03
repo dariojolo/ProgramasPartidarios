@@ -197,7 +197,7 @@ public class DetalleActivity extends AppCompatActivity {
         txtEmisora.setText(programa.getEmisora());
         txtDia1.setText(programa.getDiaUno());
         if (programa.getDiaDos() != null && !programa.getDiaDos().equals("")) {
-            txtDia2.setText(" -- " + programa.getDiaDos());
+            txtDia2.setText(programa.getDiaDos());
         }
         txtConductores.setText(programa.getConductores());
         /*txtTel.setText("   " + programa.getTelefono());

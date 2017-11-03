@@ -3,6 +3,7 @@
     xmlns:ads="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/fondoGris"
     android:layout_height="match_parent"
     tools:context=".Fragments.AmFragment">
 
@@ -10,7 +11,7 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView2"
         android:scrollbars="vertical"
-        android:background="#E2E2E2"
+        android:background="@color/fondoGris"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
     <com.google.android.gms.ads.AdView

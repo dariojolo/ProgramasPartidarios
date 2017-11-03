@@ -6,7 +6,7 @@
     android:id="@+id/cardView"
     android:layout_width="match_parent"
     android:layout_height="200dp"
-    card_view:cardBackgroundColor="#FFFFFF"
+    card_view:cardBackgroundColor="@color/fondoGrisClaro"
     card_view:cardCornerRadius="4dp"
     android:clickable="true"
     android:focusable="true"
@@ -16,7 +16,14 @@
         android:id="@+id/imagenPrograma"
         android:layout_width="380dp"
         android:layout_height="125dp"
-        android:background="@drawable/border_shadow_bottom"/>
+        android:background="@color/fondoGrisClaro"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/letraBlanca"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="40dp"
+        />
     <TextView
         android:id="@+id/txtNombrePrograma"
         android:layout_width="wrap_content"
@@ -25,6 +32,7 @@
         android:layout_marginBottom="40dp"
         android:layout_marginLeft="5dp"
         android:text=""
+        android:textColor="@color/letraBlanca"
         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
     <TextView
         android:id="@+id/txtEmisoraPrograma"
@@ -34,6 +42,7 @@
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="65dp"
         android:text=""
+        android:textColor="@color/letraBlanca"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
 
     <TextView
@@ -44,5 +53,6 @@
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="5dp"
         android:text=""
+        android:textColor="@color/letraBlanca"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
 </android.support.v7.widget.CardView>
