@@ -8,6 +8,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -75,21 +78,21 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             }
 
             //Picasso
-              Picasso.with(context).load(programa.getImagen()).fit().into(imageViewPoster);
+            //  Picasso.with(context).load(programa.getImagen()).fit().into(imageViewPoster);
             //imageViewPoster.setImageResource(movie.getPoster());
-           /* Glide.with(context)
+            /*Glide.with(context)
                     .load(programa.getImagen())
                     .fitCenter()
-                    .into(imageViewPoster);
+                    .into(imageViewPoster);*/
             Glide.with(context)
                     .load(programa.getImagen())
                     .apply(new RequestOptions()
-                            .diskCacheStrategy(DiskCacheStrategy.NONE)
+                            .diskCacheStrategy(DiskCacheStrategy.ALL)
                             .skipMemoryCache(true)
-                            //.optionalFitCenter()
+                            .optionalFitCenter()
                             .placeholder(R.drawable.coloresazulgrana)
                     )
-                    .into(imageViewPoster);*/
+                    .into(imageViewPoster);
 
             //Definimos que por cada elemento de nuestro RecyclerView, tenemos un clickListener
             //Que se comporta de la siguiente manera

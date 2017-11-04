@@ -82,7 +82,6 @@ public class AmFragment extends Fragment  implements RealmChangeListener<RealmRe
             }
         });
 
-        adapter.notifyDataSetChanged();
         //Este metodo se puede usar cuando sabemos que el layout del recycler no van a cambiar de tamaño
         recycler.setHasFixedSize(true);
         //Se le agrega una animacion por defecto

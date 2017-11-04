@@ -26,6 +26,9 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.github.clans.fab.FloatingActionMenu;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
@@ -168,9 +171,19 @@ public class DetalleActivity extends AppCompatActivity {
             linearEscuchar.setVisibility(View.INVISIBLE);
         }
         this.setTitle(programa.getNombre());
-        Picasso.with(this)
+        /*Picasso.with(this)
                 .load(programa.getImagen())
                 .fit()
+                .into(imagen);*/
+
+        Glide.with(this)
+                .load(programa.getImagen())
+                .apply(new RequestOptions()
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .skipMemoryCache(true)
+                        .optionalFitCenter()
+                        .placeholder(R.drawable.coloresazulgrana)
+                )
                 .into(imagen);
 
         btnNotificaciones.setChecked(programa.isNotificar());
