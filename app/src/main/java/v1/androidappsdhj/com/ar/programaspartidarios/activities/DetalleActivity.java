@@ -33,7 +33,6 @@ import com.github.clans.fab.FloatingActionMenu;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
-import com.squareup.picasso.Picasso;
 
 import io.realm.Realm;
 import v1.androidappsdhj.com.ar.programaspartidarios.R;
@@ -138,9 +137,9 @@ public class DetalleActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String texto = "";
-                if (programa.getTelefono().toString().equals("No disponible")) {
+                if (programa.getTelefono().toString().equalsIgnoreCase("no disponible")) {
                     texto = "El telefono no esta disponible o no fue informado por el programa";
-                }else{
+                }else {
                     texto = programa.getTelefono().toString();
                     }
                 showAlertInfo("Telefono del programa", texto);
@@ -201,17 +200,22 @@ public class DetalleActivity extends AppCompatActivity {
         imgTwi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (programa.getTwitter().toString() != "") {
+                if (programa.getTwitter().toString().equalsIgnoreCase("no disponible")) {
+                    showAlertInfo("Información no disponible", "La dirección de twitter no esta disponible o no fue informado por el programa");
+                }else {
                     Intent i = new Intent(Intent.ACTION_VIEW);
                     i.setData(Uri.parse(programa.getTwitter().toString()));
                     startActivity(i);
                 }
             }
         });
+
         imgFace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (programa.getFacebook().toString() != "") {
+                if (programa.getFacebook().toString().equalsIgnoreCase("no disponible")) {
+                    showAlertInfo("Información no disponible", "La dirección de facebook no esta disponible o no fue informado por el programa");
+                }else {
                     Intent i = new Intent(Intent.ACTION_VIEW);
                     i.setData(Uri.parse(programa.getFacebook().toString()));
                     startActivity(i);
@@ -221,7 +225,9 @@ public class DetalleActivity extends AppCompatActivity {
         imgWeb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (programa.getWeb().toString() != "") {
+                if (programa.getWeb().toString().equalsIgnoreCase("no disponible")) {
+                    showAlertInfo("Información no disponible", "La dirección web no esta disponible o no fue informado por el programa");
+                }else {
                     Intent i = new Intent(Intent.ACTION_VIEW);
                     i.setData(Uri.parse(programa.getWeb().toString()));
                     startActivity(i);
@@ -458,7 +464,7 @@ public class DetalleActivity extends AppCompatActivity {
                 dialog.cancel();
             }
         });
-        builder.setNegativeButton("Cancelar", null);
+        //builder.setNegativeButton("Cancelar", null);
 
         AlertDialog dialog = builder.create();
         dialog.show();

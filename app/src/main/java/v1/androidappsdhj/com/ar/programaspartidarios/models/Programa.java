@@ -267,4 +267,36 @@ public class Programa extends RealmObject implements Serializable {
     public void setTopicNotificacion(String topicNotificacion) {
         this.topicNotificacion = topicNotificacion;
     }
+
+    public void setLunes(boolean lunes) {
+        this.lunes = lunes;
+    }
+
+    public void setMartes(boolean martes) {
+        this.martes = martes;
+    }
+
+    public void setMiercoles(boolean miercoles) {
+        this.miercoles = miercoles;
+    }
+
+    public void setJueves(boolean jueves) {
+        this.jueves = jueves;
+    }
+
+    public void setViernes(boolean viernes) {
+        this.viernes = viernes;
+    }
+
+    public void setSabado(boolean sabado) {
+        this.sabado = sabado;
+    }
+
+    public void setDomingo(boolean domingo) {
+        this.domingo = domingo;
+    }
+
+    public void setDiaPartido(boolean diaPartido) {
+        this.diaPartido = diaPartido;
+    }
 }
