@@ -285,6 +285,7 @@ public class MyApp extends Application {
         realm.commitTransaction();
 
 
+        /*
         //Agrego los programas nuevos
         Programa pr = new Programa("La Botica de Boedo", R.drawable.zlaboticadeboedo, "", "AM970","NO DISPONIBLE","NO DISPONIBLE","https://twitter.com/BoticaBoedo","NO DISPONIBLE","NO DISPONIBLE",false,false,false,false,true,false,false,false,"Viernes 22Hs","","AM","http://tunein.com/radio/Radio-G%C3%A9nesis-970-s228340/",false,false,"LaBoticaDeBoedo",false,false,true);
         Programa p30 = new Programa("Los cuervos del sur", R.drawable.zzzzloscuervosdelsur, "", "FM 91.7","cuervosdelsur@sanlorenzo.org.ar","www.loscuervosdelsur.com.ar","https://twitter.com/LosCuervosdlSur","https://www.facebook.com/LosCuervosdelSur/","NO DISPONIBLE",true,false,false,false,false,false,false,false,"Lunes 20Hs","","FM","https://tunein.com/embed/player/s103248/",false,false,"LosCuervosDelSur",false,false,true);
@@ -296,11 +297,11 @@ public class MyApp extends Application {
         realm.copyToRealmOrUpdate(p30);
         realm.copyToRealmOrUpdate(p31);
         realm.commitTransaction();
-
+*/
 
         saveOnPreferences("hayUpdate");
-        saveOnPreferences("hayUpdate2");
-        saveOnPreferences("hayUpdate3");
+  //      saveOnPreferences("hayUpdate2");
+  //      saveOnPreferences("hayUpdate3");
 
     }
 
@@ -368,19 +369,19 @@ public class MyApp extends Application {
 
         //Agrego los programas nuevos
         Programa pr = new Programa("La Botica de Boedo", R.drawable.zlaboticadeboedo, "", "AM970","NO DISPONIBLE","NO DISPONIBLE","https://twitter.com/BoticaBoedo","NO DISPONIBLE","NO DISPONIBLE",false,false,false,false,true,false,false,false,"Viernes 22Hs","","AM","http://tunein.com/radio/Radio-G%C3%A9nesis-970-s228340/",false,false,"LaBoticaDeBoedo",false,false,true);
-        Programa p30 = new Programa("Los cuervos del sur", R.drawable.zzzzloscuervosdelsur, "", "FM 91.7","cuervosdelsur@sanlorenzo.org.ar","www.loscuervosdelsur.com.ar","https://twitter.com/LosCuervosdlSur","https://www.facebook.com/LosCuervosdelSur/","NO DISPONIBLE",true,false,false,false,false,false,false,false,"Lunes 20Hs","","FM","https://tunein.com/embed/player/s103248/",false,false,"LosCuervosDelSur",false,false,true);
-        Programa p31 = new Programa("Periodismo Santo", R.drawable.zzzzperiodismocuervo, "Júlio Axel - Hernán O'Donnell - León Espósito - Adolfo Res", "América Sports (Canal 115 Cablevisión)","NO DISPONIBLE","NO DISPONIBLE","https://twitter.com/PeriodismoSanto","NO DISPONIBLE","NO DISPONIBLE",false,true,true,false,false,false,false,false,"Martes 20:30Hs","Miercoles 0:30","TV","NO DISPONIBLE",false,false,"PeriodismoSanto",false,false,true);
+    //    Programa p30 = new Programa("Los cuervos del sur", R.drawable.zzzzloscuervosdelsur, "", "FM 91.7","cuervosdelsur@sanlorenzo.org.ar","www.loscuervosdelsur.com.ar","https://twitter.com/LosCuervosdlSur","https://www.facebook.com/LosCuervosdelSur/","NO DISPONIBLE",true,false,false,false,false,false,false,false,"Lunes 20Hs","","FM","https://tunein.com/embed/player/s103248/",false,false,"LosCuervosDelSur",false,false,true);
+    //    Programa p31 = new Programa("Periodismo Santo", R.drawable.zzzzperiodismocuervo, "Júlio Axel - Hernán O'Donnell - León Espósito - Adolfo Res", "América Sports (Canal 115 Cablevisión)","NO DISPONIBLE","NO DISPONIBLE","https://twitter.com/PeriodismoSanto","NO DISPONIBLE","NO DISPONIBLE",false,true,true,false,false,false,false,false,"Martes 20:30Hs","Miercoles 0:30","TV","NO DISPONIBLE",false,false,"PeriodismoSanto",false,false,true);
         Programa pr2 = new Programa("Pintalo de cuervo", R.drawable.zzpintalodecuervo, "Ariel Petrosino - Leonardo Álvarez - Gustavo Lavalle", "www.larz.com.ar","NO DISPONIBLE","NO DISPONIBLE","https://twitter.com/pdcuervo2017","https://www.facebook.com/1982pdc/","NO DISPONIBLE",true,false,false,false,false,false,false,false,"Lunes 22Hs","","","http://www.larz.com.ar",false,false,"PintalodeCuervo",false,false,true);
         realm.beginTransaction();
         realm.copyToRealmOrUpdate(pr);
         realm.copyToRealmOrUpdate(pr2);
-        realm.copyToRealmOrUpdate(p30);
-        realm.copyToRealmOrUpdate(p31);
+     //   realm.copyToRealmOrUpdate(p30);
+     //   realm.copyToRealmOrUpdate(p31);
         realm.commitTransaction();
 
 
         saveOnPreferences("hayUpdate2");
-        saveOnPreferences("hayUpdate3");
+   //     saveOnPreferences("hayUpdate3");
     }
     private void actualizarListaProgramas3() {
         //Actualizo programas 2018
@@ -444,13 +445,13 @@ public class MyApp extends Application {
         realm.commitTransaction();
 
         //Agrego los programas nuevos
-        Programa pr = new Programa("La Botica de Boedo", R.drawable.zlaboticadeboedo, "", "AM970","NO DISPONIBLE","NO DISPONIBLE","https://twitter.com/BoticaBoedo","NO DISPONIBLE","NO DISPONIBLE",false,false,false,false,true,false,false,false,"Viernes 22Hs","","AM","http://tunein.com/radio/Radio-G%C3%A9nesis-970-s228340/",false,false,"LaBoticaDeBoedo",false,false,true);
+     //   Programa pr = new Programa("La Botica de Boedo", R.drawable.zlaboticadeboedo, "", "AM970","NO DISPONIBLE","NO DISPONIBLE","https://twitter.com/BoticaBoedo","NO DISPONIBLE","NO DISPONIBLE",false,false,false,false,true,false,false,false,"Viernes 22Hs","","AM","http://tunein.com/radio/Radio-G%C3%A9nesis-970-s228340/",false,false,"LaBoticaDeBoedo",false,false,true);
         Programa p30 = new Programa("Los cuervos del sur", R.drawable.zzzzloscuervosdelsur, "", "FM 91.7","cuervosdelsur@sanlorenzo.org.ar","www.loscuervosdelsur.com.ar","https://twitter.com/LosCuervosdlSur","https://www.facebook.com/LosCuervosdelSur/","NO DISPONIBLE",true,false,false,false,false,false,false,false,"Lunes 20Hs","","FM","https://tunein.com/embed/player/s103248/",false,false,"LosCuervosDelSur",false,false,true);
         Programa p31 = new Programa("Periodismo Santo", R.drawable.zzzzperiodismocuervo, "Júlio Axel - Hernán O'Donnell - León Espósito - Adolfo Res", "América Sports (Canal 115 Cablevisión)","NO DISPONIBLE","NO DISPONIBLE","https://twitter.com/PeriodismoSanto","NO DISPONIBLE","NO DISPONIBLE",false,true,true,false,false,false,false,false,"Martes 20:30Hs","Miercoles 0:30","TV","NO DISPONIBLE",false,false,"PeriodismoSanto",false,false,true);
-        Programa pr2 = new Programa("Pintalo de cuervo", R.drawable.zzpintalodecuervo, "Ariel Petrosino - Leonardo Álvarez - Gustavo Lavalle", "www.larz.com.ar","NO DISPONIBLE","NO DISPONIBLE","https://twitter.com/pdcuervo2017","https://www.facebook.com/1982pdc/","NO DISPONIBLE",true,false,false,false,false,false,false,false,"Lunes 22Hs","","","http://www.larz.com.ar",false,false,"PintalodeCuervo",false,false,true);
+    //    Programa pr2 = new Programa("Pintalo de cuervo", R.drawable.zzpintalodecuervo, "Ariel Petrosino - Leonardo Álvarez - Gustavo Lavalle", "www.larz.com.ar","NO DISPONIBLE","NO DISPONIBLE","https://twitter.com/pdcuervo2017","https://www.facebook.com/1982pdc/","NO DISPONIBLE",true,false,false,false,false,false,false,false,"Lunes 22Hs","","","http://www.larz.com.ar",false,false,"PintalodeCuervo",false,false,true);
         realm.beginTransaction();
-        realm.copyToRealmOrUpdate(pr);
-        realm.copyToRealmOrUpdate(pr2);
+    //    realm.copyToRealmOrUpdate(pr);
+    //    realm.copyToRealmOrUpdate(pr2);
         realm.copyToRealmOrUpdate(p30);
         realm.copyToRealmOrUpdate(p31);
         realm.commitTransaction();
