@@ -235,6 +235,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="0.15"
                 android:orientation="horizontal"
+                android:visibility="gone"
                 android:background="@drawable/border_shadow_all"
                 android:gravity="center_vertical|center|left"
                 android:layout_marginTop="5dp">

@@ -166,8 +166,11 @@ public class DetalleActivity extends AppCompatActivity {
         programa = realm.where(Programa.class).equalTo("Id", _id).findFirst();
 
         if (programa.getMedio().equals("TV")) {
-            LinearLayout linearEscuchar = (LinearLayout) findViewById(R.id.linearEscuchar);
-            linearEscuchar.setVisibility(View.INVISIBLE);
+            //LinearLayout linearEscuchar = findViewById(R.id.linearEscuchar);
+          //  linearEscuchar.setVisibility(View.INVISIBLE);
+           // linearEscuchar.setVisibility(View.GONE);
+            Button btnEscuchar = findViewById(R.id.btnEscuchar);
+            btnEscuchar.setVisibility(View.INVISIBLE);
         }
         this.setTitle(programa.getNombre());
         /*Picasso.with(this)
@@ -242,7 +245,8 @@ public class DetalleActivity extends AppCompatActivity {
 
         //Comprobamos version de android
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            NewerVersion();
+            //NewerVersion();
+            System.out.print("");
         } else {
             OlderVersion(programa);
         }
@@ -367,9 +371,9 @@ public class DetalleActivity extends AppCompatActivity {
         }
     }
 
-    private void NewerVersion() {
-        requestPermissions(new String[]{Manifest.permission.INTERNET}, INTERNET_CODE);
-    }
+ //   private void NewerVersion() {
+ //       requestPermissions(new String[]{Manifest.permission.INTERNET}, INTERNET_CODE);
+ //   }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
