@@ -66,6 +66,9 @@ public class MyApp extends Application {
         if (!validarHayUpdate2()) {
             actualizarListaProgramas2();
         }
+        if (!validarHayUpdate3()) {
+            actualizarListaProgramas3();
+        }
         realm.close();
     }
 
@@ -149,11 +152,11 @@ public class MyApp extends Application {
         realm.copyToRealmOrUpdate(programa);
         realm.commitTransaction();
         // Actualizo Gente de San Lorenzo
-        programa = realm.where(Programa.class).equalTo("nombre","Gente de San Lorenzo").findFirst();
-        realm.beginTransaction();
-        programa.setImagen(R.drawable.zzzgentedesanlorenzo);
-        realm.copyToRealmOrUpdate(programa);
-        realm.commitTransaction();
+        //programa = realm.where(Programa.class).equalTo("nombre","Gente de San Lorenzo").findFirst();
+        //realm.beginTransaction();
+        //programa.setImagen(R.drawable.zzzgentedesanlorenzo);
+        //realm.copyToRealmOrUpdate(programa);
+        //realm.commitTransaction();
         // Actualizo Glorioso San Lorenzo
         programa = realm.where(Programa.class).equalTo("nombre","Glorioso San Lorenzo").findFirst();
         realm.beginTransaction();
@@ -161,15 +164,23 @@ public class MyApp extends Application {
         realm.copyToRealmOrUpdate(programa);
         realm.commitTransaction();
         // Actualizo Hablemos de San Lorenzo
-        programa = realm.where(Programa.class).equalTo("nombre","Hablemos de San Lorenzo").findFirst();
-        realm.beginTransaction();
-        programa.setImagen(R.drawable.zzzhablemosdesanlorenzo);
-        realm.copyToRealmOrUpdate(programa);
-        realm.commitTransaction();
+        //programa = realm.where(Programa.class).equalTo("nombre","Hablemos de San Lorenzo").findFirst();
+        //realm.beginTransaction();
+        //programa.setImagen(R.drawable.zzzhablemosdesanlorenzo);
+        //realm.copyToRealmOrUpdate(programa);
+        //realm.commitTransaction();
         // Actualizo La Cicloneta
         programa = realm.where(Programa.class).equalTo("nombre","La Cicloneta").findFirst();
         realm.beginTransaction();
         programa.setImagen(R.drawable.zzzlacicloneta);
+        programa.setDiaUno("Lunes a Viernes 22Hs");
+        programa.setLunes(true);
+        programa.setMartes(true);
+        programa.setMiercoles(true);
+        programa.setJueves(true);
+        programa.setViernes(true);
+        programa.setEmisora("AM770");
+        programa.setLink("http://tunein.com/radio/Radio-Cooperativa-770-s101604/");
         realm.copyToRealmOrUpdate(programa);
         realm.commitTransaction();
         // Actualizo La Cuervería
@@ -190,6 +201,13 @@ public class MyApp extends Application {
         realm.beginTransaction();
         programa.setLink("https://tunein.com/radio/radio-federal-am-810-s293827/");
         programa.setImagen(R.drawable.zzzmundoazulgrana);
+        programa.setDiaUno("Lunes a Viernes 16Hs");
+        programa.setLunes(true);
+        programa.setMartes(true);
+        programa.setMiercoles(true);
+        programa.setJueves(true);
+        programa.setViernes(true);
+        programa.setConductores("Rubén Becerra - Aldo Gaibuz");
         realm.copyToRealmOrUpdate(programa);
         realm.commitTransaction();
 
@@ -254,6 +272,8 @@ public class MyApp extends Application {
         programa = realm.where(Programa.class).equalTo("nombre","Soy San Lorenzo").findFirst();
         realm.beginTransaction();
         programa.setImagen(R.drawable.zzzsoysanlorenzo);
+        programa.setLink("https://tunein.com/radio/radio-federal-am-810-s293827/");
+        programa.setEmisora("AM810");
         realm.copyToRealmOrUpdate(programa);
         realm.commitTransaction();
 
@@ -267,17 +287,20 @@ public class MyApp extends Application {
 
         //Agrego los programas nuevos
         Programa pr = new Programa("La Botica de Boedo", R.drawable.zlaboticadeboedo, "", "AM970","NO DISPONIBLE","NO DISPONIBLE","https://twitter.com/BoticaBoedo","NO DISPONIBLE","NO DISPONIBLE",false,false,false,false,true,false,false,false,"Viernes 22Hs","","AM","http://tunein.com/radio/Radio-G%C3%A9nesis-970-s228340/",false,false,"LaBoticaDeBoedo",false,false,true);
-        realm.beginTransaction();
-        realm.copyToRealmOrUpdate(pr);
-        realm.commitTransaction();
+        Programa p30 = new Programa("Los cuervos del sur", R.drawable.zzzzloscuervosdelsur, "", "FM 91.7","cuervosdelsur@sanlorenzo.org.ar","www.loscuervosdelsur.com.ar","https://twitter.com/LosCuervosdlSur","https://www.facebook.com/LosCuervosdelSur/","NO DISPONIBLE",true,false,false,false,false,false,false,false,"Lunes 20Hs","","FM","https://tunein.com/embed/player/s103248/",false,false,"LosCuervosDelSur",false,false,true);
+        Programa p31 = new Programa("Periodismo Santo", R.drawable.zzzzperiodismocuervo, "Júlio Axel - Hernán O'Donnell - León Espósito - Adolfo Res", "América Sports (Canal 115 Cablevisión)","NO DISPONIBLE","NO DISPONIBLE","https://twitter.com/PeriodismoSanto","NO DISPONIBLE","NO DISPONIBLE",false,true,true,false,false,false,false,false,"Martes 20:30Hs","Miercoles 0:30","TV","NO DISPONIBLE",false,false,"PeriodismoSanto",false,false,true);
         Programa pr2 = new Programa("Pintalo de cuervo", R.drawable.zzpintalodecuervo, "Ariel Petrosino - Leonardo Álvarez - Gustavo Lavalle", "www.larz.com.ar","NO DISPONIBLE","NO DISPONIBLE","https://twitter.com/pdcuervo2017","https://www.facebook.com/1982pdc/","NO DISPONIBLE",true,false,false,false,false,false,false,false,"Lunes 22Hs","","","http://www.larz.com.ar",false,false,"PintalodeCuervo",false,false,true);
         realm.beginTransaction();
+        realm.copyToRealmOrUpdate(pr);
         realm.copyToRealmOrUpdate(pr2);
+        realm.copyToRealmOrUpdate(p30);
+        realm.copyToRealmOrUpdate(p31);
         realm.commitTransaction();
 
 
         saveOnPreferences("hayUpdate");
         saveOnPreferences("hayUpdate2");
+        saveOnPreferences("hayUpdate3");
 
     }
 
@@ -303,13 +326,145 @@ public class MyApp extends Application {
         realm.copyToRealmOrUpdate(programa);
         realm.commitTransaction();
 
+        //Actualizo Soy San Lorenzo
+        programa = realm.where(Programa.class).equalTo("nombre","Soy San Lorenzo").findFirst();
+        realm.beginTransaction();
+        programa.setImagen(R.drawable.zzzsoysanlorenzo);
+        programa.setLink("https://tunein.com/radio/radio-federal-am-810-s293827/");
+        programa.setEmisora("AM810");
+        realm.copyToRealmOrUpdate(programa);
+        realm.commitTransaction();
+
+        // Actualizo La Cicloneta
+        programa = realm.where(Programa.class).equalTo("nombre","La Cicloneta").findFirst();
+        realm.beginTransaction();
+        programa.setImagen(R.drawable.zzzlacicloneta);
+        programa.setDiaUno("Lunes a Viernes 22Hs");
+        programa.setLunes(true);
+        programa.setMartes(true);
+        programa.setMiercoles(true);
+        programa.setJueves(true);
+        programa.setViernes(true);
+        programa.setEmisora("AM770");
+        programa.setLink("http://tunein.com/radio/Radio-Cooperativa-770-s101604/");
+        realm.copyToRealmOrUpdate(programa);
+        realm.commitTransaction();
+
+
+        //Actualizo Mundo Azulgrana Radio
+        programa = realm.where(Programa.class).equalTo("nombre","Mundo Azulgrana radio").findFirst();
+        realm.beginTransaction();
+        programa.setLink("https://tunein.com/radio/radio-federal-am-810-s293827/");
+        programa.setImagen(R.drawable.zzzmundoazulgrana);
+        programa.setDiaUno("Lunes a Viernes 16Hs");
+        programa.setLunes(true);
+        programa.setMartes(true);
+        programa.setMiercoles(true);
+        programa.setJueves(true);
+        programa.setViernes(true);
+        programa.setConductores("Rubén Becerra - Aldo Gaibuz");
+        realm.copyToRealmOrUpdate(programa);
+        realm.commitTransaction();
+
+        //Agrego los programas nuevos
+        Programa pr = new Programa("La Botica de Boedo", R.drawable.zlaboticadeboedo, "", "AM970","NO DISPONIBLE","NO DISPONIBLE","https://twitter.com/BoticaBoedo","NO DISPONIBLE","NO DISPONIBLE",false,false,false,false,true,false,false,false,"Viernes 22Hs","","AM","http://tunein.com/radio/Radio-G%C3%A9nesis-970-s228340/",false,false,"LaBoticaDeBoedo",false,false,true);
+        Programa p30 = new Programa("Los cuervos del sur", R.drawable.zzzzloscuervosdelsur, "", "FM 91.7","cuervosdelsur@sanlorenzo.org.ar","www.loscuervosdelsur.com.ar","https://twitter.com/LosCuervosdlSur","https://www.facebook.com/LosCuervosdelSur/","NO DISPONIBLE",true,false,false,false,false,false,false,false,"Lunes 20Hs","","FM","https://tunein.com/embed/player/s103248/",false,false,"LosCuervosDelSur",false,false,true);
+        Programa p31 = new Programa("Periodismo Santo", R.drawable.zzzzperiodismocuervo, "Júlio Axel - Hernán O'Donnell - León Espósito - Adolfo Res", "América Sports (Canal 115 Cablevisión)","NO DISPONIBLE","NO DISPONIBLE","https://twitter.com/PeriodismoSanto","NO DISPONIBLE","NO DISPONIBLE",false,true,true,false,false,false,false,false,"Martes 20:30Hs","Miercoles 0:30","TV","NO DISPONIBLE",false,false,"PeriodismoSanto",false,false,true);
+        Programa pr2 = new Programa("Pintalo de cuervo", R.drawable.zzpintalodecuervo, "Ariel Petrosino - Leonardo Álvarez - Gustavo Lavalle", "www.larz.com.ar","NO DISPONIBLE","NO DISPONIBLE","https://twitter.com/pdcuervo2017","https://www.facebook.com/1982pdc/","NO DISPONIBLE",true,false,false,false,false,false,false,false,"Lunes 22Hs","","","http://www.larz.com.ar",false,false,"PintalodeCuervo",false,false,true);
+        realm.beginTransaction();
+        realm.copyToRealmOrUpdate(pr);
+        realm.copyToRealmOrUpdate(pr2);
+        realm.copyToRealmOrUpdate(p30);
+        realm.copyToRealmOrUpdate(p31);
+        realm.commitTransaction();
+
+
         saveOnPreferences("hayUpdate2");
+        saveOnPreferences("hayUpdate3");
+    }
+    private void actualizarListaProgramas3() {
+        //Actualizo programas 2018
+        // Actualizo Soy San Lorenzo
+        Programa programa;
+        programa = realm.where(Programa.class).equalTo("nombre","Soy San Lorenzo").findFirst();
+        realm.beginTransaction();
+        programa.setImagen(R.drawable.zzzsoysanlorenzo);
+        programa.setLink("https://tunein.com/radio/radio-federal-am-810-s293827/");
+        programa.setEmisora("AM810");
+        realm.copyToRealmOrUpdate(programa);
+        realm.commitTransaction();
+
+        // Actualizo Frenesi Azulgrana
+        programa = realm.where(Programa.class).equalTo("nombre","Frenesi Azulgrana").findFirst();
+        realm.beginTransaction();
+        programa.setDiaUno("Lunes a Viernes 19Hs");
+        programa.setLunes(true);
+        programa.setMartes(true);
+        programa.setMiercoles(true);
+        programa.setJueves(true);
+        programa.setViernes(true);
+        realm.copyToRealmOrUpdate(programa);
+        realm.commitTransaction();
+
+        // Actualizo La botica de boedo
+        programa = realm.where(Programa.class).equalTo("nombre","La Botica de Boedo").findFirst();
+        realm.beginTransaction();
+        programa.setConductores("");
+        realm.copyToRealmOrUpdate(programa);
+        realm.commitTransaction();
+
+        // Actualizo La Cicloneta
+        programa = realm.where(Programa.class).equalTo("nombre","La Cicloneta").findFirst();
+        realm.beginTransaction();
+        programa.setImagen(R.drawable.zzzlacicloneta);
+        programa.setDiaUno("Lunes a Viernes 22Hs");
+        programa.setLunes(true);
+        programa.setMartes(true);
+        programa.setMiercoles(true);
+        programa.setJueves(true);
+        programa.setViernes(true);
+        programa.setEmisora("AM770");
+        programa.setLink("http://tunein.com/radio/Radio-Cooperativa-770-s101604/");
+        realm.copyToRealmOrUpdate(programa);
+        realm.commitTransaction();
+
+        //Actualizo Mundo Azulgrana Radio
+        programa = realm.where(Programa.class).equalTo("nombre","Mundo Azulgrana radio").findFirst();
+        realm.beginTransaction();
+        programa.setLink("https://tunein.com/radio/radio-federal-am-810-s293827/");
+        programa.setImagen(R.drawable.zzzmundoazulgrana);
+        programa.setDiaUno("Lunes a Viernes 16Hs");
+        programa.setLunes(true);
+        programa.setMartes(true);
+        programa.setMiercoles(true);
+        programa.setJueves(true);
+        programa.setViernes(true);
+        programa.setConductores("Rubén Becerra - Aldo Gaibuz");
+        realm.copyToRealmOrUpdate(programa);
+        realm.commitTransaction();
+
+        //Agrego los programas nuevos
+        Programa pr = new Programa("La Botica de Boedo", R.drawable.zlaboticadeboedo, "", "AM970","NO DISPONIBLE","NO DISPONIBLE","https://twitter.com/BoticaBoedo","NO DISPONIBLE","NO DISPONIBLE",false,false,false,false,true,false,false,false,"Viernes 22Hs","","AM","http://tunein.com/radio/Radio-G%C3%A9nesis-970-s228340/",false,false,"LaBoticaDeBoedo",false,false,true);
+        Programa p30 = new Programa("Los cuervos del sur", R.drawable.zzzzloscuervosdelsur, "", "FM 91.7","cuervosdelsur@sanlorenzo.org.ar","www.loscuervosdelsur.com.ar","https://twitter.com/LosCuervosdlSur","https://www.facebook.com/LosCuervosdelSur/","NO DISPONIBLE",true,false,false,false,false,false,false,false,"Lunes 20Hs","","FM","https://tunein.com/embed/player/s103248/",false,false,"LosCuervosDelSur",false,false,true);
+        Programa p31 = new Programa("Periodismo Santo", R.drawable.zzzzperiodismocuervo, "Júlio Axel - Hernán O'Donnell - León Espósito - Adolfo Res", "América Sports (Canal 115 Cablevisión)","NO DISPONIBLE","NO DISPONIBLE","https://twitter.com/PeriodismoSanto","NO DISPONIBLE","NO DISPONIBLE",false,true,true,false,false,false,false,false,"Martes 20:30Hs","Miercoles 0:30","TV","NO DISPONIBLE",false,false,"PeriodismoSanto",false,false,true);
+        Programa pr2 = new Programa("Pintalo de cuervo", R.drawable.zzpintalodecuervo, "Ariel Petrosino - Leonardo Álvarez - Gustavo Lavalle", "www.larz.com.ar","NO DISPONIBLE","NO DISPONIBLE","https://twitter.com/pdcuervo2017","https://www.facebook.com/1982pdc/","NO DISPONIBLE",true,false,false,false,false,false,false,false,"Lunes 22Hs","","","http://www.larz.com.ar",false,false,"PintalodeCuervo",false,false,true);
+        realm.beginTransaction();
+        realm.copyToRealmOrUpdate(pr);
+        realm.copyToRealmOrUpdate(pr2);
+        realm.copyToRealmOrUpdate(p30);
+        realm.copyToRealmOrUpdate(p31);
+        realm.commitTransaction();
+
+        saveOnPreferences("hayUpdate3");
     }
     private boolean validarHayUpdate() {
         return prefs.getBoolean("hayUpdate", false);
     }
     private boolean validarHayUpdate2() {
         return prefs.getBoolean("hayUpdate2", false);
+    }
+    private boolean validarHayUpdate3() {
+        return prefs.getBoolean("hayUpdate3", false);
     }
 
     private <T extends RealmObject> AtomicInteger setAtomicId(Realm realm, Class<T> anyClass) {
@@ -338,25 +493,28 @@ public class MyApp extends Application {
                 Programa p8 = new Programa("Equipo Desafío", R.drawable.zzzequipodesafio, "Julio Axel / Maximiliano Berardo", "AM990", "mensajes@equipodesafio.com", "http://www.equipodesafio.com/", "https://twitter.com/equipodesafio", "https://www.facebook.com/Equipo-Desaf%C3%ADo-362011670569256/", "NO DISPONIBLE", false, true, false, false, false, false, false, true, "Martes 21Hs", "Días de partidos", "AM", "http://www.splendid990.com.ar/", false, false, "EquipoDesafio", false, false, true);
                 Programa p9 = new Programa("Estación Boedo", R.drawable.zzzestacionboedo, "Antonella González - Juan Cruz De Rosa - Matías Ávila - Claudio Pandelo", "FM105.9", "estacionboedo6@gmail.com", "NO DISPONIBLE", "https://twitter.com/estacionboedo", "https://www.facebook.com/Estacion-Boedo-PQV-792475577446550/", "4912-1059 / 15-4079-2402 (WhatsApp)", true, false, false, false, false, false, false, false, "Lunes 21hs", "", "FM", "", false, false, "EstacionBoedo", false, false, true);
                 Programa p10 = new Programa("Frenesi Azulgrana", R.drawable.zzzfrenesiazulgrana, "Alejandro Marrero , Ale Romero y Pepe Vázquez", "AM1050", "frenesiazulgranaradio@outlook.com", "http://www.frenesiazulgrana.com/", "https://twitter.com/FrenesiAzulgran", "https://www.facebook.com/frenesiazulgrana/", "4381-1672 / 4381 - 2569", true, true, true, true, true, false, false, false, "Martes y Jueves 19Hs", "", "AM", "http://tunein.com/radio/Radio-General-G%C3%BCemes-1050-s135700/", false, false, "FrenesiAzulgrana", false, true, false);
-                Programa p11 = new Programa("Gente de San Lorenzo", R.drawable.zzzgentedesanlorenzo, "Claudio Morrone", "AM840", "NO DISPONIBLE", "NO DISPONIBLE", "NO DISPONIBLE", "NO DISPONIBLE", "NO DISPONIBLE", false, false, false, false, true, false, false, false, "Viernes 20Hs", "", "AM", "http://tunein.com/radio/Radio-General-Belgrano-840-s84325/", false, false, "GenteDeSanLorenzo", false, false, true);
-                Programa p12 = new Programa("Glorioso San Lorenzo", R.drawable.zzzgloriososanlorenzo, "NO DISPONIBLE", "FM88.1", "marcosnext@hotmail.com", " No disponible", "https://twitter.com/gloriosocasla", " No disponible", " No disponible", false, false, true, false, false, false, false, true, "Miércoles 21Hs", "Días de partidos", "FM", "", false, false, "GloriosoSanLorenzo", false, false, true);
-                Programa p13 = new Programa("Hablemos de San Lorenzo", R.drawable.zzzhablemosdesanlorenzo, "Cristian Pagliaro, Rodrigo Castellano y Nicolas Morandi", "AM770", "cris_pagliaro05@yahoo.com.ar", "http://www.desanlorenzo.com/", "https://twitter.com/hablemosdesl", "https://www.facebook.com/hablemosdesl/", "5275-0770/71/72", true, true, true, true, true, false, true, false, "Lunes a Viernes 22Hs", "Domingos 22Hs", "AM", "http://tunein.com/radio/Radio-Cooperativa-770-s101604/", false, false, "HablemosDeSanLorenzo", false, false, true);
-                Programa p14 = new Programa("La Cicloneta", R.drawable.zzzlacicloneta, "Leandro Alves", "AM970", "lacicloneta@gmail.com", "NO DISPONIBLE", "https://twitter.com/lacicloneta", "https://www.facebook.com/LaCiclonetaRadio/", "4912-0497/0906", false, false, true, false, true, false, true, false, "Miércoles y viernes 21hs", "Domingos 22hs", "AM", "http://tunein.com/radio/Radio-G%C3%A9nesis-970-s228340/", false, false, "LaCicloneta", false, false, true);
+               // Programa p11 = new Programa("Gente de San Lorenzo", R.drawable.zzzgentedesanlorenzo, "Claudio Morrone", "AM840", "NO DISPONIBLE", "NO DISPONIBLE", "NO DISPONIBLE", "NO DISPONIBLE", "NO DISPONIBLE", false, false, false, false, true, false, false, false, "Viernes 20Hs", "", "AM", "http://tunein.com/radio/Radio-General-Belgrano-840-s84325/", false, false, "GenteDeSanLorenzo", false, false, true);
+                 Programa p12 = new Programa("Glorioso San Lorenzo", R.drawable.zzzgloriososanlorenzo, "NO DISPONIBLE", "FM88.1", "marcosnext@hotmail.com", " No disponible", "https://twitter.com/gloriosocasla", " No disponible", " No disponible", false, false, true, false, false, false, false, true, "Miércoles 21Hs", "Días de partidos", "FM", "", false, false, "GloriosoSanLorenzo", false, false, true);
+               // Programa p13 = new Programa("Hablemos de San Lorenzo", R.drawable.zzzhablemosdesanlorenzo, "Cristian Pagliaro, Rodrigo Castellano y Nicolas Morandi", "AM770", "cris_pagliaro05@yahoo.com.ar", "http://www.desanlorenzo.com/", "https://twitter.com/hablemosdesl", "https://www.facebook.com/hablemosdesl/", "5275-0770/71/72", true, true, true, true, true, false, true, false, "Lunes a Viernes 22Hs", "Domingos 22Hs", "AM", "http://tunein.com/radio/Radio-Cooperativa-770-s101604/", false, false, "HablemosDeSanLorenzo", false, false, true);
+                Programa p14 = new Programa("La Cicloneta", R.drawable.zzzlacicloneta, "Leandro Alves", "AM770", "lacicloneta@gmail.com", "NO DISPONIBLE", "https://twitter.com/lacicloneta", "https://www.facebook.com/LaCiclonetaRadio/", "4912-0497/0906", true, true, true, true, true, false, true, false, "Lunes a Viernes 22hs", "Domingos 22hs", "AM", "http://tunein.com/radio/Radio-Cooperativa-770-s101604/", false, false, "LaCicloneta", false, false, true);
                 Programa p15 = new Programa("La Cuervería", R.drawable.zzzlacuerveria, "Cristian Paladino", "AM840", "lacuerveria840@yahoo.com.ar", "http://www.semilleroazulgrana.com.ar/", "https://twitter.com/lacuerveria", "https://www.facebook.com/pg/LaCuerveriaOficial", "NO DISPONIBLE", true, false, false, false, false, false, false, false, "Lunes 20Hs", "", "AM", "http://tunein.com/radio/Radio-General-Belgrano-840-s84325/", false, false, "LaCuerveria", false, false, true);
                 Programa p16 = new Programa("La hora del Ciclón", R.drawable.zzzlahoradelciclon, "Mario Massi", "AM890", "alejogarcia090380@gmail.com.ar", "NO DISPONIBLE", "https://twitter.com/lahoradelciclon", "https://www.facebook.com/marioeduardo.massi", "NO DISPONIBLE", true, true, true, false, true, false, false, false, "Lunes, martes, miércoles y viernes 19Hs", "", "AM", "http://tunein.com/radio/Radio-Libre-890-s137009/", false, false, "LaHoraDelCiclon", false, true, false);
-                Programa p17 = new Programa("Mundo Azulgrana radio", R.drawable.zzzmundoazulgrana, "Rubén Becerra - Mario Benigni", "AM810", "NO DISPONIBLE", "http://mundoazulgrana.com.ar", "https://twitter.com/mundoazulgrana", "https://www.facebook.com/mundoazulgrana/", "4641-3920 /4600-3298", true, false, true, false, true, true, false, false, "Lunes, Miércoles y Viernes 11Hs", "", "AM", "https://tunein.com/radio/radio-federal-am-810-s293827/", false, false, "MundoAzulgranaRadio", true, false, true);
+                Programa p17 = new Programa("Mundo Azulgrana radio", R.drawable.zzzmundoazulgrana, "Rubén Becerra - Aldo Gaibuz", "AM810", "NO DISPONIBLE", "http://www.mundoazulgrana.com.ar", "https://twitter.com/mundoazulgrana", "https://www.facebook.com/mundoazulgrana/", "4641-3920 /4600-3298", true, true, true, true, true, false, false, false, "Lunes a Viernes 16Hs", "", "AM", "https://tunein.com/radio/radio-federal-am-810-s293827/", false, false, "MundoAzulgranaRadio", true, false, true);
                 Programa p18 = new Programa("Opinión azulgrana", R.drawable.zzzopinionazulgrana, "Carlos Perez Castex", "AM1490", "carlosperezcastex@hotmail.com.ar", "NO DISPONIBLE", "https://twitter.com/opazulgrana", "NO DISPONIBLE", "NO DISPONIBLE", false, true, true, true, false, false, true, false, "Domingo, Martes, Miércoles y Jueves 23Hs", "", "AM", "http://www.ustream.tv/channel/22120664", false, false, "OpinionAzulGrana", false, false, true);
                 Programa p19 = new Programa("San Lorenzo ayer, hoy y siempre", R.drawable.zzzsanlorenzoayerhoyysiempre, "Adolfo Res y Diego Resnik", "AM970", "sanlorenzoayerhoysiempre@yahoo.com.ar", "http://volveavenidalaplata.com.ar/", "https://twitter.com/caslahistoria", "https://www.facebook.com/CASLAhistoria/", "4926-1894/4926-0041", false, false, false, false, false, false, true, false, "Domingos 13Hs", "", "AM", "http://tunein.com/radio/Radio-G%C3%A9nesis-970-s228340/", false, false, "SanLorenzoAyerHoyYSiempre", false, true, false);
                 Programa p20 = new Programa("San Lorenzo de América", R.drawable.zzzsanlorenzodeamerica, "Diego Arvilly", "FM93.1", "nicomormandi22@gmail.com", "NO DISPONIBLE", "https://twitter.com/SLDAradio", "https://www.facebook.com/SLDAradio/", "NO DISPONIBLE", false, true, false, false, false, false, false, false, "Martes 22Hs", "", "FM", "http://tunein.com/radio/Late-931-FM-s184735/", false, false, "SanLorenzoDeAmerica", false, false, true);
                 Programa p21 = new Programa("San Lorenzo en acción", R.drawable.zzzsanlorenzoenaccion, "Sebastian Cambas - Lucas Celada", "AM1590", "sanlorenzoenaccion@hotmail.com", "NO DISPONIBLE", "https://twitter.com/slenaccion", "NO DISPONIBLE", "4382-4293", false, false, false, true, false, false, false, true, "Jueves 20Hs", "Días de partidos", "AM", "http://www.am1590.com.ar/", false, false, "SanLorenzoEnAccion", false, false, true);
                 Programa p22 = new Programa("San Lorenzo eterno", R.drawable.zzzsanlorenzoeternonew, "Marcelo Culotta", "AM970", "sanlorenzoeterno@gmail.com", "NO DISPONIBLE", "https://twitter.com/sleterno", "https://www.facebook.com/SanLorenzoEterno/", "4926-1622", false, true, false, false, false, false, false, false, "Martes 20Hs", "", "AM", "http://tunein.com/radio/Radio-G%C3%A9nesis-970-s228340/", false, false, "SanLorenzoEterno", false, false, true);
                 Programa p23 = new Programa("San Lorenzo mi pasión", R.drawable.zzzsanlorenzomipasionnew, "Víctor Federico", "AM970", "victorfederico970@gmail.com", "NO DISPONIBLE", "https://twitter.com/vueltaboedo", "https://www.facebook.com/victor.federico.7", "NO DISPONIBLE", false, false, false, false, false, true, false, false, "Sábados 12Hs", "", "AM", "http://tunein.com/radio/Radio-G%C3%A9nesis-970-s228340/", false, false, "SanLorenzoMiPasion", true, false, false);
-                Programa p24 = new Programa("Sentimiento Azulgrana", R.drawable.zzzsentimientoazulgrana, "Mario Massi", "AM890", "alejogarcia10@hotmail.com", "NO DISPONIBLE", "NO DISPONIBLE", "https://www.facebook.com/profile.php?id=100006642735130", "NO DISPONIBLE", false, false, false, false, false, false, false, true, "Días de partidos", "", "AM", "http://tunein.com/radio/Radio-Libre-890-s137009/", false, false, "SentimientoAzulGrana", false, false, false);
+                Programa p24 = new Programa("Sentimiento Azulgrana", R.drawable.zzzsentimientoazulgrana, "Mario Massi", "AM890/810", "alejogarcia10@hotmail.com", "NO DISPONIBLE", "NO DISPONIBLE", "https://www.facebook.com/profile.php?id=100006642735130", "NO DISPONIBLE", false, false, false, false, false, false, false, true, "Días de partidos", "", "AM", "http://tunein.com/radio/Radio-Libre-890-s137009/", false, false, "SentimientoAzulGrana", false, false, false);
                 //Programa p25 = new Programa("Simplemente San Lorenzo", R.drawable.zzzsimplementesanlorenzo,"Gustavo Bennasar y Adrián Disabato", "AM610", "simplementesanlorenzo@hotmail.com","http://simplementesanlorenzoweb.blogspot.com.ar/","NO DISPONIBLE","https://www.facebook.com/SimplementeSanLorenzo/","4542-6500",false,false,false,false,true,false,false,false,"Viernes 14hs","","AM","http://tunein.com/radio/AM610-Radio-General-San-Martin-s253609/",false,false,"SimplementeSanLorenzo",false,true,true);
-                Programa p26 = new Programa("Soy San Lorenzo", R.drawable.zzzsoysanlorenzo, "Mario Andrés Benigni", "AM690", "soysanlorenzo@gmail.com", "http://www.soysanlorenzo.com.ar/", "https://twitter.com/cirujanomb", "https://www.facebook.com/soysan.lorenzo.3", "46425533 / 46425315 / 15-5335-0310", true, true, true, true, true, false, false, false, "Lunes a Viernes 23Hs", "", "AM", "http://tunein.com/radio/K24-s288566/", false, false, "SoySanLorenzo", false, false, true);
+                Programa p26 = new Programa("Soy San Lorenzo", R.drawable.zzzsoysanlorenzo, "Mario Andrés Benigni", "AM810", "soysanlorenzo@gmail.com", "http://www.soysanlorenzo.com.ar/", "https://twitter.com/cirujanomb", "https://www.facebook.com/soysan.lorenzo.3", "46425533 / 46425315 / 15-5335-0310", true, true, true, true, true, false, false, false, "Lunes a Viernes 23Hs", "", "AM", "https://tunein.com/radio/radio-federal-am-810-s293827/", false, false, "SoySanLorenzo", false, false, true);
                 Programa p27 = new   Programa("Equipo Desafío TV", R.drawable.zzzequipodesafio, "Julio Axel yPablo Sassone", "Canal 360TV", "mensajes@equipodesafio.com", "http://www.equipodesafio.com/", "https://twitter.com/equipodesafio", "https://www.facebook.com/Equipo-Desaf%C3%ADo-362011670569256/", "NO DISPONIBLE", false, true, true, false, false, false, false, false, "Martes 20Hs", "Miércoles 13Hs", "TV", "", false, false, "EquipoDesafioTV", false, true, true);
                 Programa p28 = new Programa("La Botica de Boedo", R.drawable.zlaboticadeboedo, "", "AM970","NO DISPONIBLE","NO DISPONIBLE","https://twitter.com/BoticaBoedo","NO DISPONIBLE","NO DISPONIBLE",false,false,false,false,true,false,false,false,"Viernes 22Hs","","AM","http://tunein.com/radio/Radio-G%C3%A9nesis-970-s228340/",false,false,"LaBoticaDeBoedo",false,false,true);
                 Programa p29 = new Programa("Pintalo de cuervo", R.drawable.zzpintalodecuervo, "Ariel Petrosino - Leonardo Álvarez - Gustavo Lavalle", "www.larz.com.ar","NO DISPONIBLE","NO DISPONIBLE","https://twitter.com/pdcuervo2017","https://www.facebook.com/1982pdc/","NO DISPONIBLE",true,false,false,false,false,false,false,false,"Lunes 22Hs","","","http://www.larz.com.ar",false,false,"PintalodeCuervo",false,false,true);
+                Programa p30 = new Programa("Los cuervos del sur", R.drawable.zzzzloscuervosdelsur, "", "FM 91.7","cuervosdelsur@sanlorenzo.org.ar","www.loscuervosdelsur.com.ar","https://twitter.com/LosCuervosdlSur","https://www.facebook.com/LosCuervosdelSur/","NO DISPONIBLE",true,false,false,false,false,false,false,false,"Lunes 20Hs","","FM","https://tunein.com/embed/player/s103248/",false,false,"LosCuervosDelSur",false,false,true);
+                Programa p31 = new Programa("Periodismo Santo", R.drawable.zzzzperiodismocuervo, "Júlio Axel - Hernán O'Donnell - León Espósito - Adolfo Res", "América Sports (Canal 115 Cablevisión)","NO DISPONIBLE","NO DISPONIBLE","https://twitter.com/PeriodismoSanto","NO DISPONIBLE","NO DISPONIBLE",false,true,true,false,false,false,false,false,"Martes 20:30Hs","Miercoles 0:30","TV","NO DISPONIBLE",false,false,"PeriodismoSanto",false,false,true);
+
 
                 realm.copyToRealmOrUpdate(p1);
                 realm.copyToRealmOrUpdate(p2);
@@ -368,9 +526,9 @@ public class MyApp extends Application {
                 realm.copyToRealmOrUpdate(p8);
                 realm.copyToRealmOrUpdate(p9);
                 realm.copyToRealmOrUpdate(p10);
-                realm.copyToRealmOrUpdate(p11);
+                //realm.copyToRealmOrUpdate(p11);
                 realm.copyToRealmOrUpdate(p12);
-                realm.copyToRealmOrUpdate(p13);
+                //realm.copyToRealmOrUpdate(p13);
                 realm.copyToRealmOrUpdate(p14);
                 realm.copyToRealmOrUpdate(p15);
                 realm.copyToRealmOrUpdate(p16);
@@ -387,10 +545,14 @@ public class MyApp extends Application {
                 realm.copyToRealmOrUpdate(p27);
                 realm.copyToRealmOrUpdate(p28);
                 realm.copyToRealmOrUpdate(p29);
+                realm.copyToRealmOrUpdate(p30);
+                realm.copyToRealmOrUpdate(p31);
+
 
                 saveOnPreferences("firstTime");
                 saveOnPreferences("hayUpdate");
                 saveOnPreferences("hayUpdate2");
+                saveOnPreferences("hayUpdate3");
             }
         });
     }
