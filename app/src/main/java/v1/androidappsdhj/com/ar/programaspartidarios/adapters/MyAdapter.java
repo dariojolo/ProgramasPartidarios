@@ -28,11 +28,18 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     private int layout;
     private OnItemClickListener itemClickListener;
     private Context context;
+    private Boolean partido = Boolean.FALSE;
 
     public MyAdapter(List<Programa> programas, int layout,OnItemClickListener itemClickListener) {
         this.programas = programas;
         this.layout = layout;
         this.itemClickListener = itemClickListener;
+    }
+    public MyAdapter(List<Programa> programas, int layout,OnItemClickListener itemClickListener,Boolean partido) {
+        this.programas = programas;
+        this.layout = layout;
+        this.itemClickListener = itemClickListener;
+        this.partido = partido;
     }
 
     @Override
@@ -71,12 +78,34 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             //Procesamos los datos a renderizar
             textViewName.setText(programa.getNombre());
             textViewEmisora.setText(programa.getEmisora());
-            if (programa.getId()== 24){
-                textViewHora.setText("");
-            }else{
-                textViewHora.setText(programa.getDiaUno().substring(programa.getDiaUno().length()-4,programa.getDiaUno().length()) + " - ");
-            }
 
+            if ( partido ){
+                if (programa.getTopicNotificacion().equalsIgnoreCase("EquipoDesafio")) {
+                    textViewHora.setText("Partido ");
+                } else if (programa.getTopicNotificacion().equalsIgnoreCase("SanLorenzoEnAccion")) {
+                    textViewHora.setText("Partido ");
+                } else if (programa.getTopicNotificacion().equalsIgnoreCase("SentimientoAzulGrana")) {
+                    textViewHora.setText("Partido ");
+                } else if (programa.getTopicNotificacion().equalsIgnoreCase("ATodoSanLorenzo")) {
+                    textViewHora.setText("Partido ");
+                } else if (programa.getTopicNotificacion().equalsIgnoreCase("GloriosoSanLorenzo")) {
+                    textViewHora.setText("Partido ");
+                }
+            }else {
+                if (programa.getTopicNotificacion().equalsIgnoreCase("EquipoDesafio")) {
+                    textViewHora.setText("Partido ");
+                } else if (programa.getTopicNotificacion().equalsIgnoreCase("SanLorenzoEnAccion")) {
+                    textViewHora.setText("Partido ");
+                } else if (programa.getTopicNotificacion().equalsIgnoreCase("SentimientoAzulGrana")) {
+                    textViewHora.setText("Partido ");
+                } else if (programa.getTopicNotificacion().equalsIgnoreCase("EquipoDesafioTV")) {
+                    textViewHora.setText("20Hs");
+                } else if (programa.getTopicNotificacion().equalsIgnoreCase("PeriodismoSanto")) {
+                    textViewHora.setText("20:30");
+                } else {
+                    textViewHora.setText(programa.getDiaUno().substring(programa.getDiaUno().length() - 4, programa.getDiaUno().length()) + " - ");
+                }
+            }
             //Picasso
             //  Picasso.with(context).load(programa.getImagen()).fit().into(imageViewPoster);
             //imageViewPoster.setImageResource(movie.getPoster());

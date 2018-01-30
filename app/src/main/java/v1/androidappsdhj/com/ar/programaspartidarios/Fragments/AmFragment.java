@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -82,6 +83,7 @@ public class AmFragment extends Fragment  implements RealmChangeListener<RealmRe
             }
         });
 
+        verListadoProgramas();
         //Este metodo se puede usar cuando sabemos que el layout del recycler no van a cambiar de tamaño
         recycler.setHasFixedSize(true);
         //Se le agrega una animacion por defecto
@@ -89,6 +91,13 @@ public class AmFragment extends Fragment  implements RealmChangeListener<RealmRe
         recycler.setLayoutManager(layoutManager);
         recycler.setAdapter(adapter);
         return view;
+    }
+
+    private void verListadoProgramas() {
+        RealmResults<Programa>lista = realm.where(Programa.class).findAllSorted("Id", Sort.ASCENDING);
+        for (Programa programa: lista){
+            Log.i("ID Programa", "ID: " + programa.getId() + " Nombre: " + programa.getNombre());
+        }
     }
 
     private RealmResults<Programa> getAllProgramasR() {

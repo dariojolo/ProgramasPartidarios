@@ -84,7 +84,7 @@ public class PartidosFragment extends Fragment implements RealmChangeListener<Re
                 intent.putExtra("Fragment", 3);
                 startActivity(intent);
             }
-        });
+        },true);
 
         //Este metodo se puede usar cuando sabemos que el layout del recycler no van a cambiar de tamaño
         recycler.setHasFixedSize(true);
