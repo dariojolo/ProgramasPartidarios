@@ -339,8 +339,20 @@ public class MainActivity extends AppCompatActivity {
             case R.id.notificarNinguno:
                 eliminarTodasLasNotificaciones();
                 return true;
-            default:
+            case R.id.privacyPolicy:
+                verPolitica();
+                return true;
+
+                default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void verPolitica() {
+        Uri webpage = Uri.parse("https://programaspartidarios.firebaseapp.com/");
+        Intent intent2 = new Intent(Intent.ACTION_VIEW, webpage);
+        if (intent2.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent2);
         }
     }
 

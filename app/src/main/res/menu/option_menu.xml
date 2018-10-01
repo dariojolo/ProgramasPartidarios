@@ -25,4 +25,10 @@
         android:icon="@android:drawable/ic_menu_preferences"
         app:showAsAction="never"
         />
+    <item
+        android:id="@+id/privacyPolicy"
+        android:title="Política de privacidad"
+        android:icon="@android:drawable/ic_menu_view"
+        app:showAsAction="never"
+        />
 </menu>
